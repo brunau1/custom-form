@@ -1,0 +1,13 @@
+.navbar{
+    box-shadow: 0 0 1em #00000045;
+}
+.form-format{
+    background-color: #3c3c3c0f;
+    box-shadow: 0 0 1em #00000045;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    padding: 2em 2em;
+}
+h3{
+    margin-top: 2em;
+}
