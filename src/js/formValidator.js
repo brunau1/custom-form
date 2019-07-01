@@ -145,3 +145,63 @@ function formataCampo(campo, Mascara, evento) {
         return true;
     }
 }
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict';
+    window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        var inputCep = document.getElementById('inputCep')
+        var errorCep = document.getElementById('cep-invalid-feedback')
+        var inputCnpj = document.getElementById('inputCnpj')
+        var errorCnpj = document.getElementById('cnpj-invalid-feedback')
+
+        var validate = [...forms, inputCep, inputCnpj]
+        // Loop over them and prevent submission
+
+        validate.filter(item => {
+            if (item.getAttribute('class') == 'needs-validation')
+                item.addEventListener('submit', event => {
+                    if (item.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    item.classList.add('was-validated');
+                }, false)
+            else {
+                if (item.getAttribute('id') == '#inputCep')
+                    item.addEventListener('change', event => {
+                        if (item.checkValidity() === false) {
+                            // event.preventDefault();
+                            // event.stopPropagation();
+                            errorCep.style.display = 'block'
+                            item.style.borderColor = '#dc3545'
+                            console.log(item)
+                        }
+                        else {
+                            errorCep.style.display = 'none'
+                            item.style.borderColor = '#28a745'
+                        }
+                        item.classList.add('was-validated');
+                    }, false)
+
+                if (item.getAttribute('id') == '#inputCep')
+                    item.addEventListener('change', event => {
+                        if (item.checkValidity() === false) {
+                            // event.preventDefault();
+                            // event.stopPropagation();
+                            errorCep.style.display = 'block'
+                            item.style.borderColor = '#dc3545'
+                            console.log(item)
+                        }
+                        else {
+                            errorCep.style.display = 'none'
+                            item.style.borderColor = '#28a745'
+                        }
+                        item.classList.add('was-validated');
+                    }, false)
+            }
+        });
+    }, false)
+})();
