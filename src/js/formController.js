@@ -74,6 +74,21 @@ var fillAddressFields = () => {
     })
 }
 
+var emptyAddressFields = () => {
+
+    fieldIdsAddress.map(item => {
+        if (item != '#inputCep' && item != '#inputNumber') {
+            field = document.querySelector(item)
+            field.value = ''
+
+            if (!field.value)
+                field.disabled = false
+            else
+                field.disabled = true
+        }
+    })
+}
+
 var validateFormData = () => {
     const select = document.querySelector('#inputBusiness')
     error = false

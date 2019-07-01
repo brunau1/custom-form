@@ -169,37 +169,39 @@ function formataCampo(campo, Mascara, evento) {
                     }
                     item.classList.add('was-validated');
                 }, false)
-            if (item.getAttribute('id') == '#inputCep')
-                item.addEventListener('change', event => {
-                    if (item.checkValidity() === false) {
-                        // event.preventDefault();
-                        // event.stopPropagation();
-                        errorCep.style.display = 'block'
-                        item.style.borderColor = '#dc3545'
-                        console.log(item)
-                    }
-                    else {
-                        errorCep.style.display = 'none'
-                        item.style.borderColor = '#28a745'
-                    }
-                    item.classList.add('was-validated');
-                }, false)
-
-            if (item.getAttribute('id') == '#inputCnpj')
-                item.addEventListener('change', event => {
-                    if (item.checkValidity() === false) {
-                        // event.preventDefault();
-                        // event.stopPropagation();
-                        errorCnpj.style.display = 'block'
-                        item.style.borderColor = '#dc3545'
-                        console.log(item)
-                    }
-                    else {
-                        errorCnpj.style.display = 'none'
-                        item.style.borderColor = '#28a745'
-                    }
-                    item.classList.add('was-validated');
-                }, false)
         });
+
+        inputCep.addEventListener('change', event => {
+            if (inputCep.checkValidity() === false || inputCep.value.toString().length < 8) {
+                // event.preventDefault();
+                // event.stopPropagation();
+                errorCep.style.display = 'block'
+                inputCep.style.borderColor = '#dc3545'
+                emptyAddressFields()
+                console.log(inputCep)
+            }
+            else {
+                errorCep.style.display = 'none'
+                inputCep.style.borderColor = '#28a745'
+                consultCep()
+            }
+            inputCep.classList.add('was-validated');
+        }, false)
+
+
+        inputCnpj.addEventListener('change', event => {
+            if (inputCnpj.checkValidity() === false) {
+                // event.preventDefault();
+                // event.stopPropagation();
+                errorCnpj.style.display = 'block'
+                inputCnpj.style.borderColor = '#dc3545'
+                console.log(inputCnpj)
+            }
+            else {
+                errorCnpj.style.display = 'none'
+                inputCnpj.style.borderColor = '#28a745'
+            }
+            inputCnpj.classList.add('was-validated');
+        }, false)
     }, false)
 })();

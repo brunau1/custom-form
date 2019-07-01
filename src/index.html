@@ -167,27 +167,39 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputName">Nome completo</label>
-                    <input type="text" class="form-control field" id="inputName" placeholder="Nome completo">
+                    <input type="text" class="form-control field" id="inputName" placeholder="Nome completo" required>
+                    <div class="invalid-feedback">
+                        Informe seu nome completo!
+                    </div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputCpf">CPF</label>
                     <input type="text" class="form-control field" id="inputCpf" placeholder="___.___.___-__" name="cpf"
-                        onKeyPress="MascaraCPF(custom_form.cpf);" maxlength="14">
+                        onKeyPress="MascaraCPF(custom_form.cpf);" maxlength="14" required>
+                    <div class="invalid-feedback">
+                        Informe um CPF válido
+                    </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputDate">Data de Nascimento</label>
                     <input type="text" class="form-control field" id="inputDate" placeholder="__/__/__" name="data"
-                        onKeyPress="MascaraData(custom_form.data);" maxlength="10">
+                        onKeyPress="MascaraData(custom_form.data);" maxlength="10" required>
+                    <div class="invalid-feedback">
+                        Informe uma data válida!
+                    </div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputSex">Sexo</label>
-                    <select class="form-control field" id="inputSex" placeholder="Selecione">
+                    <select class="form-control field" id="inputSex" placeholder="Selecione" required>
                         <option value="">Escolher...</option>
                         <option value="m">Masculino</option>
                         <option value="f">Feminino</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Selecione o sexo!
+                    </div>
                 </div>
             </div>
             <div class="form-row">
@@ -198,10 +210,16 @@
                         <option value="active">Ativo</option>
                         <option value="inative">Inativo</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Selecione a situação!
+                    </div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputOffice">Cargo </label>
-                    <input type="text" class="form-control field" id="inputOffice" disabled>
+                    <input type="text" class="form-control field" id="inputOffice" disabled value="cargo" required>
+                    <div class="invalid-feedback">
+                        Informe o cargo do usuário!
+                    </div>
                 </div>
             </div>
 
@@ -209,11 +227,18 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputEmail">Email</label>
-                    <input type="text" class="form-control field" id="inputEmail" placeholder="email@example.com">
+                    <input type="text" class="form-control field" id="inputEmail" placeholder="email@example.com"
+                        required>
+                    <div class="invalid-feedback">
+                        Insira um endereço de email válido!
+                    </div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputPassword">Senha: (minimo de 6 caracteres)</label>
-                    <input type="password" class="form-control field" id="inputPassword" placeholder="">
+                    <input type="password" class="form-control field" id="inputPassword" placeholder="" required>
+                    <div class="invalid-feedback">
+                        Informe uma senha válida!
+                    </div>
                 </div>
             </div>
 
@@ -222,13 +247,16 @@
                 <div class="form-group col-md-4">
                     <label for="inputPhone">Telefone</label>
                     <input type="text" class="form-control field" id="inputPhone" placeholder="(  ) _____-____"
-                        name="tel" onKeyPress="MascaraTelefone(custom_form.tel);" maxlength="15">
+                        name="tel" onKeyPress="MascaraTelefone(custom_form.tel);" maxlength="15" required>
+                    <div class="invalid-feedback">
+                        Informe um número de telefone válido!
+                    </div>
                 </div>
             </div>
 
             <h3>Endereço:</h3>
             <div class="form-row">
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <label for="inputCep">CEP</label>
                     <input type="text" class="form-control field invalid-validation" id="inputCep"
                         placeholder="__.___-___" onchange="//consultCep()" name="cep"
@@ -240,38 +268,38 @@
                 <div class="form-group col-md-2" style="display: flex;
                 align-items: flex-end;">
                     <button type="button" id="buttonCep" class="btn btn-primary"
-                        onclick="consultCep()">Consultar</button>
+                        onclick="consultCep()" hidden>Consultar</button>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputState">Estado</label>
-                    <input type="text" class="form-control field" id="inputState">
+                    <input type="text" class="form-control field" id="inputState" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputCity">Cidade</label>
-                    <input type="text" class="form-control field" id="inputCity">
+                    <input type="text" class="form-control field" id="inputCity" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputNeighborhood">Bairro</label>
-                    <input type="text" class="form-control field" id="inputNeighborhood">
+                    <input type="text" class="form-control field" id="inputNeighborhood" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputAddress">Logradouro</label>
-                    <input type="text" class="form-control field" id="inputAddress">
+                    <input type="text" class="form-control field" id="inputAddress" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputNumber">Numero</label>
-                    <input type="text" class="form-control field" id="inputNumber">
+                    <input type="text" class="form-control field" id="inputNumber" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputComplement">Complemento</label>
-                    <input type="text" class="form-control field" id="inputComplement">
+                    <input type="text" class="form-control field" id="inputComplement" required>
                 </div>
             </div>
 

@@ -5,6 +5,10 @@ var consultCep = () => {
         type: "get"
     })
         .done(data => {
+            if(data.erro){
+                emptyAddressFields()
+                return false
+            }
             const {
                 localidade: city,
                 uf: state,
@@ -24,7 +28,7 @@ var consultCep = () => {
         })
         .fail(err => {
             console.log(err)
-            alert("insira um cep valido")
+            emptyAddressFields()
         });
 }
 
