@@ -157,7 +157,7 @@ function formataCampo(campo, Mascara, evento) {
         var inputCnpj = document.getElementById('inputCnpj')
         var errorCnpj = document.getElementById('cnpj-invalid-feedback')
 
-        var validate = [...forms, inputCep, inputCnpj]
+        var validate = [...forms]
         // Loop over them and prevent submission
 
         validate.filter(item => {
@@ -169,39 +169,37 @@ function formataCampo(campo, Mascara, evento) {
                     }
                     item.classList.add('was-validated');
                 }, false)
-            else {
-                if (item.getAttribute('id') == '#inputCep')
-                    item.addEventListener('change', event => {
-                        if (item.checkValidity() === false) {
-                            // event.preventDefault();
-                            // event.stopPropagation();
-                            errorCep.style.display = 'block'
-                            item.style.borderColor = '#dc3545'
-                            console.log(item)
-                        }
-                        else {
-                            errorCep.style.display = 'none'
-                            item.style.borderColor = '#28a745'
-                        }
-                        item.classList.add('was-validated');
-                    }, false)
+            if (item.getAttribute('id') == '#inputCep')
+                item.addEventListener('change', event => {
+                    if (item.checkValidity() === false) {
+                        // event.preventDefault();
+                        // event.stopPropagation();
+                        errorCep.style.display = 'block'
+                        item.style.borderColor = '#dc3545'
+                        console.log(item)
+                    }
+                    else {
+                        errorCep.style.display = 'none'
+                        item.style.borderColor = '#28a745'
+                    }
+                    item.classList.add('was-validated');
+                }, false)
 
-                if (item.getAttribute('id') == '#inputCep')
-                    item.addEventListener('change', event => {
-                        if (item.checkValidity() === false) {
-                            // event.preventDefault();
-                            // event.stopPropagation();
-                            errorCep.style.display = 'block'
-                            item.style.borderColor = '#dc3545'
-                            console.log(item)
-                        }
-                        else {
-                            errorCep.style.display = 'none'
-                            item.style.borderColor = '#28a745'
-                        }
-                        item.classList.add('was-validated');
-                    }, false)
-            }
+            if (item.getAttribute('id') == '#inputCnpj')
+                item.addEventListener('change', event => {
+                    if (item.checkValidity() === false) {
+                        // event.preventDefault();
+                        // event.stopPropagation();
+                        errorCnpj.style.display = 'block'
+                        item.style.borderColor = '#dc3545'
+                        console.log(item)
+                    }
+                    else {
+                        errorCnpj.style.display = 'none'
+                        item.style.borderColor = '#28a745'
+                    }
+                    item.classList.add('was-validated');
+                }, false)
         });
     }, false)
 })();
