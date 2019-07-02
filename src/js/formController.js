@@ -135,15 +135,16 @@ var validateFormData = () => {
         if (!error)
             return error
     })
-    
+
     return error
 }
 
 var fieldValidator = (fieldId) => {
-    field = document.querySelector(fieldId).value
+    const select = document.querySelector('#inputBusiness')
+    const field = document.querySelector(fieldId).value
 
     if (fieldId == '#inputPassword')
-        if (field.toString().length <= 6)
+        if (field.toString().length < 6)
             return true
 
     if (fieldId == '#inputSex')

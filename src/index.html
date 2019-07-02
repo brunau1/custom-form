@@ -61,7 +61,7 @@
                     <div class="form-group col-md-3">
                         <label for="inputCnpj">CNPJ</label>
                         <input type="text" class="form-control field invalid-validation" id="inputCnpj"
-                            placeholder="__.___.___/____-__" onchange="//consultCnpj()" name="cnpj"
+                            placeholder="__.___.___/____-__" onchange="" name="cnpj"
                             onKeyPress="MascaraCNPJ(custom_form.cnpj);" maxlength="18" required>
                     </div>
                     <div id="cnpj-invalid-feedback">
@@ -237,7 +237,7 @@
                 <div class="form-group col-md-4">
                     <label for="inputPassword">Senha: (minimo de 6 caracteres)</label>
                     <input type="password" class="form-control field" id="inputPassword" placeholder="" required>
-                    <div class="invalid-feedback">
+                    <div id="password-invalid-feedback">
                         Informe uma senha válida!
                     </div>
                 </div>
@@ -304,7 +304,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary" onclick="//validateFormData()">Cadastre-se</button>
+            <button type="submit" class="btn btn-primary" onclick="setPostData()">Cadastre-se</button>
         </form>
 
     </section>

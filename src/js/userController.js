@@ -32,6 +32,7 @@ var createUser = () => {
     })
         .done((msg) => {
             alert("Usuário Cadastrado!")
+            console.log(msg)
         })
         .fail((textStatus, msg) => {
             alert("Falha no cadastro do usuário!")
@@ -43,16 +44,19 @@ var setPostData = () => {
 
     if (!validateFormData()) {
         length = document.querySelector("#inputName").value.split(' ').length,
-        postData = {
-            username: document.querySelector("#inputEmail").value.split('@')[0],
-            firstname: document.querySelector("#inputName").value.split(' ')[0],
-            password: document.querySelector("#inputPassword").value,
-            lastname: document.querySelector("#inputName").value.aplit(' ')[length - 1],
-            email: document.querySelector("#inputEmail").value,
-            cf: {
-                cpf: document.querySelector("#inputCpf").value
+            postData = {
+                username: document.querySelector("#inputEmail").value.split('@')[0],
+                firstname: document.querySelector("#inputName").value.split(' ')[0],
+                password: document.querySelector("#inputPassword").value,
+                lastname: document.querySelector("#inputName").value.split(' ')[length - 1],
+                email: document.querySelector("#inputEmail").value,
+                cf: {
+                    cpf: document.querySelector("#inputCpf").value
+                }
             }
-        }
+        createUser()
     }
-    createUser()
+    else{
+        alert('Todos os campos devem ser preenchidos corretamente!')
+    }
 }

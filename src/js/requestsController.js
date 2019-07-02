@@ -41,8 +41,6 @@ var consultCnpj = () => {
         fieldCnpj.disabled = true
         cnpjRequest(cnpj, fieldCnpj)
     }
-    else
-        alert('Insira um CNPJ válido!')
 }
 
 var cnpjRequest = (cnpj, field) => {
