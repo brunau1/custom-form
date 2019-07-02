@@ -190,16 +190,18 @@ function formataCampo(campo, Mascara, evento) {
 
 
         inputCnpj.addEventListener('change', event => {
-            if (inputCnpj.checkValidity() === false) {
+            if (inputCnpj.checkValidity() === false || inputCnpj.value.toString().length < 14) {
                 // event.preventDefault();
                 // event.stopPropagation();
                 errorCnpj.style.display = 'block'
                 inputCnpj.style.borderColor = '#dc3545'
+                emptyCnpjFields()
                 console.log(inputCnpj)
             }
             else {
                 errorCnpj.style.display = 'none'
                 inputCnpj.style.borderColor = '#28a745'
+                consultCnpj()
             }
             inputCnpj.classList.add('was-validated');
         }, false)

@@ -58,6 +58,30 @@ var fillCnpjFields = () => {
     }
 }
 
+var emptyCnpjFields = () => {
+
+    fieldIdsJuridic.map(item => {
+
+        field = document.querySelector(item)
+        field.value = ''
+
+        if (!field.value)
+            field.disabled = false
+        else
+            field.disabled = true
+    })
+    fieldCep = document.querySelector('#inputCep')
+    fieldNumber = document.querySelector('#inputNumber')
+
+    fieldCep.value = ''
+    fieldNumber.value = ''
+
+    fieldCep.disabled = false
+    fieldNumber.disabled = false
+    emptyAddressFields()
+}
+
+
 var fillAddressFields = () => {
 
     fieldIdsAddress.map(item => {

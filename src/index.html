@@ -44,7 +44,7 @@
                     <label for="business">Perfil do usuário</label>
                     <select class="form-control field" id="inputBusiness" placeholder="Selecione"
                         onclick="showBusinessForm()" required>
-                        <option value="">Escolher...</option>
+                        <option></option>
                         <option value="1">Dono de bar(es) e/ou restaurante(s)</option>
                         <option value="2">Profissional do setor de bar(es) e/ou restaurante(s)</option>
                         <option value="">Quero abrir um negócio</option>
@@ -108,7 +108,7 @@
                         <label for="inputJuridicSituation">Situação atual</label>
                         <select type="text" class="form-control field" id="inputJuridicSituation" placeholder=""
                             required>
-                            <option value="">Escolher...</option>
+                            <option></option>
                             <option value="ativa">Ativo</option>
                             <option value="inativa">Inativo</option>
                         </select>
@@ -193,7 +193,7 @@
                 <div class="form-group col-md-4">
                     <label for="inputSex">Sexo</label>
                     <select class="form-control field" id="inputSex" placeholder="Selecione" required>
-                        <option value="">Escolher...</option>
+                        <option></option>
                         <option value="m">Masculino</option>
                         <option value="f">Feminino</option>
                     </select>
@@ -205,10 +205,11 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputPersonalSituation">Situação atual</label>
-                    <select type="text" class="form-control field" id="inputPersonalSituation">
-                        <option value="">Escolher...</option>
-                        <option value="active">Ativo</option>
-                        <option value="inative">Inativo</option>
+                    <select type="text" class="form-control field" id="inputPersonalSituation" placeholder=""
+                        required>
+                        <option></option>
+                        <option value="ativa">Ativo</option>
+                        <option value="inativa">Inativo</option>
                     </select>
                     <div class="invalid-feedback">
                         Selecione a situação!
