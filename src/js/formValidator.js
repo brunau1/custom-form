@@ -156,6 +156,7 @@ function formataCampo(campo, Mascara, evento) {
         var errorCep = document.getElementById('cep-invalid-feedback')
         var inputCnpj = document.getElementById('inputCnpj')
         var errorCnpj = document.getElementById('cnpj-invalid-feedback')
+        var cont = 0
 
         var validate = [...forms]
         // Loop over them and prevent submission
@@ -166,8 +167,10 @@ function formataCampo(campo, Mascara, evento) {
                     if (item.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
+                        cont++
                     }
                     item.classList.add('was-validated');
+                    console.log(cont)
                 }, false)
         });
 

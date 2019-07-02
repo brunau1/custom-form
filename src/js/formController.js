@@ -129,11 +129,17 @@ var validateFormData = () => {
         if (!error)
             return error
     })
+
+    fieldIdsAddress.map(item => {
+        error = fieldValidator(item)
+        if (!error)
+            return error
+    })
+    
     return error
 }
 
 var fieldValidator = (fieldId) => {
-    const select = document.querySelector('#inputBusiness')
     field = document.querySelector(fieldId).value
 
     if (fieldId == '#inputPassword')

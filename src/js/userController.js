@@ -10,9 +10,7 @@ var createUser = () => {
     } = postData
 
     const {
-        cidade,
-        estado,
-
+        cpf
     } = postData.cf
 
     $.ajax({
@@ -25,14 +23,7 @@ var createUser = () => {
             email,
             password,
             cf: {
-                cidade,
-                estado,
-                cidade,
-                estado,
-                phone,
-                cpf,
-                bornDate,
-                sex
+                cpf
             }
         },
         beforeSend: () => {
@@ -51,19 +42,17 @@ var createUser = () => {
 var setPostData = () => {
 
     if (!validateFormData()) {
+        length = document.querySelector("#inputName").value.split(' ').length,
         postData = {
-            username: document.querySelector("#inputUserName").value,
-            firstname: document.querySelector("#inputFirstName").value,
+            username: document.querySelector("#inputEmail").value.split('@')[0],
+            firstname: document.querySelector("#inputName").value.split(' ')[0],
             password: document.querySelector("#inputPassword").value,
-            lastname: document.querySelector("#inputLastName").value,
+            lastname: document.querySelector("#inputName").value.aplit(' ')[length - 1],
             email: document.querySelector("#inputEmail").value,
             cf: {
-                cidade: document.querySelector("#inputCity").value,
-                estado: document.querySelector("#inputState").value,
-                phone: document.querySelector("#inputPhone").value,
-                cpf: document.querySelector("#inputCpf").value,
+                cpf: document.querySelector("#inputCpf").value
             }
         }
-        createUser()
     }
+    createUser()
 }

@@ -2,6 +2,10 @@
     box-shadow: 0 0 1em #00000045;
 }
 
+.bg-light {
+    background-color: #1c6f42!important;
+}
+
 .form-format {
     background-color: #3c3c3c0f;
     box-shadow: 0 0 1em #00000045;
@@ -48,4 +52,10 @@ h3 {
     margin-top: .25rem;
     font-size: 80%;
     color: #dc3545;
+}
+
+@media(max-width: 576px){
+    .form-format {
+        margin-top: 0;
+    }
 }
