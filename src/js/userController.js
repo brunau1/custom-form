@@ -17,13 +17,13 @@ var createUser = () => {
         url: usersRoutePost,
         type: "post",
         data: {
-            username,
-            firstname,
-            lastname,
-            email,
-            password,
-            cf: {
-                cpf
+            'username': username,
+            'firstname': firstname,
+            'lastname': lastname,
+            'email': email,
+            'password': password,
+            'cf': {
+                'cpf': cpf
             }
         },
         beforeSend: () => {
@@ -43,15 +43,15 @@ var createUser = () => {
 var setPostData = () => {
 
     if (!validateFormData()) {
-        length = document.querySelector("#inputNameFirst").value.split(' ').length,
+        length = document.querySelector("#inputNameFirst").value.toString().split(' ').length,
             postData = {
-                username: document.querySelector("#inputEmailFirst").value.split('@')[0],
-                firstname: document.querySelector("#inputNameFirst").value.split(' ')[0],
-                password: document.querySelector("#inputPassword").value,
-                lastname: document.querySelector("#inputNameFirst   ").value.split(' ')[length - 1],
-                email: document.querySelector("#inputEmail").value,
+                username: document.querySelector("#inputEmailFirst").value.toString().split('@')[0],
+                firstname: document.querySelector("#inputNameFirst").value.toString().split(' ')[0],
+                password: document.querySelector("#inputPassword").value.toString(),
+                lastname: document.querySelector("#inputNameFirst").value.toString().split(' ')[length - 1],
+                email: document.querySelector("#inputEmailFirst").value.toString(),
                 cf: {
-                    cpf: document.querySelector("#inputCpf").value
+                    cpf: document.querySelector("#inputCpf").value.toString()
                 }
             }
         createUser()

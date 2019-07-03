@@ -163,63 +163,101 @@ function formataCampo(campo, Mascara, evento) {
         // Loop over them and prevent submission
 
         validate.filter(item => {
-            if (item.getAttribute('class') == 'needs-validation')
+            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'first-step')
                 item.addEventListener('submit', event => {
+                    formCounter = 1
                     if (item.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
+                    } else {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        formCounter = 0
+                        showSecondForm()
                     }
+                    formCounter = 1
+                    console.log(formCounter)
+                    item.classList.add('was-validated');
+                }, false)
+
+            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'second-step')
+                item.addEventListener('submit', event => {
+                    formCounter = 1
+                    if (item.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        formCounter = 0
+                        showThirdForm()
+                    }
+                    formCounter = 1
+                    console.log(formCounter)
+                    item.classList.add('was-validated');
+                }, false)
+
+            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'third-step')
+                item.addEventListener('submit', event => {
+                    formCounter = 1
+                    if (item.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        formCounter = 0
+                    }
+                    console.log(formCounter)
                     item.classList.add('was-validated');
                 }, false)
         });
 
-        if(inputCep)
-        inputCep.addEventListener('change', event => {
-            if (inputCep.checkValidity() === false || inputCep.value.toString().length < 8) {
-                // event.preventDefault();
-                // event.stopPropagation();
-                errorCep.style.display = 'block'
-                inputCep.style.borderColor = '#dc3545'
-                emptyAddressFields()
-            }
-            else {
-                errorCep.style.display = 'none'
-                inputCep.style.borderColor = '#28a745'
-                consultCep()
-            }
-            inputCep.classList.add('was-validated');
-        }, false)
+        if (inputCep)
+            inputCep.addEventListener('change', event => {
+                if (inputCep.checkValidity() === false || inputCep.value.toString().length < 8) {
+                    // event.preventDefault();
+                    // event.stopPropagation();
+                    errorCep.style.display = 'block'
+                    inputCep.style.borderColor = '#dc3545'
+                    emptyAddressFields()
+                }
+                else {
+                    errorCep.style.display = 'none'
+                    inputCep.style.borderColor = '#28a745'
+                    consultCep()
+                }
+                inputCep.classList.add('was-validated');
+            }, false)
 
-        if(inputCnpj)
-        inputCnpj.addEventListener('change', event => {
-            if (inputCnpj.checkValidity() === false || inputCnpj.value.toString().length < 14) {
-                // event.preventDefault();
-                // event.stopPropagation();
-                errorCnpj.style.display = 'block'
-                inputCnpj.style.borderColor = '#dc3545'
-                emptyCnpjFields()
-            }
-            else {
-                errorCnpj.style.display = 'none'
-                inputCnpj.style.borderColor = '#28a745'
-                consultCnpj()
-            }
-            inputCnpj.classList.add('was-validated');
-        }, false)
+        if (inputCnpj)
+            inputCnpj.addEventListener('change', event => {
+                if (inputCnpj.checkValidity() === false || inputCnpj.value.toString().length < 14) {
+                    // event.preventDefault();
+                    // event.stopPropagation();
+                    errorCnpj.style.display = 'block'
+                    inputCnpj.style.borderColor = '#dc3545'
+                    emptyCnpjFields()
+                }
+                else {
+                    errorCnpj.style.display = 'none'
+                    inputCnpj.style.borderColor = '#28a745'
+                    consultCnpj()
+                }
+                inputCnpj.classList.add('was-validated');
+            }, false)
 
-        if(inputPassword)
-        inputPassword.addEventListener('change', event => {
-            if (inputPassword.checkValidity() === false || inputPassword.value.toString().length < 6) {
-                // event.preventDefault();
-                // event.stopPropagation();
-                errorPassword.style.display = 'block'
-                inputPassword.style.borderColor = '#dc3545'
-            }
-            else {
-                errorPassword.style.display = 'none'
-                inputPassword.style.borderColor = '#28a745'
-            }
-            inputPassword.classList.add('was-validated');
-        }, false)
+        if (inputPassword)
+            inputPassword.addEventListener('change', event => {
+                if (inputPassword.checkValidity() === false || inputPassword.value.toString().length < 6) {
+                    // event.preventDefault();
+                    // event.stopPropagation();
+                    errorPassword.style.display = 'block'
+                    inputPassword.style.borderColor = '#dc3545'
+                }
+                else {
+                    errorPassword.style.display = 'none'
+                    inputPassword.style.borderColor = '#28a745'
+                }
+                inputPassword.classList.add('was-validated');
+            }, false)
     }, false)
 })();

@@ -1,20 +1,20 @@
 setFieldsPrefix('#input')
 
-var showBusinessForm = () => {
-    const select = document.querySelector('#inputBusiness')
-    const businessForm = document.querySelector('#businessForm')
-    // const office = document.querySelector('#inputOffice')
+// var showBusinessForm = () => {
+//     const select = document.querySelector('#inputBusiness')
+//     const businessForm = document.querySelector('#businessForm')
+//     // const office = document.querySelector('#inputOffice')
 
-    if (select.value == '1')
-        businessForm.hidden = false
-    else
-        businessForm.hidden = true
+//     if (select.value == '1')
+//         businessForm.hidden = false
+//     else
+//         businessForm.hidden = true
 
-    // if (select.value == '2')
-    //     office.disabled = false
-    // else
-    //     office.disabled = true
-}
+//     // if (select.value == '2')
+//     //     office.disabled = false
+//     // else
+//     //     office.disabled = true
+// }
 
 var fillCnpjFields = () => {
 
@@ -114,15 +114,15 @@ var emptyAddressFields = () => {
 }
 
 var validateFormData = () => {
-    const select = document.querySelector('#inputBusiness')
+    // const select = document.querySelector('#inputBusiness')
     error = false
 
-    if (select.value == 1)
-        fieldIdsJuridic.map(item => {
-            error = fieldValidator(item)
-            if (!error)
-                return error
-        })
+    // if (select.value == 1)
+    fieldIdsJuridic.map(item => {
+        error = fieldValidator(item)
+        if (!error)
+            return error
+    })
 
     fieldIdsPerson.map(item => {
         error = fieldValidator(item)
@@ -140,7 +140,7 @@ var validateFormData = () => {
 }
 
 var fieldValidator = (fieldId) => {
-    const select = document.querySelector('#inputBusiness')
+    // const select = document.querySelector('#inputBusiness')
     const field = document.querySelector(fieldId).value
 
     if (fieldId == '#inputPassword')
@@ -161,6 +161,38 @@ var fieldValidator = (fieldId) => {
         return true
 
     return false
+}
+
+var showSecondForm = () => {
+    if (formCounter == 0) {
+        const secondForm = document.getElementById('second-step')
+        const firstForm = document.getElementById('first-step')
+        secondForm.hidden = false
+        firstForm.hidden = true
+    }
+}
+
+var showThirdForm = () => {
+    if (formCounter == 0) {
+        const secondForm = document.getElementById('second-step')
+        const thirdForm = document.getElementById('third-step')
+        secondForm.hidden = true
+        thirdForm.hidden = false
+    }
+}
+
+var backToFirst = () => {
+    const secondForm = document.getElementById('second-step')
+    const firstForm = document.getElementById('first-step')
+    secondForm.hidden = true
+    firstForm.hidden = false
+}
+
+var backToSecond = () => {
+    const secondForm = document.getElementById('second-step')
+    const thirdForm = document.getElementById('third-step')
+    secondForm.hidden = false
+    thirdForm.hidden = true
 }
 
 (function () {

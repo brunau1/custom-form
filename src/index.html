@@ -26,11 +26,10 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="business">Perfil do usuário</label>
-                    <select class="form-control field" id="inputBusiness" placeholder="Selecione"
-                        onclick="showBusinessForm()" required>
+                    <select class="form-control field" id="inputBusiness" placeholder="Selecione" onclick="" required>
                         <option></option>
-                        <option value="1">Dono de bar(es) e/ou restaurante(s)</option>
-                        <option value="2">Profissional do setor de bar(es) e/ou restaurante(s)</option>
+                        <option value="">Dono de bar(es) e/ou restaurante(s)</option>
+                        <option value="">Profissional do setor de bar(es) e/ou restaurante(s)</option>
                         <option value="">Quero abrir um negócio</option>
                         <option value="">Outro</option>
                     </select>
@@ -82,11 +81,14 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" id="first-step-button-next" class="btn btn-primary">Próximo</button>
+            <button type="submit" id="first-step-button-next" onclick="showSecondForm()"
+                class="btn btn-primary">Próximo</button>
         </form>
 
-        <form name="custom_form" class="needs-validation" id="second-step" novalidate>
-            <h3>Sobre você:</h3>
+        <!-- formulario segunda etapa -->
+
+        <form name="custom_form" class="needs-validation" id="second-step" novalidate hidden>
+            <h3 style="margin-top: 0">Sobre você:</h3>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputName">Nome completo</label>
@@ -195,12 +197,18 @@
                     <input type="text" class="form-control field" id="inputComplement" required>
                 </div>
             </div>
-            <button id="second-step-button-preview" class="btn btn-primary" style="margin-right: 1em">Voltar</button>
-            <button type="submit" id="second-step-button-next" class="btn btn-primary">Próximo</button>
+            <button id="second-step-button-preview" onclick="backToFirst()" class="btn btn-primary"
+                style="margin-right: 1em">Voltar</button>
+            <button type="submit" onclick="showThirdForm()" id="second-step-button-next"
+                class="btn btn-primary">Próximo</button>
         </form>
 
-        <form name="custom_form" class="needs-validation" id="third-step" novalidate>
-            <h3>Sobre seu negócio:</h3>
+        <!-- formulario segunda etapa -->
+
+        <!-- formulario terceira etapa -->
+
+        <form name="custom_form" class="needs-validation" id="third-step" novalidate hidden>
+            <h3 style="margin-top: 0">Sobre seu negócio:</h3>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputCnpj">CNPJ</label>
@@ -219,7 +227,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputFantasyName">Nome fantasia</label>
-                    <input type="text" class="form-control field" id="inputFantasyName" placeholder="Nome fantasia">
+                    <input type="text" class="form-control field" id="inputFantasyName" placeholder="">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputBusinessType">Tipo de empreendimento</label>
@@ -302,8 +310,13 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" id="third-step-button" class="btn btn-primary" onclick="setPostData()">Cadastre-se</button>
+            <button id="third-step-button-preview" onclick="backToSecond()" class="btn btn-primary"
+                style="margin-right: 1em">Voltar</button>
+            <button type="submit" id="third-step-button" class="btn btn-primary"
+                onclick="setPostData()">Cadastre-se</button>
         </form>
+
+        <!-- formulario terceira etapa -->
     </section>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
