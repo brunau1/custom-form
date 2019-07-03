@@ -26,13 +26,15 @@ var setFieldsPrefix = (prefix) => {
         prefix + 'MainActivity'
     ]
     fieldIdsPerson = [
-        prefix + 'Name',
+        prefix + 'NameFirst',
+        prefix + 'NameSecond',
         prefix + 'Cpf',
         prefix + 'Date',
         prefix + 'Sex',
         prefix + 'PersonalSituation',
         prefix + 'Office', //só ficará ativo se for profissional da área
-        prefix + 'Email',
+        prefix + 'EmailFirst',
+        prefix + 'EmailSecond',
         prefix + 'Password',
         prefix + 'Phone',
         prefix + 'Cpf',

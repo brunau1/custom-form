@@ -173,6 +173,7 @@ function formataCampo(campo, Mascara, evento) {
                 }, false)
         });
 
+        if(inputCep)
         inputCep.addEventListener('change', event => {
             if (inputCep.checkValidity() === false || inputCep.value.toString().length < 8) {
                 // event.preventDefault();
@@ -189,7 +190,7 @@ function formataCampo(campo, Mascara, evento) {
             inputCep.classList.add('was-validated');
         }, false)
 
-
+        if(inputCnpj)
         inputCnpj.addEventListener('change', event => {
             if (inputCnpj.checkValidity() === false || inputCnpj.value.toString().length < 14) {
                 // event.preventDefault();
@@ -206,6 +207,7 @@ function formataCampo(campo, Mascara, evento) {
             inputCnpj.classList.add('was-validated');
         }, false)
 
+        if(inputPassword)
         inputPassword.addEventListener('change', event => {
             if (inputPassword.checkValidity() === false || inputPassword.value.toString().length < 6) {
                 // event.preventDefault();
@@ -216,7 +218,6 @@ function formataCampo(campo, Mascara, evento) {
             else {
                 errorPassword.style.display = 'none'
                 inputPassword.style.borderColor = '#28a745'
-                consultCnpj()
             }
             inputPassword.classList.add('was-validated');
         }, false)
