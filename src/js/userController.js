@@ -48,7 +48,7 @@ var setPostData = () => {
                 username: document.querySelector("#inputEmailFirst").value.split('@')[0],
                 firstname: document.querySelector("#inputNameFirst").value.split(' ')[0],
                 password: document.querySelector("#inputPassword").value,
-                lastname: document.querySelector("#inputNameFirst").value.split(' ')[length - 1],
+                lastname: document.querySelector("#inputNameFirst   ").value.split(' ')[length - 1],
                 email: document.querySelector("#inputEmail").value,
                 cf: {
                     cpf: document.querySelector("#inputCpf").value
