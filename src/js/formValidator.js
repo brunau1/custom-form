@@ -1,3 +1,54 @@
+var validateFormData = () => {
+    const select = document.querySelector('#inputBusiness')
+    error = false
+
+    if (select.value == 1)
+        fieldIdsJuridic.map(item => {
+            error = fieldValidator(item)
+            if (!error)
+                return error
+        })
+
+    fieldIdsPerson.map(item => {
+        error = fieldValidator(item)
+        if (!error)
+            return error
+    })
+
+    fieldIdsAddress.map(item => {
+        error = fieldValidator(item)
+        if (!error)
+            return error
+    })
+
+    return error
+}
+
+var fieldValidator = (fieldId) => {
+    // const select = document.querySelector('#inputBusiness')
+    const field = document.querySelector(fieldId).value
+
+    if (!field.disabled) {
+        if (fieldId == '#inputPassword')
+            if (field.toString().length < 6)
+                return true
+
+        if (fieldId == '#inputSex')
+            if (field == '')
+                return true
+
+        // if (fieldId == '#inputOffice') {
+        //     if (select.value == '2')
+        //         if (field.trim() == "" || field == null)
+        //             return true;
+        // }
+
+        if (field.trim() == "" || field == null)
+            return true
+    }
+    return false
+}
+
 //adiciona mascara de cnpj
 function MascaraCNPJ(cnpj) {
     if (mascaraInteiro(cnpj) == false) {
@@ -163,9 +214,9 @@ function formataCampo(campo, Mascara, evento) {
         // Loop over them and prevent submission
 
         validate.filter(item => {
-            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'first-step')
+            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'first-step') {
+                formCounter = 1
                 item.addEventListener('submit', event => {
-                    formCounter = 1
                     if (item.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
@@ -179,10 +230,11 @@ function formataCampo(campo, Mascara, evento) {
                     console.log(formCounter)
                     item.classList.add('was-validated');
                 }, false)
+            }
 
-            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'second-step')
+            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'second-step') {
+                formCounter = 1
                 item.addEventListener('submit', event => {
-                    formCounter = 1
                     if (item.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
@@ -190,16 +242,14 @@ function formataCampo(campo, Mascara, evento) {
                         event.preventDefault();
                         event.stopPropagation();
                         formCounter = 0
-                        showThirdForm()
                     }
-                    formCounter = 1
                     console.log(formCounter)
                     item.classList.add('was-validated');
                 }, false)
-
-            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'third-step')
+            }
+            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'third-step') {
+                formCounter = 1
                 item.addEventListener('submit', event => {
-                    formCounter = 1
                     if (item.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
@@ -209,6 +259,7 @@ function formataCampo(campo, Mascara, evento) {
                     console.log(formCounter)
                     item.classList.add('was-validated');
                 }, false)
+            }
         });
 
         if (inputCep)

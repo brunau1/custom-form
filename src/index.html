@@ -15,8 +15,10 @@
 
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            <img src="images/logoAbrasel.png" class="img-fluid">
+            <img src="images/logo-abrasel.png" style="max-width: 200px;" class="img-fluid">
         </a>
+    </nav>
+    <nav class="navbar navbar-light bg-green">
     </nav>
 
     <section class="container form-format">
@@ -28,7 +30,7 @@
                     <label for="business">Perfil do usuário</label>
                     <select class="form-control field" id="inputBusiness" placeholder="Selecione" onclick="" required>
                         <option></option>
-                        <option value="">Dono de bar(es) e/ou restaurante(s)</option>
+                        <option value="1">Dono de bar(es) e/ou restaurante(s)</option>
                         <option value="">Profissional do setor de bar(es) e/ou restaurante(s)</option>
                         <option value="">Quero abrir um negócio</option>
                         <option value="">Outro</option>
@@ -208,105 +210,110 @@
         <!-- formulario terceira etapa -->
 
         <form name="custom_form" class="needs-validation" id="third-step" novalidate hidden>
-            <h3 style="margin-top: 0">Sobre seu negócio:</h3>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="inputCnpj">CNPJ</label>
-                    <input type="text" class="form-control field invalid-validation" id="inputCnpj"
-                        placeholder="__.___.___/____-__" onchange="" name="cnpj"
-                        onKeyPress="MascaraCNPJ(custom_form.cnpj);" maxlength="18" required>
-                </div>
-                <div id="cnpj-invalid-feedback">
-                    Digite um CNPJ válido!
-                </div>
-                <div class="form-group col-md-2" style="display: flex;
+            <div id="businessForm" hidden>
+                <h3 style="margin-top: 0">Sobre seu negócio:</h3>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputCnpj">CNPJ</label>
+                        <input type="text" class="form-control field invalid-validation" id="inputCnpj"
+                            placeholder="__.___.___/____-__" onchange="" name="cnpj"
+                            onKeyPress="MascaraCNPJ(custom_form.cnpj);" maxlength="18" required>
+                    </div>
+                    <div id="cnpj-invalid-feedback">
+                        Digite um CNPJ válido!
+                    </div>
+                    <div class="form-group col-md-2" style="display: flex;
                             align-items: flex-end;">
-                    <button type="button" class="btn btn-primary" onclick="consultCnpj()" hidden>Consultar</button>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputFantasyName">Nome fantasia</label>
-                    <input type="text" class="form-control field" id="inputFantasyName" placeholder="">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputBusinessType">Tipo de empreendimento</label>
-                    <input type="text" class="form-control field" id="inputBusinessType" placeholder="" required>
-                    <div class="invalid-feedback">
-                        Informe o tipo de empreendimento!
+                        <button type="button" class="btn btn-primary" onclick="consultCnpj()" hidden>Consultar</button>
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputSocialReason">Razão social</label>
-                    <input type="text" class="form-control field" id="inputSocialReason" placeholder="" required>
-                    <div class="invalid-feedback">
-                        Informe o nome comercial do seu negócio!
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputFantasyName">Nome fantasia</label>
+                        <input type="text" class="form-control field" id="inputFantasyName" placeholder="">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputBusinessType">Tipo de empreendimento</label>
+                        <input type="text" class="form-control field" id="inputBusinessType" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Informe o tipo de empreendimento!
+                        </div>
                     </div>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="inputOpeningDate">Data de abertura</label>
-                    <input type="text" class="form-control field" id="inputOpeningDate" placeholder="__/__/__"
-                        name="dataAbertura" onKeyPress="MascaraData(custom_form.dataAbertura);" maxlength="10" required>
-                    <div class="invalid-feedback">
-                        Informe uma data válida!
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputSocialReason">Razão social</label>
+                        <input type="text" class="form-control field" id="inputSocialReason" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Informe o nome comercial do seu negócio!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputOpeningDate">Data de abertura</label>
+                        <input type="text" class="form-control field" id="inputOpeningDate" placeholder="__/__/__"
+                            name="dataAbertura" onKeyPress="MascaraData(custom_form.dataAbertura);" maxlength="10"
+                            required>
+                        <div class="invalid-feedback">
+                            Informe uma data válida!
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputJuridicSituation">Situação atual</label>
-                    <select type="text" class="form-control field" id="inputJuridicSituation" placeholder="" required>
-                        <option></option>
-                        <option value="ativa">Ativo</option>
-                        <option value="inativa">Inativo</option>
-                    </select>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputJuridicSituation">Situação atual</label>
+                        <select type="text" class="form-control field" id="inputJuridicSituation" placeholder=""
+                            required>
+                            <option></option>
+                            <option value="ativa">Ativo</option>
+                            <option value="inativa">Inativo</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Selecione a situação da empresa!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputOccupiedPeople">Pessoas ocupadas</label>
+                        <input type="text" class="form-control field" id="inputOccupiedPeople" placeholder="" value=""
+                            required>
+                    </div>
                     <div class="invalid-feedback">
-                        Selecione a situação da empresa!
+                        Informe as pessoas ocupadas!
                     </div>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="inputOccupiedPeople">Pessoas ocupadas</label>
-                    <input type="text" class="form-control field" id="inputOccupiedPeople" placeholder="" value=""
-                        required>
-                </div>
-                <div class="invalid-feedback">
-                    Informe as pessoas ocupadas!
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputBillingRange">Faixa de faturamento</label>
-                    <input type="text" class="form-control field" id="inputBillingRange" placeholder="" required>
-                    <div class="invalid-feedback">
-                        Informe a faixa de faturamento!
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputBillingRange">Faixa de faturamento</label>
+                        <input type="text" class="form-control field" id="inputBillingRange" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Informe a faixa de faturamento!
+                        </div>
                     </div>
                 </div>
-            </div>
-            <h3>Atividade econômica:</h3>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputSector">Setor: </label>
-                    <input type="text" class="form-control field" id="inputSector" placeholder="" required>
-                    <div class="invalid-feedback">
-                        Informe o setor de atuação!
+                <h3>Atividade econômica:</h3>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputSector">Setor: </label>
+                        <input type="text" class="form-control field" id="inputSector" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Informe o setor de atuação!
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputEconomicActivity">Atividade econômica:</label>
-                    <input type="text" class="form-control field" id="inputEconomicActivity" placeholder="" required>
-                    <div class="invalid-feedback">
-                        Informe a atividade econômica da empresa!
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputEconomicActivity">Atividade econômica:</label>
+                        <input type="text" class="form-control field" id="inputEconomicActivity" placeholder=""
+                            required>
+                        <div class="invalid-feedback">
+                            Informe a atividade econômica da empresa!
+                        </div>
                     </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputMainActivity">Atividade principal:</label>
-                    <input type="text" class="form-control field" id="inputMainActivity" placeholder="" required>
-                    <div class="invalid-feedback">
-                        Informe a atividade econômica principal!
+                    <div class="form-group col-md-4">
+                        <label for="inputMainActivity">Atividade principal:</label>
+                        <input type="text" class="form-control field" id="inputMainActivity" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Informe a atividade econômica principal!
+                        </div>
                     </div>
                 </div>
             </div>

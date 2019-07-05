@@ -1,20 +1,30 @@
 setFieldsPrefix('#input')
 
-// var showBusinessForm = () => {
-//     const select = document.querySelector('#inputBusiness')
-//     const businessForm = document.querySelector('#businessForm')
-//     // const office = document.querySelector('#inputOffice')
+var showBusinessForm = () => {
+    const select = document.querySelector('#inputBusiness')
+    const businessForm = document.querySelector('#businessForm')
+    // const office = document.querySelector('#inputOffice')
 
-//     if (select.value == '1')
-//         businessForm.hidden = false
-//     else
-//         businessForm.hidden = true
+    if (select.value == '1')
+        businessForm.hidden = true
+    else
+        businessForm.hidden = false
 
-//     // if (select.value == '2')
-//     //     office.disabled = false
-//     // else
-//     //     office.disabled = true
-// }
+    if (businessForm.hidden)
+        fieldIdsJuridic.map(item => {
+            field = document.querySelector(item)
+            field.disabled = true
+        })
+    else
+        fieldIdsJuridic.map(item => {
+            field = document.querySelector(item)
+            field.disabled = false
+        })
+    // if (select.value == '2')
+    //     office.disabled = false
+    // else
+    //     office.disabled = true
+}
 
 var fillCnpjFields = () => {
 
@@ -113,62 +123,65 @@ var emptyAddressFields = () => {
     })
 }
 
-var validateFormData = () => {
-    // const select = document.querySelector('#inputBusiness')
-    error = false
+// var validateFormData = () => {
+//     const select = document.querySelector('#inputBusiness')
+//     error = false
 
-    // if (select.value == 1)
-    fieldIdsJuridic.map(item => {
-        error = fieldValidator(item)
-        if (!error)
-            return error
-    })
+//     if (select.value == 1)
+//     fieldIdsJuridic.map(item => {
+//         error = fieldValidator(item)
+//         if (!error)
+//             return error
+//     })
 
-    fieldIdsPerson.map(item => {
-        error = fieldValidator(item)
-        if (!error)
-            return error
-    })
+//     fieldIdsPerson.map(item => {
+//         error = fieldValidator(item)
+//         if (!error)
+//             return error
+//     })
 
-    fieldIdsAddress.map(item => {
-        error = fieldValidator(item)
-        if (!error)
-            return error
-    })
+//     fieldIdsAddress.map(item => {
+//         error = fieldValidator(item)
+//         if (!error)
+//             return error
+//     })
 
-    return error
-}
+//     return error
+// }
 
-var fieldValidator = (fieldId) => {
-    // const select = document.querySelector('#inputBusiness')
-    const field = document.querySelector(fieldId).value
+// var fieldValidator = (fieldId) => {
+//     // const select = document.querySelector('#inputBusiness')
+//     const field = document.querySelector(fieldId).value
 
-    if (fieldId == '#inputPassword')
-        if (field.toString().length < 6)
-            return true
+//     if (!field.disabled) {
+//         if (fieldId == '#inputPassword')
+//             if (field.toString().length < 6)
+//                 return true
 
-    if (fieldId == '#inputSex')
-        if (field == '')
-            return true
+//         if (fieldId == '#inputSex')
+//             if (field == '')
+//                 return true
 
-    // if (fieldId == '#inputOffice') {
-    //     if (select.value == '2')
-    //         if (field.trim() == "" || field == null)
-    //             return true;
-    // }
+//         // if (fieldId == '#inputOffice') {
+//         //     if (select.value == '2')
+//         //         if (field.trim() == "" || field == null)
+//         //             return true;
+//         // }
 
-    if (field.trim() == "" || field == null)
-        return true
-
-    return false
-}
+//         if (field.trim() == "" || field == null)
+//             return true
+//     }
+//     return false
+// }
 
 var showSecondForm = () => {
     if (formCounter == 0) {
         const secondForm = document.getElementById('second-step')
         const firstForm = document.getElementById('first-step')
+        const thirdForm = document.getElementById('third-step')
         secondForm.hidden = false
         firstForm.hidden = true
+        thirdForm.hidden = true
     }
 }
 
@@ -176,6 +189,8 @@ var showThirdForm = () => {
     if (formCounter == 0) {
         const secondForm = document.getElementById('second-step')
         const thirdForm = document.getElementById('third-step')
+        const firstForm = document.getElementById('first-step')
+        firstForm.hidden = true
         secondForm.hidden = true
         thirdForm.hidden = false
     }
@@ -183,8 +198,10 @@ var showThirdForm = () => {
 
 var backToFirst = () => {
     const secondForm = document.getElementById('second-step')
+    const thirdForm = document.getElementById('third-step')
     const firstForm = document.getElementById('first-step')
     secondForm.hidden = true
+    thirdForm.hidden = true
     firstForm.hidden = false
 }
 
