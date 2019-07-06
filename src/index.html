@@ -27,7 +27,7 @@
         <div class="col-md-6">
             <div class="card bg-warning">
                 <div class="card-header">
-                    <h2 style="font-size: 1.5em">
+                    <h2 style="font-size: 1.5em" id="form-title">
                         Preencha o formulário de cadastro aqui!
                     </h2>
                     <b>
@@ -60,12 +60,21 @@
                                 <label for="inputName">Nome completo</label>
                                 <input type="text" class="form-control field" id="inputNameFirst"
                                     placeholder="Nome completo" required>
-                                <div class="invalid-feedback">
+                                <div id="user-name-invalid-feedback">
                                     Informe seu nome completo!
                                 </div>
                             </div>
                         </div>
-
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputUserName">Nome de usuário</label>
+                                <input type="text" class="form-control field" id="inputUserName"
+                                    placeholder="Nome para acesso" required>
+                                <div class="invalid-feedback">
+                                    Nome de usuário já existente!
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail">Email</label>
@@ -125,7 +134,8 @@
                             <div class="form-group col-md-6">
                                 <label for="inputDate">Data de Nascimento</label>
                                 <input type="text" class="form-control field" id="inputDate" placeholder="__/__/__"
-                                    name="data" onKeyPress="MascaraData(custom_form_second.data);" maxlength="10" required>
+                                    name="data" onKeyPress="MascaraData(custom_form_second.data);" maxlength="10"
+                                    required>
                                 <div class="invalid-feedback">
                                     Informe uma data válida!
                                 </div>
@@ -266,7 +276,8 @@
                                     <label for="inputOpeningDate">Data de abertura</label>
                                     <input type="text" class="form-control field" id="inputOpeningDate"
                                         placeholder="__/__/__" name="dataAbertura"
-                                        onKeyPress="MascaraData(custom_form_third.dataAbertura);" maxlength="10" required>
+                                        onKeyPress="MascaraData(custom_form_third.dataAbertura);" maxlength="10"
+                                        required>
                                     <div class="invalid-feedback">
                                         Informe uma data válida!
                                     </div>

@@ -209,6 +209,8 @@ function formataCampo(campo, Mascara, evento) {
         var errorCnpj = document.getElementById('cnpj-invalid-feedback')
         var inputPassword = document.getElementById('inputPassword')
         var errorPassword = document.getElementById('password-invalid-feedback')
+        var inputUserName = document.getElementById('inputUserName')
+        var errorUserName = document.getElementById('user-name-invalid-feedback')
 
         var validate = [...forms]
         // Loop over them and prevent submission
@@ -254,6 +256,8 @@ function formataCampo(campo, Mascara, evento) {
                         event.preventDefault();
                         event.stopPropagation();
                     } else {
+                        event.preventDefault();
+                        event.stopPropagation();
                         formCounter = 0
                     }
                     console.log(formCounter)
@@ -309,6 +313,21 @@ function formataCampo(campo, Mascara, evento) {
                     inputPassword.style.borderColor = '#28a745'
                 }
                 inputPassword.classList.add('was-validated');
+            }, false)
+
+        if (inputUserName)
+            inputUserName.addEventListener('change', event => {
+                if (inputUserName.checkValidity() === false || testUsername()) {
+                    // event.preventDefault();
+                    // event.stopPropagation();
+                    errorUserName.style.display = 'block'
+                    inputUserName.style.borderColor = '#dc3545'
+                }
+                else {
+                    errorUserName.style.display = 'none'
+                    inputUserName.style.borderColor = '#28a745'
+                }
+                inputUserName.classList.add('was-validated');
             }, false)
     }, false)
 })();

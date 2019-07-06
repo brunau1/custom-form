@@ -2,6 +2,7 @@ var postData = {}
 var resultCep = {}
 var resultCnpj = {}
 var stepCounter = document.querySelector('#step-counter')
+var formTitle = document.querySelector('#form-title')
 var formCounter = 1
 
 var fieldIdsJuridic = []
@@ -26,6 +27,7 @@ var setFieldsPrefix = (prefix) => {
         prefix + 'MainActivity'
     ]
     fieldIdsPerson = [
+        prefix + 'UserName',
         prefix + 'Business',
         prefix + 'NameFirst',
         //prefix + 'NameSecond',
