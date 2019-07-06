@@ -25,7 +25,7 @@ var createUser = () => {
             'password': password,
             'cf': {
                 'cpf': cpf,
-                'cnpj': cnpj
+                /*'cnpj': cnpj*/
             }
         },
         beforeSend: () => {
@@ -56,14 +56,14 @@ var setPostData = () => {
     if (!validateFormData()) {
         length = document.querySelector("#inputNameFirst").value.toString().split(' ').length,
             postData = {
-                'username': document.querySelector("#inputUserName").value.toString(),
+                'username': document.querySelector("#inputUserName").value.toString().replace(' ', ''),
                 'firstname': document.querySelector("#inputNameFirst").value.toString().split(' ')[0],
                 'password': document.querySelector("#inputPassword").value.toString(),
                 'lastname': document.querySelector("#inputNameFirst").value.toString().split(' ')[length - 1],
                 'email': document.querySelector("#inputEmailFirst").value.toString(),
                 'cf': {
                     'cpf': cpf,
-                    'cnpj': cnpj
+                    /*'cnpj': cnpj*/
                 }
             }
         console.log(postData.firstname)
