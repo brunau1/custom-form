@@ -18,14 +18,14 @@ var createUser = () => {
         url: usersRoutePost,
         type: "post",
         data: {
-            'username': username,
-            'firstname': firstname,
-            'lastname': lastname,
-            'email': email,
-            'password': password,
-            'cf': {
-                'cpf': cpf,
-                /*'cnpj': cnpj*/
+            username,
+            firstname,
+            lastname,
+            email,
+            password,
+            cf: {
+                cpf,
+                cnpj
             }
         },
         beforeSend: () => {
@@ -56,18 +56,21 @@ var setPostData = () => {
     if (!validateFormData()) {
         length = document.querySelector("#inputNameFirst").value.toString().split(' ').length,
             postData = {
-                'username': document.querySelector("#inputUserName").value.toString().replace(' ', ''),
-                'firstname': document.querySelector("#inputNameFirst").value.toString().split(' ')[0],
-                'password': document.querySelector("#inputPassword").value.toString(),
-                'lastname': document.querySelector("#inputNameFirst").value.toString().split(' ')[length - 1],
-                'email': document.querySelector("#inputEmailFirst").value.toString(),
-                'cf': {
-                    'cpf': cpf,
-                    /*'cnpj': cnpj*/
+                username: document.querySelector("#inputUserName").value.toString().replace(' ', ''),
+                firstname: document.querySelector("#inputNameFirst").value.toString().split(' ')[0],
+                password: document.querySelector("#inputPassword").value.toString(),
+                lastname: document.querySelector("#inputNameFirst").value.toString().split(' ')[length - 1],
+                email: document.querySelector("#inputEmailFirst").value.toString(),
+                cf: {
+                    cpf,
+                    cnpj
                 }
             }
         console.log(postData.firstname)
         console.log(postData.lastname)
+        console.log(postData.username)
+        console.log(postData.password)
+        console.log(postData.email)
         createUser()
     }
     else {
