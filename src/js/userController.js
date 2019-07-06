@@ -35,9 +35,7 @@ var createUser = () => {
         .done(data => {
             alert("Usuário Cadastrado!")
             console.log(data)
-            setTimeout(function () {
-                window.location.href = "https://abrasel.dj.emp.br/login/index.php"
-            }, 5000);
+            window.location.href = "https://abrasel.dj.emp.br/login/index.php"
         })
         .fail(data => {
             alert("Falha no cadastro do usuário!")
