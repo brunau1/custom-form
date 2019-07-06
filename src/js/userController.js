@@ -32,13 +32,16 @@ var createUser = () => {
             alert("Enviando...")
         }
     })
-        .done((msg) => {
+        .done(data => {
             alert("Usuário Cadastrado!")
-            console.log(msg)
+            console.log(data)
+            setTimeout(function () {
+                window.location.href = "https://abrasel.dj.emp.br/login/index.php"
+            }, 5000);
         })
-        .fail((textStatus, msg) => {
+        .fail(data => {
             alert("Falha no cadastro do usuário!")
-            console.log(textStatus + msg)
+            console.log(data)
         });
 }
 
@@ -59,54 +62,43 @@ var setPostData = () => {
                     'cnpj': cnpj
                 }
             }
-            console.log(postData.firstname)
-            console.log(postData.lastname)
+        console.log(postData.firstname)
+        console.log(postData.lastname)
         createUser()
     }
-    else{
+    else {
         alert('Todos os campos devem ser preenchidos corretamente!')
     }
 }
 
-var testUsername = () => {
-    const cep = document.querySelector("#inputCep").value.replace('.', '').replace('-', '')
-    const fieldCep = document.querySelector("#inputCep")
-    const errorCep = document.getElementById('cep-invalid-feedback')
-   
-    fieldCep.disabled = true
-    $.ajax({
-        url: `https://viacep.com.br/ws/${cep}/json/`,
-        type: "get"
-    })
-        .done(data => {
-            if (data.erro) {
-                errorCep.style.display = 'block'
-                fieldCep.style.borderColor = '#dc3545'
-                emptyAddressFields()
-                fieldCep.disabled = false
-                return false
-            }
-            const {
-                localidade: city,
-                uf: state,
-                bairro: neighborhood,
-                logradouro: address,
-                complemento: complement
-            } = data;
-            resultCep = {
-                city,
-                state,
-                neighborhood,
-                address,
-                complement
-            };
-            console.log(resultCep)
-            fillAddressFields()
-            fieldCep.disabled = false
-        })
-        .fail(err => {
-            console.log(err)
-            emptyAddressFields()
-            fieldCep.disabled = false
-        });
-}
+// var testUsername = () => {
+//     var inputUserName = document.getElementById('inputUserName')
+//     var errorUserName = document.getElementById('user-name-invalid-feedback')
+//     var username = inputUserName.value.toString().replace(' ', '')
+
+//     inputUserName.disabled = true
+//     $.ajax({
+//         url: `https://abrasel.dj.emp.br/api/exists/username/jonny/`,
+//         type: "get"
+//     })
+//         .done(data => {
+//             if (data.exists) {
+//                 errorUserName.style.display = 'block'
+//                 inputUserName.style.borderColor = '#dc3545'
+//                 inputUserName.value = ''
+//                 inputUserName.disabled = false
+//                 return true
+//             }
+//             else {
+//                 inputUserName.value = username
+//                 inputUserName.disabled = false
+//                 return false
+//             }
+//         })
+//         .fail(err => {
+//             console.log(err)
+//             inputUserName.value = ''
+//             inputUserName.disabled = false
+//             return true
+//         });
+// }

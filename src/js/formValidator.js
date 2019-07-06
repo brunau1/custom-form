@@ -315,7 +315,7 @@ function formataCampo(campo, Mascara, evento) {
                 inputPassword.classList.add('was-validated');
             }, false)
 
-        if (inputUserName)
+        /*if (inputUserName)
             inputUserName.addEventListener('change', event => {
                 if (inputUserName.checkValidity() === false || testUsername()) {
                     // event.preventDefault();
@@ -328,6 +328,6 @@ function formataCampo(campo, Mascara, evento) {
                     inputUserName.style.borderColor = '#28a745'
                 }
                 inputUserName.classList.add('was-validated');
-            }, false)
+            }, false)*/
     }, false)
 })();
