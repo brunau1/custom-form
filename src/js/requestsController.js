@@ -1,5 +1,7 @@
 var consultCep = () => {
     const cep = document.querySelector("#inputCep").value.replace('.', '').replace('-', '')
+    const fieldCep = document.querySelector("#inputCep")
+    fieldCep.disabled = true
     $.ajax({
         url: `https://viacep.com.br/ws/${cep}/json/`,
         type: "get"
@@ -25,10 +27,12 @@ var consultCep = () => {
             };
             console.log(resultCep)
             fillAddressFields()
+            fieldCep.disabled = false
         })
         .fail(err => {
             console.log(err)
             emptyAddressFields()
+            fieldCep.disabled = false
         });
 }
 

@@ -274,7 +274,11 @@ function formataCampo(campo, Mascara, evento) {
                 else {
                     errorCep.style.display = 'none'
                     inputCep.style.borderColor = '#28a745'
-                    consultCep()
+                    if (consultCep() == false) {
+                        alert("Informe um Cep válido!")
+                        errorCep.style.display = 'block'
+                        inputCep.style.borderColor = '#dc3545'
+                    }
                 }
                 inputCep.classList.add('was-validated');
             }, false)
