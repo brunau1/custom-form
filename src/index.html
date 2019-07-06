@@ -31,14 +31,14 @@
                         Preencha o formulário de cadastro aqui!
                     </h2>
                     <b>
-                        Etapa <span id="form-counter">1</span> de 3
+                        Etapa <span id="step-counter">1</span> de 3
                     </b>
                 </div>
                 <div class="card-body" style="background: #fff;">
 
                     <!-- formulario primeira etapa -->
 
-                    <form name="custom_form" class="needs-validation" id="first-step" novalidate>
+                    <form name="custom_form_first" class="needs-validation" id="first-step" novalidate>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="business">Perfil do usuário</label>
@@ -89,7 +89,7 @@
                                 <label for="inputPhone">Telefone</label>
                                 <input type="text" class="form-control field" id="inputPhone"
                                     placeholder="(  ) _____-____" name="tel"
-                                    onKeyPress="MascaraTelefone(custom_form.tel);" maxlength="15" required>
+                                    onKeyPress="MascaraTelefone(custom_form_first.tel);" maxlength="15" required>
                                 <div class="invalid-feedback">
                                     Informe um número de telefone válido!
                                 </div>
@@ -102,7 +102,7 @@
 
                     <!-- formulario segunda etapa -->
 
-                    <form name="custom_form" class="needs-validation" id="second-step" novalidate hidden>
+                    <form name="custom_form_second" class="needs-validation" id="second-step" novalidate hidden>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputName">Nome completo</label>
@@ -115,7 +115,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputCpf">CPF</label>
                                 <input type="text" class="form-control field" id="inputCpf" placeholder="___.___.___-__"
-                                    name="cpf" onKeyPress="MascaraCPF(custom_form.cpf);" maxlength="14" required>
+                                    name="cpf" onKeyPress="MascaraCPF(custom_form_second.cpf);" maxlength="14" required>
                                 <div class="invalid-feedback">
                                     Informe um CPF válido
                                 </div>
@@ -125,7 +125,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputDate">Data de Nascimento</label>
                                 <input type="text" class="form-control field" id="inputDate" placeholder="__/__/__"
-                                    name="data" onKeyPress="MascaraData(custom_form.data);" maxlength="10" required>
+                                    name="data" onKeyPress="MascaraData(custom_form_second.data);" maxlength="10" required>
                                 <div class="invalid-feedback">
                                     Informe uma data válida!
                                 </div>
@@ -169,7 +169,7 @@
                                 <label for="inputCep">CEP</label>
                                 <input type="text" class="form-control field invalid-validation" id="inputCep"
                                     placeholder="__.___-___" onchange="//consultCep()" name="cep"
-                                    onKeyPress="MascaraCep(custom_form.cep);" maxlength="10" required>
+                                    onKeyPress="MascaraCep(custom_form_second.cep);" maxlength="10" required>
                                 <div id="cep-invalid-feedback">
                                     Informe um CEP válido!
                                 </div>
@@ -221,14 +221,14 @@
 
                     <!-- formulario terceira etapa -->
 
-                    <form name="custom_form" class="needs-validation" id="third-step" novalidate hidden>
+                    <form name="custom_form_third" class="needs-validation" id="third-step" novalidate hidden>
                         <div id="businessForm" hidden>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCnpj">CNPJ</label>
                                     <input type="text" class="form-control field invalid-validation" id="inputCnpj"
                                         placeholder="__.___.___/____-__" onchange="" name="cnpj"
-                                        onKeyPress="MascaraCNPJ(custom_form.cnpj);" maxlength="18" required>
+                                        onKeyPress="MascaraCNPJ(custom_form_third.cnpj);" maxlength="18" required>
                                 </div>
                                 <div id="cnpj-invalid-feedback">
                                     Digite um CNPJ válido!
@@ -266,7 +266,7 @@
                                     <label for="inputOpeningDate">Data de abertura</label>
                                     <input type="text" class="form-control field" id="inputOpeningDate"
                                         placeholder="__/__/__" name="dataAbertura"
-                                        onKeyPress="MascaraData(custom_form.dataAbertura);" maxlength="10" required>
+                                        onKeyPress="MascaraData(custom_form_third.dataAbertura);" maxlength="10" required>
                                     <div class="invalid-feedback">
                                         Informe uma data válida!
                                     </div>
