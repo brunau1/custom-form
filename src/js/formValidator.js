@@ -211,6 +211,8 @@ function formataCampo(campo, Mascara, evento) {
         var errorPassword = document.getElementById('password-invalid-feedback')
         var inputUserName = document.getElementById('inputUserName')
         var errorUserName = document.getElementById('user-name-invalid-feedback')
+        var inputEmail = document.getElementById('inputEmailFirst')
+        var errorEmail = document.getElementById('email-invalid-feedback')
 
         var validate = [...forms]
         // Loop over them and prevent submission
@@ -315,9 +317,9 @@ function formataCampo(campo, Mascara, evento) {
                 inputPassword.classList.add('was-validated');
             }, false)
 
-        /*if (inputUserName)
+        if (inputUserName)
             inputUserName.addEventListener('change', event => {
-                if (inputUserName.checkValidity() === false || testUsername()) {
+                if (inputUserName.checkValidity() === false) {
                     // event.preventDefault();
                     // event.stopPropagation();
                     errorUserName.style.display = 'block'
@@ -328,6 +330,21 @@ function formataCampo(campo, Mascara, evento) {
                     inputUserName.style.borderColor = '#28a745'
                 }
                 inputUserName.classList.add('was-validated');
-            }, false)*/
+            }, false)
+
+        if (inputEmail)
+            inputEmail.addEventListener('change', event => {
+                if (inputEmail.checkValidity() === false) {
+                    // event.preventDefault();
+                    // event.stopPropagation();
+                    errorEmail.style.display = 'block'
+                    inputEmail.style.borderColor = '#dc3545'
+                }
+                else {
+                    errorEmail.style.display = 'none'
+                    inputEmail.style.borderColor = '#28a745'
+                }
+                inputEmail.classList.add('was-validated');
+            }, false)
     }, false)
 })();

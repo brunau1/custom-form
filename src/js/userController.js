@@ -42,6 +42,9 @@ var createUser = () => {
         .fail(data => {
             alert("Falha no cadastro do usuário!")
             console.log(data)
+            console.log(data.responseJSON)
+
+            catchError(data.responseJSON)
         });
 }
 
@@ -49,6 +52,7 @@ var setPostData = () => {
     let cpf = document.querySelector("#inputCpf").value.toString()
     let cnpj = document.querySelector("#inputCnpj").value.toString()
 
+    //provavelmente serão necessárias mais informações
     if (!validateFormData()) {
         length = document.querySelector("#inputNameFirst").value.toString().split(' ').length,
             postData = {
@@ -68,6 +72,30 @@ var setPostData = () => {
     }
     else {
         alert('Todos os campos devem ser preenchidos corretamente!')
+    }
+}
+
+var catchError = (data) => {
+    var inputUserName = document.getElementById('inputUserName')
+    var errorUserName = document.getElementById('user-name-invalid-feedback')
+    var inputEmail = document.getElementById('inputEmailFirst')
+    var errorEmail = document.getElementById('email-invalid-feedback')
+
+    if (data.message.email) {
+        alert("O email informado já existe!")
+        errorEmail.style.display = 'block'
+        inputEmail.style.borderColor = '#dc3545'
+        inputEmail.value = ''
+        inputEmail.disabled = false
+        backToFirst()
+    }
+    if (data.message.username) {
+        alert("O nome de usuário informado já existe!")
+        errorUserName.style.display = 'block'
+        inputUserName.style.borderColor = '#dc3545'
+        inputUserName.value = ''
+        inputUserName.disabled = false
+        backToFirst()
     }
 }
 
