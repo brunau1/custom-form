@@ -58,6 +58,30 @@ var fillCnpjFields = () => {
     }
 }
 
+var emptyCnpjFields = () => {
+
+    fieldIdsJuridic.map(item => {
+
+        field = document.querySelector(item)
+        field.value = ''
+
+        if (!field.value)
+            field.disabled = false
+        else
+            field.disabled = true
+    })
+    fieldCep = document.querySelector('#inputCep')
+    fieldNumber = document.querySelector('#inputNumber')
+
+    fieldCep.value = ''
+    fieldNumber.value = ''
+
+    fieldCep.disabled = false
+    fieldNumber.disabled = false
+    emptyAddressFields()
+}
+
+
 var fillAddressFields = () => {
 
     fieldIdsAddress.map(item => {
@@ -65,6 +89,21 @@ var fillAddressFields = () => {
             field = document.querySelector(item)
             let data = item.replace('#input', '').toLowerCase()
             field.value = resultCep[data]
+
+            if (!field.value)
+                field.disabled = false
+            else
+                field.disabled = true
+        }
+    })
+}
+
+var emptyAddressFields = () => {
+
+    fieldIdsAddress.map(item => {
+        if (item != '#inputCep' && item != '#inputNumber') {
+            field = document.querySelector(item)
+            field.value = ''
 
             if (!field.value)
                 field.disabled = false
@@ -90,15 +129,22 @@ var validateFormData = () => {
         if (!error)
             return error
     })
+
+    fieldIdsAddress.map(item => {
+        error = fieldValidator(item)
+        if (!error)
+            return error
+    })
+
     return error
 }
 
 var fieldValidator = (fieldId) => {
     const select = document.querySelector('#inputBusiness')
-    field = document.querySelector(fieldId).value
+    const field = document.querySelector(fieldId).value
 
     if (fieldId == '#inputPassword')
-        if (field.toString().length <= 6)
+        if (field.toString().length < 6)
             return true
 
     if (fieldId == '#inputSex')
@@ -116,23 +162,3 @@ var fieldValidator = (fieldId) => {
 
     return false
 }
-
-
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false)
-})();
