@@ -95,7 +95,7 @@ var emptyCnpjFields = () => {
 var fillAddressFields = () => {
 
     fieldIdsAddress.map(item => {
-        if (item != '#inputCep' && item != '#inputNumber' && item != '#inputCountry') {
+        if (item != '#inputCep' && item != '#inputNumber' && item != '#inputCountry' && item != '#inputComplement') {
             field = document.querySelector(item)
             let data = item.replace('#input', '').toLowerCase()
             field.value = resultCep[data]

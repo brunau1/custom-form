@@ -32,15 +32,15 @@ var consultCep = () => {
                 localidade: city,
                 uf: state,
                 bairro: neighborhood,
-                logradouro: address,
-                complemento: complement
+                logradouro: address
+                //complemento: complement
             } = data;
             resultCep = {
                 city,
                 state,
                 neighborhood,
-                address,
-                complement
+                address
+                //complement
             };
             console.log(resultCep)
             fillAddressFields()
