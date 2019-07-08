@@ -1,3 +1,54 @@
+var validateFormData = () => {
+    const select = document.querySelector('#inputBusiness')
+    error = false
+
+    if (select.value == 1)
+        fieldIdsJuridic.map(item => {
+            error = fieldValidator(item)
+            if (!error)
+                return error
+        })
+
+    fieldIdsPerson.map(item => {
+        error = fieldValidator(item)
+        if (!error)
+            return error
+    })
+
+    fieldIdsAddress.map(item => {
+        error = fieldValidator(item)
+        if (!error)
+            return error
+    })
+
+    return error
+}
+
+var fieldValidator = (fieldId) => {
+    // const select = document.querySelector('#inputBusiness')
+    const field = document.querySelector(fieldId).value
+
+    if (!field.disabled) {
+        if (fieldId == '#inputPassword')
+            if (field.toString().length < 6)
+                return true
+
+        if (fieldId == '#inputSex')
+            if (field == '')
+                return true
+
+        // if (fieldId == '#inputOffice') {
+        //     if (select.value == '2')
+        //         if (field.trim() == "" || field == null)
+        //             return true;
+        // }
+
+        if (field.trim() == "" || field == null)
+            return true
+    }
+    return false
+}
+
 //adiciona mascara de cnpj
 function MascaraCNPJ(cnpj) {
     if (mascaraInteiro(cnpj) == false) {
@@ -163,62 +214,101 @@ function formataCampo(campo, Mascara, evento) {
         // Loop over them and prevent submission
 
         validate.filter(item => {
-            if (item.getAttribute('class') == 'needs-validation')
+            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'first-step') {
+                formCounter = 1
                 item.addEventListener('submit', event => {
                     if (item.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
+                    } else {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        formCounter = 0
+                        showSecondForm()
                     }
+                    formCounter = 1
+                    console.log(formCounter)
                     item.classList.add('was-validated');
                 }, false)
+            }
+
+            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'second-step') {
+                formCounter = 1
+                item.addEventListener('submit', event => {
+                    if (item.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        formCounter = 0
+                    }
+                    console.log(formCounter)
+                    item.classList.add('was-validated');
+                }, false)
+            }
+            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'third-step') {
+                formCounter = 1
+                item.addEventListener('submit', event => {
+                    if (item.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        formCounter = 0
+                    }
+                    console.log(formCounter)
+                    item.classList.add('was-validated');
+                }, false)
+            }
         });
 
-        inputCep.addEventListener('change', event => {
-            if (inputCep.checkValidity() === false || inputCep.value.toString().length < 8) {
-                // event.preventDefault();
-                // event.stopPropagation();
-                errorCep.style.display = 'block'
-                inputCep.style.borderColor = '#dc3545'
-                emptyAddressFields()
-            }
-            else {
-                errorCep.style.display = 'none'
-                inputCep.style.borderColor = '#28a745'
-                consultCep()
-            }
-            inputCep.classList.add('was-validated');
-        }, false)
+        if (inputCep)
+            inputCep.addEventListener('change', event => {
+                if (inputCep.checkValidity() === false || inputCep.value.toString().length < 8) {
+                    // event.preventDefault();
+                    // event.stopPropagation();
+                    errorCep.style.display = 'block'
+                    inputCep.style.borderColor = '#dc3545'
+                    emptyAddressFields()
+                }
+                else {
+                    errorCep.style.display = 'none'
+                    inputCep.style.borderColor = '#28a745'
+                    consultCep()
+                }
+                inputCep.classList.add('was-validated');
+            }, false)
 
+        if (inputCnpj)
+            inputCnpj.addEventListener('change', event => {
+                if (inputCnpj.checkValidity() === false || inputCnpj.value.toString().length < 14) {
+                    // event.preventDefault();
+                    // event.stopPropagation();
+                    errorCnpj.style.display = 'block'
+                    inputCnpj.style.borderColor = '#dc3545'
+                    emptyCnpjFields()
+                }
+                else {
+                    errorCnpj.style.display = 'none'
+                    inputCnpj.style.borderColor = '#28a745'
+                    consultCnpj()
+                }
+                inputCnpj.classList.add('was-validated');
+            }, false)
 
-        inputCnpj.addEventListener('change', event => {
-            if (inputCnpj.checkValidity() === false || inputCnpj.value.toString().length < 14) {
-                // event.preventDefault();
-                // event.stopPropagation();
-                errorCnpj.style.display = 'block'
-                inputCnpj.style.borderColor = '#dc3545'
-                emptyCnpjFields()
-            }
-            else {
-                errorCnpj.style.display = 'none'
-                inputCnpj.style.borderColor = '#28a745'
-                consultCnpj()
-            }
-            inputCnpj.classList.add('was-validated');
-        }, false)
-
-        inputPassword.addEventListener('change', event => {
-            if (inputPassword.checkValidity() === false || inputPassword.value.toString().length < 6) {
-                // event.preventDefault();
-                // event.stopPropagation();
-                errorPassword.style.display = 'block'
-                inputPassword.style.borderColor = '#dc3545'
-            }
-            else {
-                errorPassword.style.display = 'none'
-                inputPassword.style.borderColor = '#28a745'
-                consultCnpj()
-            }
-            inputPassword.classList.add('was-validated');
-        }, false)
+        if (inputPassword)
+            inputPassword.addEventListener('change', event => {
+                if (inputPassword.checkValidity() === false || inputPassword.value.toString().length < 6) {
+                    // event.preventDefault();
+                    // event.stopPropagation();
+                    errorPassword.style.display = 'block'
+                    inputPassword.style.borderColor = '#dc3545'
+                }
+                else {
+                    errorPassword.style.display = 'none'
+                    inputPassword.style.borderColor = '#28a745'
+                }
+                inputPassword.classList.add('was-validated');
+            }, false)
     }, false)
 })();

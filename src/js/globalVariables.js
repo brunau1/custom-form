@@ -1,7 +1,7 @@
 var postData = {}
 var resultCep = {}
 var resultCnpj = {}
-
+var formCounter = 1
 
 var fieldIdsJuridic = []
 var fieldIdsPerson = []
@@ -12,7 +12,6 @@ var prefix = '#input'
 var setFieldsPrefix = (prefix) => {
 
     fieldIdsJuridic = [
-        prefix + 'Business',
         prefix + 'Cnpj',
         prefix + 'FantasyName',
         prefix + 'BusinessType',
@@ -26,17 +25,19 @@ var setFieldsPrefix = (prefix) => {
         prefix + 'MainActivity'
     ]
     fieldIdsPerson = [
-        prefix + 'Name',
+        prefix + 'Business',
+        prefix + 'NameFirst',
+        //prefix + 'NameSecond',
         prefix + 'Cpf',
         prefix + 'Date',
         prefix + 'Sex',
         prefix + 'PersonalSituation',
-        prefix + 'Office', //só ficará ativo se for profissional da área
-        prefix + 'Email',
+        //prefix + 'Office', //só ficará ativo se for profissional da área
+        prefix + 'EmailFirst',
+        //prefix + 'EmailSecond',
         prefix + 'Password',
         prefix + 'Phone',
-        prefix + 'Cpf',
-        prefix + 'Phone'
+        prefix + 'Cpf'
     ]
 
     fieldIdsAddress = [

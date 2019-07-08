@@ -10,20 +10,22 @@ var createUser = () => {
     } = postData
 
     const {
-        cpf
+        cpf,
+        cnpj
     } = postData.cf
 
     $.ajax({
         url: usersRoutePost,
         type: "post",
         data: {
-            username,
-            firstname,
-            lastname,
-            email,
-            password,
-            cf: {
-                cpf
+            'username': username,
+            'firstname': firstname,
+            'lastname': lastname,
+            'email': email,
+            'password': password,
+            'cf': {
+                'cpf': cpf,
+                'cnpj': cnpj
             }
         },
         beforeSend: () => {
@@ -41,17 +43,20 @@ var createUser = () => {
 }
 
 var setPostData = () => {
+    let cpf = document.querySelector("#inputCpf").value.toString()
+    let cnpj = document.querySelector("#inputCnpj").value.toString()
 
     if (!validateFormData()) {
-        length = document.querySelector("#inputName").value.split(' ').length,
+        length = document.querySelector("#inputNameFirst").value.toString().split(' ').length,
             postData = {
-                username: document.querySelector("#inputEmail").value.split('@')[0],
-                firstname: document.querySelector("#inputName").value.split(' ')[0],
-                password: document.querySelector("#inputPassword").value,
-                lastname: document.querySelector("#inputName").value.split(' ')[length - 1],
-                email: document.querySelector("#inputEmail").value,
+                username: document.querySelector("#inputEmailFirst").value.toString().split('@')[0],
+                firstname: document.querySelector("#inputNameFirst").value.toString().split(' ')[0],
+                password: document.querySelector("#inputPassword").value.toString(),
+                lastname: document.querySelector("#inputNameFirst").value.toString().split(' ')[length - 1],
+                email: document.querySelector("#inputEmailFirst").value.toString(),
                 cf: {
-                    cpf: document.querySelector("#inputCpf").value
+                    cpf: cpf,
+                    cnpj: cnpj
                 }
             }
         createUser()
