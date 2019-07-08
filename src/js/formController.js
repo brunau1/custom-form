@@ -95,7 +95,7 @@ var emptyCnpjFields = () => {
 var fillAddressFields = () => {
 
     fieldIdsAddress.map(item => {
-        if (item != '#inputCep' && item != '#inputNumber') {
+        if (item != '#inputCep' && item != '#inputNumber' && item != '#inputCountry') {
             field = document.querySelector(item)
             let data = item.replace('#input', '').toLowerCase()
             field.value = resultCep[data]
@@ -111,7 +111,7 @@ var fillAddressFields = () => {
 var emptyAddressFields = () => {
 
     fieldIdsAddress.map(item => {
-        if (item != '#inputCep' && item != '#inputNumber') {
+        if (item != '#inputCep' && item != '#inputCountry') {
             field = document.querySelector(item)
             field.value = ''
 
@@ -183,7 +183,6 @@ var showSecondForm = () => {
         firstForm.hidden = true
         thirdForm.hidden = true
         stepCounter.innerHTML = '2'
-        formTitle.innerHTML = 'Preencha o formulário de cadastro aqui!'
     }
 }
 
@@ -197,7 +196,6 @@ var showThirdForm = () => {
         thirdForm.hidden = false
         showBusinessForm()
         stepCounter.innerHTML = '3'
-        formTitle.innerHTML = 'Cadastre-se agora!'
     }
 }
 
@@ -209,7 +207,6 @@ var backToFirst = () => {
     thirdForm.hidden = true
     firstForm.hidden = false
     stepCounter.innerHTML = '1'
-    formTitle.innerHTML = 'Preencha o formulário de cadastro aqui!'
 }
 
 var backToSecond = () => {
@@ -218,7 +215,6 @@ var backToSecond = () => {
     secondForm.hidden = false
     thirdForm.hidden = true
     stepCounter.innerHTML = '2'
-    formTitle.innerHTML = 'Preencha o formulário de cadastro aqui!'
 }
 
 (function () {

@@ -27,8 +27,8 @@
         <div class="col-md-6">
             <div class="card bg-warning">
                 <div class="card-header">
-                    <h2 style="font-size: 1.5em" id="form-title">
-                        Preencha o formulário de cadastro aqui!
+                    <h2 style="font-size: 1.3em" id="form-title">
+                        Preencha o seu cadastro e comece a estudar grátis!
                     </h2>
                     <b>
                         Etapa <span id="step-counter">1</span> de 3
@@ -41,10 +41,10 @@
                     <form name="custom_form_first" class="needs-validation" id="first-step" novalidate>
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="business">Perfil do usuário</label>
+                                <label for="business">Você é: </label>
                                 <select class="form-control field" id="inputBusiness" placeholder="Selecione" onclick=""
                                     required>
-                                    <option></option>
+                                    <option value="">Selecione uma opção</option>
                                     <option value="1">Dono de bar(es) e/ou restaurante(s)</option>
                                     <option value="">Profissional do setor de bar(es) e/ou restaurante(s)</option>
                                     <option value="">Quero abrir um negócio</option>
@@ -104,8 +104,10 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" id="first-step-button-next" onclick="showSecondForm()"
-                            class="btn btn-primary">Próximo</button>
+                        <div class="form-row" style="justify-content: flex-end;">
+                            <button type="submit" id="first-step-button-next" onclick="showSecondForm()"
+                                class="btn btn-primary">Próximo</button>
+                        </div>
                     </form>
                     <!-- formulario primeira etapa -->
 
@@ -157,7 +159,7 @@
                                 <label for="inputPersonalSituation">Situação cadastral (receita federal)</label>
                                 <select type="text" class="form-control field" id="inputPersonalSituation"
                                     placeholder="" required>
-                                    <option></option>
+                                    <option value="">Selecione uma opção</option>
                                     <option value="ativa">Ativo</option>
                                     <option value="inativa">Inativo</option>
                                 </select>
@@ -165,16 +167,20 @@
                                     Selecione a situação!
                                 </div>
                             </div>
-                            <div class="form-group col-md-6">
+                            <!-- <div class="form-group col-md-6">
                                 <label for="inputEmail">Email</label>
                                 <input type="text" class="form-control field" id="inputEmailSecond"
                                     placeholder="email@example.com" required>
                                 <div class="invalid-feedback">
                                     Insira um endereço de email válido!
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCountry">País</label>
+                                <input type="text" class="form-control field" id="inputCountry" value="Brasil" required>
+                            </div>
                             <div class="form-group col-md-6">
                                 <label for="inputCep">CEP</label>
                                 <input type="text" class="form-control field invalid-validation" id="inputCep"
@@ -184,11 +190,11 @@
                                     Informe um CEP válido!
                                 </div>
                             </div>
-                            <div class="form-group col-md-2" style="display: flex;
+                            <!-- <div class="form-group col-md-2" style="display: flex;
                         align-items: flex-end;">
                                 <button type="button" id="buttonCep" class="btn btn-primary" onclick="consultCep()"
                                     hidden>Consultar</button>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="form-row">
@@ -207,13 +213,13 @@
                                 <input type="text" class="form-control field" id="inputNeighborhood" required>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="inputAddress">Logradouro</label>
+                                <label for="inputAddress">Endereço</label>
                                 <input type="text" class="form-control field" id="inputAddress" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="inputNumber">Numero</label>
+                                <label for="inputNumber">Número</label>
                                 <input type="text" class="form-control field" id="inputNumber" required>
                             </div>
                             <div class="form-group col-md-6">
@@ -221,10 +227,12 @@
                                 <input type="text" class="form-control field" id="inputComplement" required>
                             </div>
                         </div>
-                        <button id="second-step-button-preview" onclick="backToFirst()" class="btn btn-primary"
-                            style="margin-right: 1em">Voltar</button>
-                        <button type="submit" onclick="showThirdForm()" id="second-step-button-next"
-                            class="btn btn-primary">Próximo</button>
+                        <div class="form-row" style="justify-content: space-between;">
+                            <button id="second-step-button-preview" onclick="backToFirst()"
+                                class="btn btn-primary">Voltar</button>
+                            <button type="submit" onclick="showThirdForm()" id="second-step-button-next"
+                                class="btn btn-primary">Próximo</button>
+                        </div>
                     </form>
 
                     <!-- formulario segunda etapa -->
@@ -243,10 +251,25 @@
                                 <div id="cnpj-invalid-feedback">
                                     Digite um CNPJ válido!
                                 </div>
-                                <div class="form-group col-md-2" style="display: flex;
+                                <!-- <div class="form-group col-md-2" style="display: flex;
                                     align-items: flex-end;">
                                     <button type="button" class="btn btn-primary" onclick="consultCnpj()"
                                         hidden>Consultar</button>
+                                </div> -->
+                                <div class="form-group col-md-6">
+                                    <label for="inputBillingRange">Porte</label>
+                                    <select type="text" class="form-control field" id="inputBillingRange" placeholder=""
+                                        required>
+                                        <option value="">Selecione uma opção</option>
+                                        <option value="">Microempreendendor Individual</option>
+                                        <option value="">Microempresa</option>
+                                        <option value="">Empresa de Pequeno Porte</option>
+                                        <option value="">Empresa de Médio Porte</option>
+                                        <option value="">Empresa de Grande Porte</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Informe a faixa de faturamento!
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -260,7 +283,8 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputFantasyName">Nome fantasia</label>
-                                    <input type="text" class="form-control field" id="inputFantasyName" placeholder="" required>
+                                    <input type="text" class="form-control field" id="inputFantasyName" placeholder=""
+                                        required>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -305,17 +329,8 @@
                                     Informe as pessoas ocupadas!
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputBillingRange">Faixa de faturamento</label>
-                                    <input type="text" class="form-control field" id="inputBillingRange" placeholder=""
-                                        required>
-                                    <div class="invalid-feedback">
-                                        Informe a faixa de faturamento!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
+
+                            <!-- <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="inputSector">Setor: </label>
                                     <input type="text" class="form-control field" id="inputSector" placeholder=""
@@ -324,16 +339,16 @@
                                         Informe o setor de atuação!
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-row">
-                                <div class="form-group col-md-12">
+                                <!-- <div class="form-group col-md-12">
                                     <label for="inputEconomicActivity">Atividade econômica:</label>
                                     <input type="text" class="form-control field" id="inputEconomicActivity"
                                         placeholder="" required>
                                     <div class="invalid-feedback">
                                         Informe a atividade econômica da empresa!
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group col-md-12">
                                     <label for="inputMainActivity">Atividade principal:</label>
                                     <input type="text" class="form-control field" id="inputMainActivity" placeholder=""
@@ -344,11 +359,12 @@
                                 </div>
                             </div>
                         </div>
-
-                        <button id="third-step-button-preview" onclick="backToSecond()" class="btn btn-primary"
-                            style="margin-right: 1em">Voltar</button>
-                        <button type="submit" id="third-step-button" class="btn btn-primary"
-                            onclick="setPostData()">Cadastre-se</button>
+                        <div class="form-row" style="justify-content: space-between;">
+                            <button id="third-step-button-preview" onclick="backToSecond()" class="btn btn-primary"
+                                style="margin-right: 1em">Voltar</button>
+                            <button type="submit" id="third-step-button" class="btn btn-primary"
+                                onclick="setPostData()">Finalizar cadastro</button>
+                        </div>
                     </form>
 
                     <!-- formulario terceira etapa -->
