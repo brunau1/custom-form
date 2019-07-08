@@ -6,9 +6,9 @@ var showBusinessForm = () => {
     // const office = document.querySelector('#inputOffice')
 
     if (select.value == '1')
-        businessForm.hidden = true
-    else
         businessForm.hidden = false
+    else
+        businessForm.hidden = true
 
     if (businessForm.hidden)
         fieldIdsJuridic.map(item => {
@@ -182,6 +182,8 @@ var showSecondForm = () => {
         secondForm.hidden = false
         firstForm.hidden = true
         thirdForm.hidden = true
+        stepCounter.innerHTML = '2'
+        formTitle.innerHTML = 'Preencha o formulário de cadastro aqui!'
     }
 }
 
@@ -193,6 +195,9 @@ var showThirdForm = () => {
         firstForm.hidden = true
         secondForm.hidden = true
         thirdForm.hidden = false
+        showBusinessForm()
+        stepCounter.innerHTML = '3'
+        formTitle.innerHTML = 'Cadastre-se agora!'
     }
 }
 
@@ -203,6 +208,8 @@ var backToFirst = () => {
     secondForm.hidden = true
     thirdForm.hidden = true
     firstForm.hidden = false
+    stepCounter.innerHTML = '1'
+    formTitle.innerHTML = 'Preencha o formulário de cadastro aqui!'
 }
 
 var backToSecond = () => {
@@ -210,6 +217,8 @@ var backToSecond = () => {
     const thirdForm = document.getElementById('third-step')
     secondForm.hidden = false
     thirdForm.hidden = true
+    stepCounter.innerHTML = '2'
+    formTitle.innerHTML = 'Preencha o formulário de cadastro aqui!'
 }
 
 (function () {

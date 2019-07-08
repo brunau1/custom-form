@@ -1,0 +1,10 @@
+body{
+    background: url('../images/background.jpg') no-repeat; 
+    background-size: cover ;
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
