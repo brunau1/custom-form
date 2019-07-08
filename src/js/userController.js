@@ -18,14 +18,14 @@ var createUser = () => {
         url: usersRoutePost,
         type: "post",
         data: {
-            username,
-            firstname,
-            lastname,
-            email,
-            password,
-            cf: {
-                cpf,
-                cnpj
+            'username': username,
+            'firstname': firstname,
+            'lastname': lastname,
+            'email': email,
+            'password': password,
+            'cf': {
+                'CPF': cpf,
+                'CNPJ': cnpj
             }
         },
         beforeSend: () => {
@@ -47,9 +47,14 @@ var createUser = () => {
 }
 
 var setPostData = () => {
+    /* add dataNascimento, UsuarioPerfilCondicional, Sexo, Fantasia, PessoaCelular, EstabelecimentoRazao */
     let cpf = document.querySelector("#inputCpf").value.toString()
     let cnpj = document.querySelector("#inputCnpj").value.toString()
 
+    if (!cnpj)
+        cnpj = ' '
+    if (!cpf)
+        cpf = ' '
     //provavelmente serão necessárias mais informações
     if (!validateFormData()) {
         length = document.querySelector("#inputNameFirst").value.toString().split(' ').length,
