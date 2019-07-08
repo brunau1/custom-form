@@ -2,6 +2,9 @@ body{
     background: url('../images/background.jpg') no-repeat; 
     background-size: cover;
 }
+.bg-warning{
+    box-shadow: 0px 0px 20px 5px #353535;
+}
 .form-container{
     display: flex;
     justify-content: center;
