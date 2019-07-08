@@ -11,7 +11,8 @@ var createUser = () => {
 
     const {
         cpf,
-        cnpj
+        cnpj,
+        cep
     } = postData.cf
 
     $.ajax({
@@ -25,7 +26,8 @@ var createUser = () => {
             password,
             cf: {
                 cpf,
-                cnpj
+                cnpj,
+                cep
             }
         },
         beforeSend: () => {
@@ -49,6 +51,7 @@ var createUser = () => {
 var setPostData = () => {
     let cpf = document.querySelector("#inputCpf").value.toString()
     let cnpj = document.querySelector("#inputCnpj").value.toString()
+    let cep = document.querySelector("#inputCep").value.toString()
 
     //provavelmente serão necessárias mais informações
     if (!validateFormData()) {
@@ -61,7 +64,8 @@ var setPostData = () => {
                 email: document.querySelector("#inputEmailFirst").value.toString(),
                 cf: {
                     cpf,
-                    cnpj
+                    cnpj,
+                    cep
                 }
             }
         console.log(postData.firstname)
