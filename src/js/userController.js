@@ -1,19 +1,13 @@
 let usersRoutePost = 'https://abrasel.dj.emp.br/api/users'
 
 var createUser = () => {
-    const {
-        username,
-        firstname,
-        lastname,
-        email,
-        password,
-    } = postData
 
-    const {
-        cpf,
-        cnpj,
-        cep
-    } = postData.cf
+    const { username, firstname, lastname, email, password } = postData
+    const { cpf, cnpj,
+        cep, phone, dataNascimento,
+        usuarioPerfilCondicional,
+        sexo, fantasia, pessoaCelular,
+        estabelecimentoRazao } = postData.cf
 
     $.ajax({
         url: usersRoutePost,
@@ -26,7 +20,19 @@ var createUser = () => {
             'password': password,
             'cf': {
                 'CPF': cpf,
-                'CNPJ': cnpj
+                'CNPJ': cnpj,
+                'CEP': cep,
+                'phone': phone,
+                /**
+                 * Novos inputs na request 
+                 * @ Raphael
+                 */
+                'dataNascimento': dataNascimento,
+                'usuarioPerfilCondicional': usuarioPerfilCondicional,
+                'sexo': sexo,
+                'fantasia': fantasia,
+                'pessoaCelular': pessoaCelular,
+                'estabelecimentoRazao': estabelecimentoRazao
             }
         },
         beforeSend: () => {
@@ -44,19 +50,27 @@ var createUser = () => {
             console.log(data.responseJSON)
 
             catchError(data.responseJSON)
-        });
+        })
 }
 
 var setPostData = () => {
-    /* add dataNascimento, UsuarioPerfilCondicional, Sexo, Fantasia, PessoaCelular, EstabelecimentoRazao */
+    /* add dataNascimento, usuarioPerfilCondicional, sexo, fantasia, pessoaCelular, estabelecimentoRazao */
     let cpf = document.querySelector("#inputCpf").value.toString()
-    let cnpj = document.querySelector("#inputCnpj").value.toString()
-    let cep = document.querySelector("#inputCep").value.toString()
+    let cnpj = document.querySelector("#inputCnpj").value.toString() || ' '
+    let cep = document.querySelector("#inputCep").value.toString() || ' '
+    let phone = document.querySelector("inputPhone").value.toString() || ' '
 
-    if (!cnpj)
-        cnpj = ' '
-    if (!cpf)
-        cpf = ' '
+    /**
+     * Novos campos
+     * @ Raphael
+     */
+    let dataNascimento = document.querySelector("#inputDate").value.toString()
+    let usuarioPerfilCondicional = document.querySelector("#inputBusiness").value.toString()
+    let sexo = document.querySelector("#inputSex").value.toString()
+    let fantasia = document.querySelector("#inputFantasyName").value.toString()
+    let pessoaCelular = document.querySelector("#inputPhone").value.toString()
+    let estabelecimentoRazao = document.querySelector("#inputSocialReason").value.toString()
+
     //provavelmente serão necessárias mais informações
     if (!validateFormData()) {
         length = document.querySelector("#inputNameFirst").value.toString().split(' ').length,
@@ -69,7 +83,14 @@ var setPostData = () => {
                 cf: {
                     cpf,
                     cnpj,
-                    cep
+                    cep,
+                    dataNascimento,
+                    usuarioPerfilCondicional,
+                    sexo,
+                    fantasia,
+                    pessoaCelular,
+                    estabelecimentoRazao,
+                    phone
                 }
             }
         console.log(postData.firstname)
@@ -137,5 +158,5 @@ var catchError = (data) => {
 //             inputUserName.value = ''
 //             inputUserName.disabled = false
 //             return true
-//         });
+//         })
 // }
