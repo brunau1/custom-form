@@ -4,7 +4,7 @@ var createUser = () => {
 
     const { username, firstname, lastname, email, password } = postData
     const { cpf, cnpj,
-        cep, phone, dataNascimento,
+        cep, dataNascimento,
         usuarioPerfilCondicional,
         sexo, fantasia, pessoaCelular,
         estabelecimentoRazao } = postData.cf
@@ -22,7 +22,6 @@ var createUser = () => {
                 'CPF': cpf,
                 'CNPJ': cnpj,
                 'CEP': cep,
-                'phone': phone,
                 /**
                  * Novos inputs na request 
                  * @ Raphael
@@ -55,21 +54,20 @@ var createUser = () => {
 
 var setPostData = () => {
     /* add dataNascimento, usuarioPerfilCondicional, sexo, fantasia, pessoaCelular, estabelecimentoRazao */
-    let cpf = document.querySelector("#inputCpf").value.toString()
-    let cnpj = document.querySelector("#inputCnpj").value.toString() || ' '
-    let cep = document.querySelector("#inputCep").value.toString() || ' '
-    let phone = document.querySelector("inputPhone").value.toString() || ' '
+    let cpf = document.querySelector("#inputCpf").value.toString() || '99999999999'
+    let cnpj = document.querySelector("#inputCnpj").value.toString() || '99999999999999'
+    let cep = document.querySelector("#inputCep").value.toString() || '99999999'
 
     /**
      * Novos campos
      * @ Raphael
      */
-    let dataNascimento = document.querySelector("#inputDate").value.toString()
-    let usuarioPerfilCondicional = document.querySelector("#inputBusiness").value.toString()
-    let sexo = document.querySelector("#inputSex").value.toString()
-    let fantasia = document.querySelector("#inputFantasyName").value.toString()
-    let pessoaCelular = document.querySelector("#inputPhone").value.toString()
-    let estabelecimentoRazao = document.querySelector("#inputSocialReason").value.toString()
+    let dataNascimento = document.querySelector("#inputDate").value.toString() || '01/01/1900'
+    let usuarioPerfilCondicional = document.querySelector("#inputBusiness").value.toString() || 'empty'
+    let sexo = document.querySelector("#inputSex").value.toString() || 'empty'
+    let fantasia = document.querySelector("#inputFantasyName").value.toString() || 'empty'
+    let pessoaCelular = document.querySelector("#inputPhone").value.toString() || '999999999'
+    let estabelecimentoRazao = document.querySelector("#inputSocialReason").value.toString() || 'empty'
 
     //provavelmente serão necessárias mais informações
     if (!validateFormData()) {
@@ -89,8 +87,7 @@ var setPostData = () => {
                     sexo,
                     fantasia,
                     pessoaCelular,
-                    estabelecimentoRazao,
-                    phone
+                    estabelecimentoRazao
                 }
             }
         console.log(postData.firstname)

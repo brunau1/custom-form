@@ -45,10 +45,10 @@
                                 <select class="form-control field" id="inputBusiness" placeholder="Selecione" onclick=""
                                     required>
                                     <option value="">Selecione uma opção</option>
-                                    <option value="1">Dono de bar(es) e/ou restaurante(s)</option>
-                                    <option value="">Profissional do setor de bar(es) e/ou restaurante(s)</option>
-                                    <option value="">Quero abrir um negócio</option>
-                                    <option value="">Outro</option>
+                                    <option value="pessoa juridica">Dono de bar(es) e/ou restaurante(s)</option>
+                                    <option value="pessoa fisica">Profissional do setor de bar(es) e/ou restaurante(s)</option>
+                                    <option value="pessoa fisica">Quero abrir um negócio</option>
+                                    <option value="pessoa fisica">Outro</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Selecione o perfil de usuário!
@@ -146,8 +146,8 @@
                                 <label for="inputSex">Sexo</label>
                                 <select class="form-control field" id="inputSex" placeholder="Selecione" required>
                                     <option></option>
-                                    <option value="m">Masculino</option>
-                                    <option value="f">Feminino</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Selecione o sexo!
@@ -261,11 +261,11 @@
                                     <select type="text" class="form-control field" id="inputBillingRange" placeholder=""
                                         required>
                                         <option value="">Selecione uma opção</option>
-                                        <option value="">Microempreendendor Individual</option>
-                                        <option value="">Microempresa</option>
-                                        <option value="">Empresa de Pequeno Porte</option>
-                                        <option value="">Empresa de Médio Porte</option>
-                                        <option value="">Empresa de Grande Porte</option>
+                                        <option value="Microempreendendor Individual">Microempreendendor Individual</option>
+                                        <option value="Microempresa">Microempresa</option>
+                                        <option value="Empresa de Pequeno Porte">Empresa de Pequeno Porte</option>
+                                        <option value="Empresa de Médio Porte">Empresa de Médio Porte</option>
+                                        <option value="Empresa de Grande Porte">Empresa de Grande Porte</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         Informe a faixa de faturamento!
@@ -312,7 +312,7 @@
                                     <label for="inputJuridicSituation">Situação atual</label>
                                     <select type="text" class="form-control field" id="inputJuridicSituation"
                                         placeholder="" required>
-                                        <option></option>
+                                        <option value="">Selecione um opção</option>
                                         <option value="ativa">Ativo</option>
                                         <option value="inativa">Inativo</option>
                                     </select>
