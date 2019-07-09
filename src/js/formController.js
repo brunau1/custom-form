@@ -5,7 +5,7 @@ var showBusinessForm = () => {
     const businessForm = document.querySelector('#businessForm')
     // const office = document.querySelector('#inputOffice')
 
-    if (select.value == '1')
+    if (select.value == 'pessoa juridica')
         businessForm.hidden = false
     else
         businessForm.hidden = true
@@ -223,8 +223,8 @@ var backToSecond = () => {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var nameFirst = document.getElementById('inputNameFirst')
         var nameSecond = document.getElementById('inputNameSecond')
-        var emailFirst = document.getElementById('inputEmailFirst')
-        var emailSecond = document.getElementById('inputEmailSecond')
+        // var emailFirst = document.getElementById('inputEmailFirst')
+        // var emailSecond = document.getElementById('inputEmailSecond')
 
         if (nameFirst)
             nameFirst.addEventListener('change', event => {
@@ -240,20 +240,20 @@ var backToSecond = () => {
                 }
             }, false)
 
-        if (emailFirst)
-            emailFirst.addEventListener('change', event => {
-                if (emailFirst.value.toString().length > 0) {
-                    emailSecond.value = emailFirst.value
-                } else if (emailSecond.value.toString().length > 0) {
-                    emailFirst.value = emailSecond.value
-                }
-            }, false)
+        // if (emailFirst)
+        //     emailFirst.addEventListener('change', event => {
+        //         if (emailFirst.value.toString().length > 0) {
+        //             emailSecond.value = emailFirst.value
+        //         } else if (emailSecond.value.toString().length > 0) {
+        //             emailFirst.value = emailSecond.value
+        //         }
+        //     }, false)
 
-        if (emailSecond)
-            emailSecond.addEventListener('change', event => {
-                if (emailSecond.value.toString().length > 0) {
-                    emailFirst.value = emailSecond.value
-                }
-            }, false)
+        // if (emailSecond)
+        //     emailSecond.addEventListener('change', event => {
+        //         if (emailSecond.value.toString().length > 0) {
+        //             emailFirst.value = emailSecond.value
+        //         }
+        //     }, false)
     }, false)
 })();
