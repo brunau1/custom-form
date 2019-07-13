@@ -140,7 +140,7 @@ var crateFormAndRedirect = () => {
         element = document.createElement('input');
         
         for (const attribute in attributes){
-            element.setAttribute(attribute, attributes['attribute']);
+            element.setAttribute(attribute, attributes[attribute]);
         }
         
         return element;
