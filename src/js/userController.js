@@ -133,28 +133,29 @@ var catchError = (data) => {
 }
 
 var crateFormAndRedirect = () => {
-    const courseUrl = localStorage.getItem("urlDestino").replace('https://abrasel.dj.emp.br', '')
-    const form = document.createElement('form')
-    const input = document.createElement('input')
-
-    input.setAttribute('name','username')
-    input.setAttribute('value', postData.username)
-    form.appendChild(input)
+    const courseUrl = localStorage.getItem("urlDestino").replace('https://abrasel.dj.emp.br', '');
+    const form = document.createElement('form');
     
-    input.setAttribute('name','password')
-    input.setAttribute('value', postData.password)
-    form.appendChild(input)
+    const createInput = (attributes) => {
+        element = document.createElement('input');
+        
+        for (const attribute in attributes){
+            element.setAttribute(attribute, attributes['attribute']);
+        }
+        
+        return element;
+    }
+    
+    form.appendChild(createInput({name: 'username', value: postData.username, type: 'hidden'}));
+    form.appendChild(createInput({name: 'password', value: postData.password, type: 'hidden'}));
+    form.appendChild(createInput({name: 'redirect', value: courseUrl, type: 'hidden'}));
 
-    input.setAttribute('name','redirect')
-    input.setAttribute('value', courseUrl)
-    form.appendChild(input)
+    form.setAttribute('method', 'POST');
+    form.setAttribute('action', 'https://abrasel.dj.emp.br/login/index.php');
 
-    form.setAttribute('method', 'POST')
-    form.setAttribute('action', 'https://abrasel.dj.emp.br/login/index.php')
+    document.querySelector('body').appendChild(form);
 
-    document.querySelector('body').appendChild(form)
-
-    form.submit()
+    form.submit();
 }
 
 // var testUsername = () => {
