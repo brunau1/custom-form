@@ -12,16 +12,13 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 
+
 <body>
-    <script>
-        var url = localStorage.getItem("urlDestino")
-        console.log(url)
-    </script>
     <div class="header">
         <div class="container">
             <div class="logo">
-                <a href="#top" class="smooth"><img style="width: 170px; margin-top: 1em;" src="images/logo-abrasel.png"
-                        alt=""></a>
+                <a href="#top" class="smooth"><img style="width: 170px; margin-top: 1em;"
+                        src="images/logo-abrasel.png" alt=""></a>
             </div>
         </div>
     </div>
@@ -42,13 +39,22 @@
 
                     <div class="form-buttons">
                         <button class="btn" id="login-button" style="margin: auto; margin-bottom: 1em;">
-                            <a href="https://abrasel.dj.emp.br/login/index.php">Já sou cadastrado!</a>
+                            <a id="login-link" href="https://abrasel.dj.emp.br/login/index.php">Já sou cadastrado!</a>
                         </button>
                         <button class="btn" id="cadastrar-button" onclick="showElements()" style="margin: auto">
                             Desejo me cadastrar!
                         </button>
 
                     </div>
+                    <script>
+                        var url = localStorage.getItem("urlDestino")
+                        console.log(url)
+                        var link = document.querySelector("#login-link")
+                        if (url)
+                            link.setAttribute('href', url)
+                        else
+                            link.setAttribute('href', 'https://abrasel.dj.emp.br/login/index.php')
+                    </script>
 
                     <script>
                         var el = document.querySelector("#cadastrar-button")
@@ -403,7 +409,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
