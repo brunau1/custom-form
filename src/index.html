@@ -13,7 +13,10 @@
 </head>
 
 <body>
-
+    <script>
+        var url = localStorage.getItem("urlDestino")
+        console.log(url)
+    </script>
     <div class="header">
         <div class="container">
             <div class="logo">
@@ -28,146 +31,170 @@
             <div class="card bg-warning">
                 <div class="card-header">
                     <h2 style="font-size: 1.3em" id="form-title">
-                        Preencha o seu cadastro e comece a estudar grátis!
+                        Cursos Abrasel
+                        <!-- Preencha o seu cadastro e comece a estudar grátis! -->
                     </h2>
-                    <b>
+                    <b id="step" hidden>
                         Etapa <span id="step-counter">1</span> de 3
                     </b>
                 </div>
                 <div class="card-body" style="background: #fff;">
 
+                    <div class="form-buttons">
+                        <button class="btn" id="login-button" style="margin: auto; margin-bottom: 1em;">
+                            <a href="https://abrasel.dj.emp.br/login/index.php">Já sou cadastrado!</a>
+                        </button>
+                        <button class="btn" id="cadastrar-button" onclick="showElements()" style="margin: auto">
+                            Desejo me cadastrar!
+                        </button>
+
+                    </div>
+
+                    <script>
+                        var el = document.querySelector("#cadastrar-button")
+
+                        function showElements() {
+                            document.querySelector(".form-buttons").hidden = true
+                            document.querySelector("#step").hidden = false
+                            document.querySelector("#form-title").innerHTML = "Preencha o seu cadastro e comece a estudar grátis!"
+                            document.querySelector("#container-forms").hidden = false
+                        }
+                    </script>
+
                     <!-- formulario primeira etapa -->
+                    <div id="container-forms" hidden>
+                        <form name="custom_form_first" class="needs-validation" id="first-step" novalidate>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="business">Você é: </label>
+                                    <select class="form-control field" id="inputBusiness" placeholder="Selecione"
+                                        onclick="" required>
+                                        <option value="">Selecione uma opção</option>
+                                        <option value="pessoa juridica">Dono de bar(es) e/ou restaurante(s)</option>
+                                        <option value="pessoa fisica">Profissional do setor de bar(es) e/ou
+                                            restaurante(s)</option>
+                                        <option value="pessoa fisica">Quero abrir um negócio</option>
+                                        <option value="pessoa fisica">Outro</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Selecione o perfil de usuário!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="inputName">Nome completo</label>
+                                    <input type="text" class="form-control field" id="inputNameFirst"
+                                        placeholder="Nome completo" required>
+                                    <div class="invalid-feedback">
+                                        Informe seu nome completo!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="inputUserName">Nome de usuário (apenas letras minúsculas)</label>
+                                    <input type="text" class="form-control field" id="inputUserName"
+                                        placeholder="Nome para acesso" required>
+                                    <div id="user-name-invalid-feedback">
+                                        Nome de usuário já existente!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail">Email</label>
+                                    <input type="text" class="form-control field" id="inputEmailFirst"
+                                        placeholder="email@example.com" required>
+                                    <div id="email-invalid-feedback">
+                                        Insira um endereço de email válido!
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword">Senha: (minimo de 6 caracteres)</label>
+                                    <input type="password" class="form-control field" id="inputPassword" placeholder=""
+                                        required>
+                                    <div id="password-invalid-feedback">
+                                        Informe uma senha válida!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputPhone">Telefone</label>
+                                    <input type="text" class="form-control field" id="inputPhone"
+                                        placeholder="(  ) _____-____" name="tel"
+                                        onKeyPress="MascaraTelefone(custom_form_first.tel);" maxlength="15" required>
+                                    <div class="invalid-feedback">
+                                        Informe um número de telefone válido!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row" style="justify-content: flex-end;">
+                                <button type="submit" id="first-step-button-next" onclick="showSecondForm()"
+                                    class="btn btn-primary">Próximo</button>
+                            </div>
+                        </form>
+                        <!-- formulario primeira etapa -->
 
-                    <form name="custom_form_first" class="needs-validation" id="first-step" novalidate>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="business">Você é: </label>
-                                <select class="form-control field" id="inputBusiness" placeholder="Selecione" onclick=""
-                                    required>
-                                    <option value="">Selecione uma opção</option>
-                                    <option value="pessoa juridica">Dono de bar(es) e/ou restaurante(s)</option>
-                                    <option value="pessoa fisica">Profissional do setor de bar(es) e/ou restaurante(s)</option>
-                                    <option value="pessoa fisica">Quero abrir um negócio</option>
-                                    <option value="pessoa fisica">Outro</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Selecione o perfil de usuário!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="inputName">Nome completo</label>
-                                <input type="text" class="form-control field" id="inputNameFirst"
-                                    placeholder="Nome completo" required>
-                                <div class="invalid-feedback">
-                                    Informe seu nome completo!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="inputUserName">Nome de usuário (apenas letras minúsculas)</label>
-                                <input type="text" class="form-control field" id="inputUserName"
-                                    placeholder="Nome para acesso" required>
-                                <div id="user-name-invalid-feedback">
-                                    Nome de usuário já existente!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail">Email</label>
-                                <input type="text" class="form-control field" id="inputEmailFirst"
-                                    placeholder="email@example.com" required>
-                                <div id="email-invalid-feedback">
-                                    Insira um endereço de email válido!
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword">Senha: (minimo de 6 caracteres)</label>
-                                <input type="password" class="form-control field" id="inputPassword" placeholder=""
-                                    required>
-                                <div id="password-invalid-feedback">
-                                    Informe uma senha válida!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputPhone">Telefone</label>
-                                <input type="text" class="form-control field" id="inputPhone"
-                                    placeholder="(  ) _____-____" name="tel"
-                                    onKeyPress="MascaraTelefone(custom_form_first.tel);" maxlength="15" required>
-                                <div class="invalid-feedback">
-                                    Informe um número de telefone válido!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row" style="justify-content: flex-end;">
-                            <button type="submit" id="first-step-button-next" onclick="showSecondForm()"
-                                class="btn btn-primary">Próximo</button>
-                        </div>
-                    </form>
-                    <!-- formulario primeira etapa -->
+                        <!-- formulario segunda etapa -->
 
-                    <!-- formulario segunda etapa -->
-
-                    <form name="custom_form_second" class="needs-validation" id="second-step" novalidate hidden>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputName">Nome completo</label>
-                                <input type="text" class="form-control field" id="inputNameSecond"
-                                    placeholder="Nome completo" required>
-                                <div class="invalid-feedback">
-                                    Informe seu nome completo!
+                        <form name="custom_form_second" class="needs-validation" id="second-step" novalidate hidden>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputName">Nome completo</label>
+                                    <input type="text" class="form-control field" id="inputNameSecond"
+                                        placeholder="Nome completo" required>
+                                    <div class="invalid-feedback">
+                                        Informe seu nome completo!
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputCpf">CPF</label>
+                                    <input type="text" class="form-control field" id="inputCpf"
+                                        placeholder="___.___.___-__" name="cpf"
+                                        onKeyPress="MascaraCPF(custom_form_second.cpf);" maxlength="14" required>
+                                    <div class="invalid-feedback">
+                                        Informe um CPF válido
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputCpf">CPF</label>
-                                <input type="text" class="form-control field" id="inputCpf" placeholder="___.___.___-__"
-                                    name="cpf" onKeyPress="MascaraCPF(custom_form_second.cpf);" maxlength="14" required>
-                                <div class="invalid-feedback">
-                                    Informe um CPF válido
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputDate">Data de Nascimento</label>
+                                    <input type="text" class="form-control field" id="inputDate" placeholder="__/__/__"
+                                        name="data" onKeyPress="MascaraData(custom_form_second.data);" maxlength="10"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Informe uma data válida!
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputSex">Sexo</label>
+                                    <select class="form-control field" id="inputSex" placeholder="Selecione" required>
+                                        <option></option>
+                                        <option value="masculino">Masculino</option>
+                                        <option value="feminino">Feminino</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Selecione o sexo!
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputDate">Data de Nascimento</label>
-                                <input type="text" class="form-control field" id="inputDate" placeholder="__/__/__"
-                                    name="data" onKeyPress="MascaraData(custom_form_second.data);" maxlength="10"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Informe uma data válida!
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="inputPersonalSituation">Situação cadastral (receita federal)</label>
+                                    <select type="text" class="form-control field" id="inputPersonalSituation"
+                                        placeholder="" required>
+                                        <option value="">Selecione uma opção</option>
+                                        <option value="ativa">Ativo</option>
+                                        <option value="inativa">Inativo</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Selecione a situação!
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputSex">Sexo</label>
-                                <select class="form-control field" id="inputSex" placeholder="Selecione" required>
-                                    <option></option>
-                                    <option value="masculino">Masculino</option>
-                                    <option value="feminino">Feminino</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Selecione o sexo!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="inputPersonalSituation">Situação cadastral (receita federal)</label>
-                                <select type="text" class="form-control field" id="inputPersonalSituation"
-                                    placeholder="" required>
-                                    <option value="">Selecione uma opção</option>
-                                    <option value="ativa">Ativo</option>
-                                    <option value="inativa">Inativo</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Selecione a situação!
-                                </div>
-                            </div>
-                            <!-- <div class="form-group col-md-6">
+                                <!-- <div class="form-group col-md-6">
                                 <label for="inputEmail">Email</label>
                                 <input type="text" class="form-control field" id="inputEmailSecond"
                                     placeholder="email@example.com" required>
@@ -175,162 +202,164 @@
                                     Insira um endereço de email válido!
                                 </div>
                             </div> -->
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputCountry">País</label>
-                                <input type="text" class="form-control field" id="inputCountry" value="Brasil" required>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputCep">CEP</label>
-                                <input type="text" class="form-control field invalid-validation" id="inputCep"
-                                    placeholder="__.___-___" onchange="//consultCep()" name="cep"
-                                    onKeyPress="MascaraCep(custom_form_second.cep);" maxlength="10" required>
-                                <div id="cep-invalid-feedback">
-                                    Informe um CEP válido!
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputCountry">País</label>
+                                    <input type="text" class="form-control field" id="inputCountry" value="Brasil"
+                                        required>
                                 </div>
-                            </div>
-                            <!-- <div class="form-group col-md-2" style="display: flex;
+                                <div class="form-group col-md-6">
+                                    <label for="inputCep">CEP</label>
+                                    <input type="text" class="form-control field invalid-validation" id="inputCep"
+                                        placeholder="__.___-___" onchange="//consultCep()" name="cep"
+                                        onKeyPress="MascaraCep(custom_form_second.cep);" maxlength="10" required>
+                                    <div id="cep-invalid-feedback">
+                                        Informe um CEP válido!
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group col-md-2" style="display: flex;
                         align-items: flex-end;">
                                 <button type="button" id="buttonCep" class="btn btn-primary" onclick="consultCep()"
                                     hidden>Consultar</button>
                             </div> -->
-                        </div>
+                            </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputState">Estado</label>
-                                <input type="text" class="form-control field" id="inputState" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputCity">Cidade</label>
-                                <input type="text" class="form-control field" id="inputCity" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputNeighborhood">Bairro</label>
-                                <input type="text" class="form-control field" id="inputNeighborhood" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputAddress">Endereço</label>
-                                <input type="text" class="form-control field" id="inputAddress" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputNumber">Número</label>
-                                <input type="text" class="form-control field" id="inputNumber" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputComplement">Complemento</label>
-                                <input type="text" class="form-control field" id="inputComplement" required>
-                            </div>
-                        </div>
-                        <div class="form-row" style="justify-content: space-between;">
-                            <button id="second-step-button-preview" onclick="backToFirst()"
-                                class="btn btn-primary">Voltar</button>
-                            <button type="submit" onclick="showThirdForm()" id="second-step-button-next"
-                                class="btn btn-primary">Próximo</button>
-                        </div>
-                    </form>
-
-                    <!-- formulario segunda etapa -->
-
-                    <!-- formulario terceira etapa -->
-
-                    <form name="custom_form_third" class="needs-validation" id="third-step" novalidate hidden>
-                        <div id="businessForm" hidden>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputCnpj">CNPJ</label>
-                                    <input type="text" class="form-control field invalid-validation" id="inputCnpj"
-                                        placeholder="__.___.___/____-__" onchange="" name="cnpj"
-                                        onKeyPress="MascaraCNPJ(custom_form_third.cnpj);" maxlength="18" required>
+                                    <label for="inputState">Estado</label>
+                                    <input type="text" class="form-control field" id="inputState" required>
                                 </div>
-                                <div id="cnpj-invalid-feedback">
-                                    Digite um CNPJ válido!
+                                <div class="form-group col-md-6">
+                                    <label for="inputCity">Cidade</label>
+                                    <input type="text" class="form-control field" id="inputCity" required>
                                 </div>
-                                <!-- <div class="form-group col-md-2" style="display: flex;
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputNeighborhood">Bairro</label>
+                                    <input type="text" class="form-control field" id="inputNeighborhood" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Endereço</label>
+                                    <input type="text" class="form-control field" id="inputAddress" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputNumber">Número</label>
+                                    <input type="text" class="form-control field" id="inputNumber" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputComplement">Complemento</label>
+                                    <input type="text" class="form-control field" id="inputComplement" required>
+                                </div>
+                            </div>
+                            <div class="form-row" style="justify-content: space-between;">
+                                <button id="second-step-button-preview" onclick="backToFirst()"
+                                    class="btn btn-primary">Voltar</button>
+                                <button type="submit" onclick="showThirdForm()" id="second-step-button-next"
+                                    class="btn btn-primary">Próximo</button>
+                            </div>
+                        </form>
+
+                        <!-- formulario segunda etapa -->
+
+                        <!-- formulario terceira etapa -->
+
+                        <form name="custom_form_third" class="needs-validation" id="third-step" novalidate hidden>
+                            <div id="businessForm" hidden>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCnpj">CNPJ</label>
+                                        <input type="text" class="form-control field invalid-validation" id="inputCnpj"
+                                            placeholder="__.___.___/____-__" onchange="" name="cnpj"
+                                            onKeyPress="MascaraCNPJ(custom_form_third.cnpj);" maxlength="18" required>
+                                    </div>
+                                    <div id="cnpj-invalid-feedback">
+                                        Digite um CNPJ válido!
+                                    </div>
+                                    <!-- <div class="form-group col-md-2" style="display: flex;
                                     align-items: flex-end;">
                                     <button type="button" class="btn btn-primary" onclick="consultCnpj()"
                                         hidden>Consultar</button>
                                 </div> -->
-                                <div class="form-group col-md-6">
-                                    <label for="inputBillingRange">Porte</label>
-                                    <select type="text" class="form-control field" id="inputBillingRange" placeholder=""
-                                        required>
-                                        <option value="">Selecione uma opção</option>
-                                        <option value="Microempreendendor Individual">Microempreendendor Individual</option>
-                                        <option value="Microempresa">Microempresa</option>
-                                        <option value="Empresa de Pequeno Porte">Empresa de Pequeno Porte</option>
-                                        <option value="Empresa de Médio Porte">Empresa de Médio Porte</option>
-                                        <option value="Empresa de Grande Porte">Empresa de Grande Porte</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Informe a faixa de faturamento!
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBillingRange">Porte</label>
+                                        <select type="text" class="form-control field" id="inputBillingRange"
+                                            placeholder="" required>
+                                            <option value="">Selecione uma opção</option>
+                                            <option value="Microempreendendor Individual">Microempreendendor Individual
+                                            </option>
+                                            <option value="Microempresa">Microempresa</option>
+                                            <option value="Empresa de Pequeno Porte">Empresa de Pequeno Porte</option>
+                                            <option value="Empresa de Médio Porte">Empresa de Médio Porte</option>
+                                            <option value="Empresa de Grande Porte">Empresa de Grande Porte</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Informe a faixa de faturamento!
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputSocialReason">Razão social</label>
-                                    <input type="text" class="form-control field" id="inputSocialReason" placeholder=""
-                                        required>
-                                    <div class="invalid-feedback">
-                                        Informe o nome comercial do seu negócio!
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputSocialReason">Razão social</label>
+                                        <input type="text" class="form-control field" id="inputSocialReason"
+                                            placeholder="" required>
+                                        <div class="invalid-feedback">
+                                            Informe o nome comercial do seu negócio!
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputFantasyName">Nome fantasia</label>
+                                        <input type="text" class="form-control field" id="inputFantasyName"
+                                            placeholder="" required>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputFantasyName">Nome fantasia</label>
-                                    <input type="text" class="form-control field" id="inputFantasyName" placeholder=""
-                                        required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputBusinessType">Tipo de empreendimento</label>
-                                    <input type="text" class="form-control field" id="inputBusinessType" placeholder=""
-                                        required>
-                                    <div class="invalid-feedback">
-                                        Informe o tipo de empreendimento!
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBusinessType">Tipo de empreendimento</label>
+                                        <input type="text" class="form-control field" id="inputBusinessType"
+                                            placeholder="" required>
+                                        <div class="invalid-feedback">
+                                            Informe o tipo de empreendimento!
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputOpeningDate">Data de abertura</label>
+                                        <input type="text" class="form-control field" id="inputOpeningDate"
+                                            placeholder="__/__/__" name="dataAbertura"
+                                            onKeyPress="MascaraData(custom_form_third.dataAbertura);" maxlength="10"
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Informe uma data válida!
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputOpeningDate">Data de abertura</label>
-                                    <input type="text" class="form-control field" id="inputOpeningDate"
-                                        placeholder="__/__/__" name="dataAbertura"
-                                        onKeyPress="MascaraData(custom_form_third.dataAbertura);" maxlength="10"
-                                        required>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputJuridicSituation">Situação atual</label>
+                                        <select type="text" class="form-control field" id="inputJuridicSituation"
+                                            placeholder="" required>
+                                            <option value="">Selecione um opção</option>
+                                            <option value="ativa">Ativo</option>
+                                            <option value="inativa">Inativo</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Selecione a situação da empresa!
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputOccupiedPeople">Pessoas ocupadas</label>
+                                        <input type="text" class="form-control field" id="inputOccupiedPeople"
+                                            placeholder="" value="" required>
+                                    </div>
                                     <div class="invalid-feedback">
-                                        Informe uma data válida!
+                                        Informe as pessoas ocupadas!
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputJuridicSituation">Situação atual</label>
-                                    <select type="text" class="form-control field" id="inputJuridicSituation"
-                                        placeholder="" required>
-                                        <option value="">Selecione um opção</option>
-                                        <option value="ativa">Ativo</option>
-                                        <option value="inativa">Inativo</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Selecione a situação da empresa!
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputOccupiedPeople">Pessoas ocupadas</label>
-                                    <input type="text" class="form-control field" id="inputOccupiedPeople"
-                                        placeholder="" value="" required>
-                                </div>
-                                <div class="invalid-feedback">
-                                    Informe as pessoas ocupadas!
-                                </div>
-                            </div>
 
-                            <!-- <div class="form-row">
+                                <!-- <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="inputSector">Setor: </label>
                                     <input type="text" class="form-control field" id="inputSector" placeholder=""
@@ -340,8 +369,8 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <div class="form-row">
-                                <!-- <div class="form-group col-md-12">
+                                <div class="form-row">
+                                    <!-- <div class="form-group col-md-12">
                                     <label for="inputEconomicActivity">Atividade econômica:</label>
                                     <input type="text" class="form-control field" id="inputEconomicActivity"
                                         placeholder="" required>
@@ -349,26 +378,27 @@
                                         Informe a atividade econômica da empresa!
                                     </div>
                                 </div> -->
-                                <div class="form-group col-md-12">
-                                    <label for="inputMainActivity">Atividade principal:</label>
-                                    <input type="text" class="form-control field" id="inputMainActivity" placeholder=""
-                                        required>
-                                    <div class="invalid-feedback">
-                                        Informe a atividade econômica principal!
+                                    <div class="form-group col-md-12">
+                                        <label for="inputMainActivity">Atividade principal:</label>
+                                        <input type="text" class="form-control field" id="inputMainActivity"
+                                            placeholder="" required>
+                                        <div class="invalid-feedback">
+                                            Informe a atividade econômica principal!
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-row" style="justify-content: space-between;">
-                            <button id="third-step-button-preview" onclick="backToSecond()" class="btn btn-primary"
-                                style="margin-right: 1em">Voltar</button>
-                            <button type="submit" id="third-step-button" class="btn btn-primary"
-                                onclick="setPostData()">Finalizar cadastro</button>
-                        </div>
-                    </form>
+                            <div class="form-row" style="justify-content: space-between;">
+                                <button id="third-step-button-preview" onclick="backToSecond()" class="btn btn-primary"
+                                    style="margin-right: 1em">Voltar</button>
+                                <button type="submit" id="third-step-button" class="btn btn-primary"
+                                    onclick="setPostData()">Finalizar cadastro</button>
+                            </div>
+                        </form>
 
-                    <!-- formulario terceira etapa -->
+                        <!-- formulario terceira etapa -->
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -391,6 +421,38 @@
     <script src='js/requestsController.js'></script>
     <script src='js/userController.js'></script>
     <script src="js/formValidator.js"></script>
+    <script>
+            // var elements = document.querySelectorAll('a')
+            // console.log(elements)
+            // elements = [...elements]
+
+            // var i = 0
+            // var links = []
+            // elements.map(item => {
+            //     links.push(item.getAttribute('href'))
+            // })
+            // elements.map(item => {
+            //     item.setAttribute('href', links[i].replace("https://abrasel.dj.emp.br/enrol/index.php?",""))
+            //     i++
+            //     console.log(item.getAttribute('href'))
+            // })
+            // console.log(elements)
+            // console.log(links)
+            // elements.map(item => {
+            //     item.addEventListener('click', event => {
+
+            //         links.map(link =>{
+            //             if(link.includes(item.getAttribute('href')))
+            //             localStorage.setItem("urlDestino", link)
+            //         })
+
+            //         var url = localStorage.getItem("urlDestino")
+            //         console.log(url)
+            //         var win = window.open("http://academia-cms.abraseldev.com.br/formulario-de-cadastro-cursos/", '_blank');
+            //         win.focus();
+            //     }, false)
+            // })
+    </script>
 </body>
 
 </html>

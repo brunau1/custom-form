@@ -41,7 +41,7 @@ var createUser = () => {
         .done(data => {
             alert("Usuário Cadastrado!")
             console.log(data)
-            window.location.href = "https://abrasel.dj.emp.br/login/index.php"
+            window.location.href = localStorage.getItem("urlDestino")
         })
         .fail(data => {
             alert("Falha no cadastro do usuário!")

@@ -1,16 +1,19 @@
-body{
-    background: url('../images/background.jpg') no-repeat; 
+body {
+    background: url('../images/background.jpg') no-repeat;
     background-size: cover;
 }
-.bg-warning{
+
+.bg-warning {
     box-shadow: 0px 0px 20px 5px #353535;
 }
-.form-container{
+
+.form-container {
     display: flex;
     justify-content: center;
     margin-bottom: 2em;
     margin-top: 2em;
 }
+
 .bg-green {
     background-color: #1c6f42!important;
 }
@@ -27,11 +30,13 @@ h3 {
     margin-top: 2em;
 }
 
-.form-control.is-valid, .was-validated .form-control:valid {
+.form-control.is-valid,
+.was-validated .form-control:valid {
     background-image: none;
 }
 
-.form-control.is-invalid, .was-validated .form-control:invalid {
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
     background-image: none;
 }
 
@@ -71,7 +76,6 @@ h3 {
     color: #dc3545;
 }
 
-
 #email-invalid-feedback {
     display: none;
     width: 100%;
@@ -80,7 +84,7 @@ h3 {
     color: #dc3545;
 }
 
-#user-name-invalid-feedback{
+#user-name-invalid-feedback {
     display: none;
     width: 100%;
     margin-top: .25rem;
@@ -88,8 +92,21 @@ h3 {
     color: #dc3545;
 }
 
-@media(max-width: 576px){
+@media(max-width: 576px) {
     .form-format {
         margin-top: 0;
     }
+}
+.form-buttons {
+    display: block;
+}
+.form-buttons a{
+    color: #fff;
+    text-decoration: none;
+}
+.form-buttons .btn{
+    display: block;
+    color: #fff;
+    background-color: #1c6f42;
+    border-color: #1c6f42;
 }
