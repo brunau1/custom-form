@@ -18,12 +18,12 @@ var consultCep = () => {
             if (data.erro) {
                 errorCep.style.display = 'block'
                 fieldCep.style.borderColor = '#dc3545'
-                emptyAddressFields()
+                emptyAddressfields()
                 fieldCep.disabled = false
 
                 fieldIdsAddress.map(item => {
-                    field = document.querySelector(item)
-                    field.disabled = false
+                    var fields = document.querySelector(item)
+                    fields.disabled = false
                 })
 
                 return false
@@ -43,7 +43,7 @@ var consultCep = () => {
                 //complement
             };
             console.log(resultCep)
-            fillAddressFields()
+            fillAddressfields()
 
             fieldIdsAddress.map(item => {
                 field = document.querySelector(item)
@@ -54,7 +54,7 @@ var consultCep = () => {
         })
         .fail(err => {
             console.log(err)
-            emptyAddressFields()
+            emptyAddressfields()
 
             fieldIdsAddress.map(item => {
                 field = document.querySelector(item)
@@ -82,53 +82,85 @@ var consultCnpj = () => {
 }
 
 var cnpjRequest = (cnpj, field) => {
+    const fieldCnpj = document.querySelector("#inputCnpj")
+    const errorCnpj = document.querySelector('#cnpj-invalid-feedback')
+
     $.ajax({
         url: `https://www.receitaws.com.br/v1/cnpj/${cnpj}`,
         type: "get",
         dataType: 'jsonp',
         beforeSend: () => {
             fieldIdsJuridic.map(item => {
-                field = document.querySelector(item)
-                field.disabled = true
+                var fields = document.querySelector(item)
+                fields.disabled = true
             })
         }
     })
         .done(data => {
-            const {
-                nome: socialreason,
-                situacao: juridicsituation,
-                fantasia: fantasyname,
-                abertura: openingdate,
-                atividade_principal: activity,
-                numero: number,
-                cep
-            } = data
-            resultCnpj = {
-                socialreason,
-                juridicsituation,
-                fantasyname,
-                openingdate,
-                mainactivity: activity[0].text,
-                number,
-                cep
-            }
-            console.log(resultCep)
-            fillCnpjFields()
 
-            fieldIdsJuridic.map(item => {
-                field = document.querySelector(item)
+            if (data.status.includes('ERROR')) {
+                console.log("Data:")
+                console.log(data)
+
+                message.innerHTML = 'CNPJ inválido!'
+                message.hidden = false
+
+                errorCnpj.style.display = 'block'
+                fieldCnpj.style.borderColor = '#dc3545'
+
+                fieldIdsJuridic.map(item => {
+                    var fields = document.querySelector(item)
+                    fields.disabled = false
+                })
+
+                setTimeout(() => {
+                    message.hidden = true
+                }, 2500)
+
                 field.disabled = false
-            })
 
-            field.disabled = false
+                emptyCnpjFields()
+            }
+            else {
+                const {
+                    nome: socialreason,
+                    situacao: juridicsituation,
+                    fantasia: fantasyname,
+                    abertura: openingdate,
+                    atividade_principal: activity,
+                    numero: number,
+                    cep
+                } = data
+                try {
+                    resultCnpj = {
+                        socialreason,
+                        juridicsituation,
+                        fantasyname,
+                        openingdate,
+                        mainactivity: activity[0].text,
+                        number,
+                        cep
+                    }
+                } catch (e) { console.log(e) }
+                console.log("Resultado:")
+                console.log(resultCnpj)
+                fillCnpjFields()
+
+                fieldIdsJuridic.map(item => {
+                    var fields = document.querySelector(item)
+                    fields.disabled = false
+                })
+
+                field.disabled = false
+            }
         })
         .fail(err => {
             console.log(err)
             alert("insira um cnpj valido")
 
             fieldIdsJuridic.map(item => {
-                field = document.querySelector(item)
-                field.disabled = false
+                var fields = document.querySelector(item)
+                fields.disabled = false
             })
 
             field.disabled = false

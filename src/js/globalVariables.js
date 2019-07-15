@@ -16,7 +16,7 @@ var setFieldsPrefix = (prefix) => {
     fieldIdsJuridic = [
         prefix + 'Cnpj',
         prefix + 'FantasyName',
-        prefix + 'BusinessType',
+        //prefix + 'BusinessType',
         prefix + 'SocialReason',
         prefix + 'OpeningDate',
         prefix + 'JuridicSituation',
