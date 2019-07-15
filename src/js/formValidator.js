@@ -246,6 +246,9 @@ function formataCampo(campo, Mascara, evento) {
                         event.preventDefault();
                         event.stopPropagation();
                         formCounter = 0
+                        const buttonNext = document.querySelector('#second-step-button-next')
+                        if(voltar == false)
+                            buttonNext.click()
                     }
                     console.log(formCounter)
                     item.classList.add('was-validated');

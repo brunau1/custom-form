@@ -110,3 +110,9 @@ h3 {
     background-color: #1c6f42;
     border-color: #1c6f42;
 }
+
+.message{
+    color: #fff;
+    font-size: 2em;
+    text-align: center;
+}

@@ -183,6 +183,7 @@ var showSecondForm = () => {
         firstForm.hidden = true
         thirdForm.hidden = true
         stepCounter.innerHTML = '2'
+        voltar = false
     }
 }
 
@@ -207,6 +208,7 @@ var backToFirst = () => {
     thirdForm.hidden = true
     firstForm.hidden = false
     stepCounter.innerHTML = '1'
+    voltar = true
 }
 
 var backToSecond = () => {

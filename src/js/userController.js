@@ -1,4 +1,5 @@
 let usersRoutePost = 'https://abrasel.dj.emp.br/api/users'
+var message = document.querySelector(".message")
 
 var createUser = () => {
 
@@ -35,26 +36,41 @@ var createUser = () => {
             }
         },
         beforeSend: () => {
-            alert("Enviando...")
+            //alert("Enviando...")
+            message.innerHTML = 'Enviando... aguarde um momento.'
+            message.hidden = false
         }
     })
         .done(data => {
             console.log(data)
             console.log(localStorage.getItem("urlDestino"))
             var url = localStorage.getItem("urlDestino")
-            alert("Usuário Cadastrado!")
+            // alert("Usuário Cadastrado!")
+            message.hidden = true
+            message.innerHTML = 'Usuário Cadastrado!'
+            message.hidden = false
             // if (url)
             //     window.location.href = localStorage.getItem("urlDestino")
             // else
             //     window.location.href = 'https://abrasel.dj.emp.br/login/index.php'
-            crateFormAndRedirect()
+            setTimeout(() => {
+                crateFormAndRedirect()
+                message.hidden = true
+            }, 2500)
         })
         .fail(data => {
-            alert("Falha no cadastro do usuário!")
+            // alert("Falha no cadastro do usuário!")
+            message.hidden = true
+            message.innerHTML = 'Falha no cadastro do usuário!'
+            message.hidden = false
+            console.log("Dados:" + data)
             console.log(data)
+            console.log("Resposta JSON:" + data.responseJSON)
             console.log(data.responseJSON)
 
-            catchError(data.responseJSON)
+            setTimeout(() => {
+                catchError(data.responseJSON)
+            }, 2500)
         })
 }
 
@@ -104,7 +120,8 @@ var setPostData = () => {
         createUser()
     }
     else {
-        alert('Todos os campos devem ser preenchidos corretamente!')
+        message.innerHTML = 'Todos os campos devem ser preenchidos corretamente!'
+        message.hidden = false
     }
 }
 
@@ -114,41 +131,59 @@ var catchError = (data) => {
     var inputEmail = document.getElementById('inputEmailFirst')
     var errorEmail = document.getElementById('email-invalid-feedback')
 
-    if (data.message.email) {
-        alert("O email informado já existe!")
+    try {
+        if (data.message.username || data.message.includes('username')) {
+            // alert("Nome de usuário inválido!")
+            message.innerHTML = 'Nome de usuário inválido!'
+            message.hidden = false
+
+            errorUserName.style.display = 'block'
+            inputUserName.style.borderColor = '#dc3545'
+            inputUserName.value = ''
+            inputUserName.disabled = false
+
+            setTimeout(() => {
+                backToFirst()
+                message.hidden = true
+            }, 2500)
+        }
+    } catch (e) {
+        console.log(e)
+    }
+    if (data.message.email || data.message.includes('email')) {
+        // alert("O email informado já existe!")
+        message.innerHTML = 'O email informado já existe!'
+        message.hidden = false
+
         errorEmail.style.display = 'block'
         inputEmail.style.borderColor = '#dc3545'
         inputEmail.value = ''
         inputEmail.disabled = false
-        backToFirst()
-    }
-    if (data.message.username) {
-        alert("O nome de usuário informado já existe!")
-        errorUserName.style.display = 'block'
-        inputUserName.style.borderColor = '#dc3545'
-        inputUserName.value = ''
-        inputUserName.disabled = false
-        backToFirst()
+
+        setTimeout(() => {
+            backToFirst()
+            message.hidden = true
+        }, 2500)
     }
 }
 
 var crateFormAndRedirect = () => {
     const courseUrl = localStorage.getItem("urlDestino").replace('https://abrasel.dj.emp.br', '');
     const form = document.createElement('form');
-    
+
     const createInput = (attributes) => {
         element = document.createElement('input');
-        
-        for (const attribute in attributes){
+
+        for (const attribute in attributes) {
             element.setAttribute(attribute, attributes[attribute]);
         }
-        
+
         return element;
     }
-    
-    form.appendChild(createInput({name: 'username', value: postData.username, type: 'hidden'}));
-    form.appendChild(createInput({name: 'password', value: postData.password, type: 'hidden'}));
-    form.appendChild(createInput({name: 'redirect', value: courseUrl, type: 'hidden'}));
+
+    form.appendChild(createInput({ name: 'username', value: postData.username, type: 'hidden' }));
+    form.appendChild(createInput({ name: 'password', value: postData.password, type: 'hidden' }));
+    form.appendChild(createInput({ name: 'redirect', value: courseUrl, type: 'hidden' }));
 
     form.setAttribute('method', 'POST');
     form.setAttribute('action', 'https://abrasel.dj.emp.br/login/index.php');

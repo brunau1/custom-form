@@ -2,6 +2,7 @@ var postData = {}
 var resultCep = {}
 var resultCnpj = {}
 var stepCounter = document.querySelector('#step-counter')
+var voltar = false
 var formCounter = 1
 
 var fieldIdsJuridic = []

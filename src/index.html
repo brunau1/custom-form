@@ -23,6 +23,11 @@
         </div>
     </div>
 
+    <div class="message" hidden>
+        Enviando... aguarde um momento.
+    </div>
+
+
     <div class="container form-container">
         <div class="col-md-6">
             <div class="card bg-warning">
@@ -103,7 +108,7 @@
                                     <input type="text" class="form-control field" id="inputUserName"
                                         placeholder="Nome para acesso" required>
                                     <div id="user-name-invalid-feedback">
-                                        Nome de usuário já existente!
+                                        O nome deve ter letras minúsculas e sem espaçamento!
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +263,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputComplement">Complemento</label>
-                                    <input type="text" class="form-control field" id="inputComplement" required>
+                                    <input type="text" class="form-control field" id="inputComplement">
                                 </div>
                             </div>
                             <div class="form-row" style="justify-content: space-between;">
