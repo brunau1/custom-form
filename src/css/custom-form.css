@@ -7,6 +7,10 @@ body {
     box-shadow: 0px 0px 20px 5px #353535;
 }
 
+.card{
+    width: 100% !important;
+}
+
 .form-container {
     display: flex;
     justify-content: center;
@@ -111,8 +115,22 @@ h3 {
     border-color: #1c6f42;
 }
 
+.logo{
+    margin-left: 1em;
+}
+
 .message{
     color: #fff;
     font-size: 2em;
     text-align: center;
+}
+
+.container-all{
+    width: 100%;
+}
+
+@media(max-width: 768px){
+    .container-all{
+        width: unset;
+    }
 }
