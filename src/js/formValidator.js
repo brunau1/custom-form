@@ -212,6 +212,9 @@ function formataCampo(campo, Mascara, evento) {
 (function () {
     'use strict';
     window.addEventListener('load', function () {
+        var checkValidity = () =>{
+            return inputEmail.checkValidity() && validateEmail(inputEmail.value.toString())
+        }
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.getElementsByClassName('needs-validation');
         var inputCep = document.getElementById('inputCep')
@@ -321,10 +324,12 @@ function formataCampo(campo, Mascara, evento) {
                 if (inputPassword.checkValidity() === false || inputPassword.value.toString().length < 6) {
                     // event.preventDefault();
                     // event.stopPropagation();
+                    document.querySelector('#first-step-button-next').disabled = true
                     errorPassword.style.display = 'block'
                     inputPassword.style.borderColor = '#dc3545'
                 }
                 else {
+                    document.querySelector('#first-step-button-next').disabled = false
                     errorPassword.style.display = 'none'
                     inputPassword.style.borderColor = '#28a745'
                 }
@@ -351,12 +356,14 @@ function formataCampo(campo, Mascara, evento) {
                 if (inputEmail.checkValidity() === false || !validateEmail(inputEmail.value.toString())) {
                     // event.preventDefault();
                     // event.stopPropagation();
+                    document.querySelector('#first-step-button-next').disabled = true
                     errorEmail.style.display = 'block'
                     inputEmail.style.borderColor = '#dc3545'
                 }
                 else {
                     errorEmail.style.display = 'none'
                     inputEmail.style.borderColor = '#28a745'
+                    document.querySelector('#first-step-button-next').disabled = false
                 }
                 inputEmail.classList.add('was-validated');
             }, false)

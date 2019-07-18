@@ -62,6 +62,12 @@ h3 {
     border-color: #1c6f42;
 }
 
+.btn-primary:disabled{
+    color: #fff;
+    background-color: #1c6f42;
+    border-color: #1c6f42;
+}
+
 .btn-primary:hover {
     color: #fff;
     background-color: #249055;
