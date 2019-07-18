@@ -3,12 +3,24 @@ body {
     background-size: cover;
 }
 
-.bg-warning {
+.bg-warning, .bg-default {
+    box-shadow: 0px 0px 20px 5px #353535;
+}
+
+.bg-info{
     box-shadow: 0px 0px 20px 5px #353535;
 }
 
 .card{
     width: 100% !important;
+}
+
+.cadastrado .card-body{
+    padding: 0;
+}
+
+.row{
+    margin: 0;
 }
 
 .form-container {

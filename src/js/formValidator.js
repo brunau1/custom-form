@@ -48,6 +48,13 @@ var fieldValidator = (fieldId) => {
     }
     return false
 }
+//valida o email
+
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log(re.test(email))
+    return re.test(email);
+}
 
 //adiciona mascara de cnpj
 function MascaraCNPJ(cnpj) {
@@ -247,7 +254,7 @@ function formataCampo(campo, Mascara, evento) {
                         event.stopPropagation();
                         formCounter = 0
                         const buttonNext = document.querySelector('#second-step-button-next')
-                        if(voltar == false)
+                        if (voltar == false)
                             buttonNext.click()
                     }
                     console.log(formCounter)
@@ -337,7 +344,7 @@ function formataCampo(campo, Mascara, evento) {
 
         if (inputEmail)
             inputEmail.addEventListener('change', event => {
-                if (inputEmail.checkValidity() === false) {
+                if (inputEmail.checkValidity() === false || !validateEmail(inputEmail.value.toString())) {
                     // event.preventDefault();
                     // event.stopPropagation();
                     errorEmail.style.display = 'block'

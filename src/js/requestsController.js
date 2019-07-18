@@ -18,7 +18,7 @@ var consultCep = () => {
             if (data.erro) {
                 errorCep.style.display = 'block'
                 fieldCep.style.borderColor = '#dc3545'
-                emptyAddressfields()
+                emptyAddressFields()
                 fieldCep.disabled = false
 
                 fieldIdsAddress.map(item => {
@@ -43,7 +43,7 @@ var consultCep = () => {
                 //complement
             };
             console.log(resultCep)
-            fillAddressfields()
+            fillAddressFields()
 
             fieldIdsAddress.map(item => {
                 field = document.querySelector(item)
@@ -54,7 +54,9 @@ var consultCep = () => {
         })
         .fail(err => {
             console.log(err)
-            emptyAddressfields()
+            errorCep.style.display = 'block'
+            fieldCep.style.borderColor = '#dc3545'
+            emptyAddressFields()
 
             fieldIdsAddress.map(item => {
                 field = document.querySelector(item)
@@ -89,11 +91,12 @@ var cnpjRequest = (cnpj, field) => {
         url: `https://www.receitaws.com.br/v1/cnpj/${cnpj}`,
         type: "get",
         dataType: 'jsonp',
+        timeout: 6000,
         beforeSend: () => {
-            fieldIdsJuridic.map(item => {
-                var fields = document.querySelector(item)
-                fields.disabled = true
-            })
+            // fieldIdsJuridic.map(item => {
+            //     var fields = document.querySelector(item)
+            //     fields.disabled = true
+            // })
         }
     })
         .done(data => {
@@ -154,15 +157,28 @@ var cnpjRequest = (cnpj, field) => {
                 field.disabled = false
             }
         })
-        .fail(err => {
+        .fail((err, statusCode, code) => {
             console.log(err)
-            alert("insira um cnpj valido")
+            console.log(statusCode)
+            console.log(code)
+
+            message.innerHTML = 'CNPJ inválido!'
+            message.hidden = false
+
+            errorCnpj.style.display = 'block'
+            fieldCnpj.style.borderColor = '#dc3545'
 
             fieldIdsJuridic.map(item => {
                 var fields = document.querySelector(item)
                 fields.disabled = false
             })
 
+            setTimeout(() => {
+                message.hidden = true
+            }, 2500)
+
             field.disabled = false
+
+            emptyCnpjFields()
         });
 }
