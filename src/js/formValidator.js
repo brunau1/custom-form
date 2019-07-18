@@ -37,6 +37,10 @@ var fieldValidator = (fieldId) => {
             if (field == '')
                 return true
 
+        if (fieldId == '#inputEmailFirst')
+            if (validateEmail(!field.value.toString()))
+                return true
+
         // if (fieldId == '#inputOffice') {
         //     if (select.value == '2')
         //         if (field.trim() == "" || field == null)
