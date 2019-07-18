@@ -38,7 +38,7 @@ var fieldValidator = (fieldId) => {
                 return true
 
         if (fieldId == '#inputEmailFirst')
-            if (validateEmail(!field.value.toString()))
+            if (!validateEmail(field.toString()))
                 return true
 
         // if (fieldId == '#inputOffice') {
