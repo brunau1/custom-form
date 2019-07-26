@@ -1,3 +1,2 @@
 # Custom form
-A simple custom form.
-Mask and field verification is in progress to be done.
+A simple custom form maked to serve as registration form to Abrasel's courses service
