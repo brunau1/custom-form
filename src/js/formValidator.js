@@ -2,7 +2,7 @@ var validateFormData = () => {
     const select = document.querySelector('#inputBusiness')
     error = false
 
-    if (select.value == 1)
+    if (select.value.toString() == 'pessoa juridica')
         fieldIdsJuridic.map(item => {
             error = fieldValidator(item)
             if (!error)

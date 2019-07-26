@@ -20,7 +20,7 @@ var setFieldsPrefix = (prefix) => {
         prefix + 'SocialReason',
         prefix + 'OpeningDate',
         prefix + 'JuridicSituation',
-        prefix + 'OccupiedPeople',
+        //prefix + 'OccupiedPeople',
         prefix + 'BillingRange',
         //prefix + 'Sector',
         //prefix + 'EconomicActivity',

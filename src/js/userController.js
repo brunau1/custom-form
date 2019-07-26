@@ -84,7 +84,10 @@ var setPostData = () => {
      * Novos campos
      * @ Raphael
      */
-    let dataNascimento = document.querySelector("#inputDate").value.toString() || '01/01/1900'
+
+     const querryElement = (id, defaultValue) => document.querySelector(id).value.toString() || defaultValue;
+
+    let dataNascimento = querryElement("#inputDate", "01/01/1900");
     let usuarioPerfilCondicional = document.querySelector("#inputBusiness").value.toString() || 'empty'
     let sexo = document.querySelector("#inputSex").value.toString() || 'empty'
     let fantasia = document.querySelector("#inputFantasyName").value.toString() || 'empty'
