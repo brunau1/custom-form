@@ -5,10 +5,10 @@ var createUser = () => {
 
     const { username, firstname, lastname, email, password } = postData
     const { cpf, cnpj,
-        cep, dataNascimento,
-        usuarioPerfilCondicional,
-        sexo, fantasia, pessoaCelular,
-        estabelecimentoRazao } = postData.cf
+        cep, dataNascimento, usuarioPerfilCondicional,
+        sexo, fantasia, pessoaCelular, estabelecimentoRazao,
+        cidade, estado, bairro, numero, pais, endereco, dataAbertura,
+        situacaoJuridica, porte, atividadePrincipal } = postData.cf
 
     $.ajax({
         url: usersRoutePost,
@@ -23,16 +23,22 @@ var createUser = () => {
                 'CPF': cpf,
                 'CNPJ': cnpj,
                 'CEP': cep,
-                /**
-                 * Novos inputs na request 
-                 * @ Raphael
-                 */
                 'dataNascimento': dataNascimento,
                 'usuarioPerfilCondicional': usuarioPerfilCondicional,
                 'sexo': sexo,
                 'fantasia': fantasia,
                 'pessoaCelular': pessoaCelular,
-                'estabelecimentoRazao': estabelecimentoRazao
+                'estabelecimentoRazao': estabelecimentoRazao,
+                'cidade': cidade,
+                'estado': estado,
+                'bairro': bairro,
+                'numero': numero,
+                'pais': pais,
+                'endereco': endereco,
+                'dataAbertura': dataAbertura,
+                'situacaoJuridica': situacaoJuridica,
+                'porte': porte,
+                'atividadePrincipal': atividadePrincipal
             }
         },
         beforeSend: () => {
@@ -85,14 +91,27 @@ var setPostData = () => {
      * @ Raphael
      */
 
-     const querryElement = (id, defaultValue) => document.querySelector(id).value.toString() || defaultValue;
+    const querryElement = (id, defaultValue) => document.querySelector(id).value.toString() || defaultValue;
 
     let dataNascimento = querryElement("#inputDate", "01/01/1900");
-    let usuarioPerfilCondicional = document.querySelector("#inputBusiness").value.toString() || 'empty'
-    let sexo = document.querySelector("#inputSex").value.toString() || 'empty'
-    let fantasia = document.querySelector("#inputFantasyName").value.toString() || 'empty'
-    let pessoaCelular = document.querySelector("#inputPhone").value.toString() || '999999999'
-    let estabelecimentoRazao = document.querySelector("#inputSocialReason").value.toString() || 'empty'
+    let usuarioPerfilCondicional = querryElement("#inputBusiness", 'empty')
+    let sexo = querryElement("#inputSex", 'empty')
+    let fantasia = querryElement("#inputFantasyName", 'empty')
+    let pessoaCelular = querryElement("#inputPhone", '999999999')
+    let estabelecimentoRazao = querryElement("#inputSocialReason", 'empty')
+
+    //outros inputs
+    let cidade = querryElement("#inputCity", "empty");
+    let estado = querryElement("#inputState", "empty");
+    let numero = querryElement("#inputNumber", "empty");
+    let pais = querryElement("#inputCountry", "empty");
+    let endereco = querryElement("#inputAddress", "empty");
+    let bairro = querryElement("#inputNeighborhood", "empty");
+
+    let dataAbertura = querryElement("#inputOpeningDate", "empty");
+    let situacaoJuridica = querryElement("#inputJuridicSituation", "empty");
+    let porte = querryElement("#inputBillingRange", "empty");
+    let atividadePrincipal = querryElement("#inputMainActivity", "empty");
 
     //provavelmente serão necessárias mais informações
     if (!validateFormData()) {
@@ -112,7 +131,17 @@ var setPostData = () => {
                     sexo,
                     fantasia,
                     pessoaCelular,
-                    estabelecimentoRazao
+                    estabelecimentoRazao,
+                    cidade,
+                    estado,
+                    bairro,
+                    numero,
+                    pais,
+                    endereco,
+                    dataAbertura,
+                    situacaoJuridica,
+                    porte,
+                    atividadePrincipal
                 }
             }
         console.log(postData.firstname)
