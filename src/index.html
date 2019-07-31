@@ -65,12 +65,14 @@
                                         <select class="form-control field" id="inputBusiness" placeholder="Selecione"
                                             onclick="" required>
                                             <option value="">Selecione uma opção</option>
-                                            <option value="pessoa juridica">Dono de bar(es) e/ou restaurante(s)
+                                            <option value="Dono de bar(es) e/ou restaurante(s)">Dono de bar(es) e/ou
+                                                restaurante(s)
                                             </option>
-                                            <option value="pessoa fisica">Profissional do setor de bar(es) e/ou
+                                            <option value="Profissional do setor de bar(es) e/ou restaurante(s)">
+                                                Profissional do setor de bar(es) e/ou
                                                 restaurante(s)</option>
-                                            <option value="pessoa fisica">Quero abrir um negócio</option>
-                                            <option value="pessoa fisica">Outro</option>
+                                            <option value="Quero abrir um negócio">Quero abrir um negócio</option>
+                                            <option value="Outro">Outro</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Selecione o perfil de usuário!
@@ -181,7 +183,7 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-6">
                                         <label for="inputPersonalSituation">Situação cadastral (receita
                                             federal)</label>
                                         <select type="text" class="form-control field" id="inputPersonalSituation"
@@ -194,14 +196,18 @@
                                             Selecione a situação!
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group col-md-6">
-                                <label for="inputEmail">Email</label>
-                                <input type="text" class="form-control field" id="inputEmailSecond"
-                                    placeholder="email@example.com" required>
-                                <div class="invalid-feedback">
-                                    Insira um endereço de email válido!
-                                </div>
-                            </div> -->
+                                    <div class="form-group col-md-6">
+                                        <label for="inputTypePerson">Tipo de pessoa</label>
+                                        <select type="text" class="form-control field" id="inputTypePerson"
+                                            placeholder="" required>
+                                            <option value="">Selecione uma opção</option>
+                                            <option value="pessoa fisica">Pessoa fisica</option>
+                                            <option value="pessoa juridica">Pessoa jurídica</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Selecione a situação!
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">

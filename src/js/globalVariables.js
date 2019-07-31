@@ -16,30 +16,28 @@ var setFieldsPrefix = (prefix) => {
     fieldIdsJuridic = [
         prefix + 'Cnpj', //ok
         prefix + 'FantasyName', //ok
-        //prefix + 'BusinessType',
+        //prefix + 'BusinessType', //removed
         prefix + 'SocialReason', //ok
         prefix + 'OpeningDate', //ok
         prefix + 'JuridicSituation', //ok
-        //prefix + 'OccupiedPeople',
+        //prefix + 'OccupiedPeople', //ok
         prefix + 'BillingRange', //ok
-        //prefix + 'Sector',
-        //prefix + 'EconomicActivity',
+        //prefix + 'Sector', //removed
+        //prefix + 'EconomicActivity', //removed
         prefix + 'MainActivity' //ok
     ]
     fieldIdsPerson = [
         prefix + 'UserName', //ok
         prefix + 'Business', //ok
         prefix + 'NameFirst', //ok
-        //prefix + 'NameSecond',
         prefix + 'Cpf', //ok
         prefix + 'Date', //ok
         prefix + 'Sex', //ok
         prefix + 'PersonalSituation',
-        //prefix + 'Office', //só ficará ativo se for profissional da área
         prefix + 'EmailFirst', //ok
-        //prefix + 'EmailSecond',
         prefix + 'Password', //ok
-        prefix + 'Phone' //ok
+        prefix + 'Phone', //ok
+        prefix + 'TypePerson' //ok
     ]
 
     fieldIdsAddress = [

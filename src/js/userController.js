@@ -5,10 +5,10 @@ var createUser = () => {
 
     const { username, firstname, lastname, email, password } = postData
     const { cpf, cnpj,
-        cep, dataNascimento, usuarioPerfilCondicional,
-        sexo, fantasia, pessoaCelular, estabelecimentoRazao,
+        cep, dataNascimento, usuarioPerfilCondicional, tipoPessoa,
+        sexo, fantasia, pessoaCelular, estabelecimentoRazao, complemento,
         cidade, estado, bairro, numero, pais, endereco, dataAbertura,
-        situacaoJuridica, porte, atividadePrincipal } = postData.cf
+        situacaoJuridica, porte, atividadePrincipal, pessoasOcupadas } = postData.cf
 
     $.ajax({
         url: usersRoutePost,
@@ -38,7 +38,10 @@ var createUser = () => {
                 'dataAbertura': dataAbertura,
                 'situacaoJuridica': situacaoJuridica,
                 'porte': porte,
-                'atividadePrincipal': atividadePrincipal
+                'atividadePrincipal': atividadePrincipal,
+                'pessoasOcupadas': pessoasOcupadas,
+                'complemento': complemento,
+                'tipoPessoa': tipoPessoa 
             }
         },
         beforeSend: () => {
@@ -107,11 +110,15 @@ var setPostData = () => {
     let pais = querryElement("#inputCountry", "empty");
     let endereco = querryElement("#inputAddress", "empty");
     let bairro = querryElement("#inputNeighborhood", "empty");
+    let complemento = querryElement("#inputComplement", "empty");
 
     let dataAbertura = querryElement("#inputOpeningDate", "empty");
     let situacaoJuridica = querryElement("#inputJuridicSituation", "empty");
     let porte = querryElement("#inputBillingRange", "empty");
     let atividadePrincipal = querryElement("#inputMainActivity", "empty");
+
+    let pessoasOcupadas = querryElement("#inputOccupiedPeople", "empty");
+    let tipoPessoa = querryElement("#inputTypePerson", "empty");
 
     //provavelmente serão necessárias mais informações
     if (!validateFormData()) {
@@ -141,7 +148,10 @@ var setPostData = () => {
                     dataAbertura,
                     situacaoJuridica,
                     porte,
-                    atividadePrincipal
+                    atividadePrincipal,
+                    pessoasOcupadas,
+                    complemento,
+                    tipoPessoa
                 }
             }
         console.log(postData.firstname)
