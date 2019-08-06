@@ -219,43 +219,40 @@ var backToSecond = () => {
     stepCounter.innerHTML = '2'
 }
 
-(function () {
-    'use strict';
-    window.addEventListener('load', function () {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var nameFirst = document.getElementById('inputNameFirst')
-        var nameSecond = document.getElementById('inputNameSecond')
-        // var emailFirst = document.getElementById('inputEmailFirst')
-        // var emailSecond = document.getElementById('inputEmailSecond')
+window.addEventListener('load', function () {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var nameFirst = document.getElementById('inputNameFirst')
+    var nameSecond = document.getElementById('inputNameSecond')
+    // var emailFirst = document.getElementById('inputEmailFirst')
+    // var emailSecond = document.getElementById('inputEmailSecond')
 
-        if (nameFirst)
-            nameFirst.addEventListener('change', event => {
-                if (nameFirst.value.toString().length > 0) {
-                    nameSecond.value = nameFirst.value
-                }
-            }, false)
+    if (nameFirst)
+        nameFirst.addEventListener('change', event => {
+            if (nameFirst.value.toString().length > 0) {
+                nameSecond.value = nameFirst.value
+            }
+        }, false)
 
-        if (nameSecond)
-            nameSecond.addEventListener('change', event => {
-                if (nameSecond.value.toString().length > 0) {
-                    nameFirst.value = nameSecond.value
-                }
-            }, false)
+    if (nameSecond)
+        nameSecond.addEventListener('change', event => {
+            if (nameSecond.value.toString().length > 0) {
+                nameFirst.value = nameSecond.value
+            }
+        }, false)
 
-        // if (emailFirst)
-        //     emailFirst.addEventListener('change', event => {
-        //         if (emailFirst.value.toString().length > 0) {
-        //             emailSecond.value = emailFirst.value
-        //         } else if (emailSecond.value.toString().length > 0) {
-        //             emailFirst.value = emailSecond.value
-        //         }
-        //     }, false)
+    // if (emailFirst)
+    //     emailFirst.addEventListener('change', event => {
+    //         if (emailFirst.value.toString().length > 0) {
+    //             emailSecond.value = emailFirst.value
+    //         } else if (emailSecond.value.toString().length > 0) {
+    //             emailFirst.value = emailSecond.value
+    //         }
+    //     }, false)
 
-        // if (emailSecond)
-        //     emailSecond.addEventListener('change', event => {
-        //         if (emailSecond.value.toString().length > 0) {
-        //             emailFirst.value = emailSecond.value
-        //         }
-        //     }, false)
-    }, false)
-})();
+    // if (emailSecond)
+    //     emailSecond.addEventListener('change', event => {
+    //         if (emailSecond.value.toString().length > 0) {
+    //             emailFirst.value = emailSecond.value
+    //         }
+    //     }, false)
+}, false)

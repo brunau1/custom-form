@@ -219,6 +219,7 @@
                                         <label for="inputCep">CEP</label>
                                         <input type="text" class="form-control field invalid-validation" id="inputCep"
                                             placeholder="__.___-___" onchange="//consultCep()" name="cep"
+                                            onPaste="MascaraCep(custom_form_second.cep);"
                                             onKeyPress="MascaraCep(custom_form_second.cep);" maxlength="10" required>
                                         <div id="cep-invalid-feedback">
                                             Informe um CEP válido!
@@ -280,6 +281,7 @@
                                             <label for="inputCnpj">CNPJ</label>
                                             <input type="text" class="form-control field invalid-validation"
                                                 id="inputCnpj" placeholder="__.___.___/____-__" onchange="" name="cnpj"
+                                                onPaste="MascaraCNPJ(custom_form_third.cnpj);"
                                                 onKeyPress="MascaraCNPJ(custom_form_third.cnpj);" maxlength="18"
                                                 required>
                                         </div>

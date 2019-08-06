@@ -207,165 +207,189 @@ function formataCampo(campo, Mascara, evento) {
         return true;
     }
 }
+var selectFieldAndAddPropertie = () => {
+    fieldIdsJuridic.forEach(item => {
+        const field = document.querySelector(item)
+        if(item != '#inputCnpj') preventPasteEvent(field)
+    });
+    fieldIdsPerson.forEach(item => {
+        const field = document.querySelector(item)
+        preventPasteEvent(field)
+    });
+    fieldIdsAddress.forEach(item => {
+        const field = document.querySelector(item)
+        if(item != '#inputCep') preventPasteEvent(field)
+    });
+}
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-    'use strict';
-    window.addEventListener('load', function () {
-        var checkValidity = () =>{
-            return inputEmail.checkValidity() && validateEmail(inputEmail.value.toString())
+var preventPasteEvent = (field) => {
+    field.addEventListener('paste', event => event.preventDefault())
+}
+
+var inputDateVerification = document.querySelector('#inputDate')
+inputDateVerification.addEventListener('change',event=>{
+    const date = inputDateVerification.value.toString().split('/')
+    const isValid = new Date(date[2], date[1], date[0]).getTime() > new Date().getTime() ? false : true
+
+    if(!isValid){
+        inputDateVerification.value = ''
+        inputDateVerification.style.borderColor = '#dc3545'
+        console.log('não valido')
+    }
+    else inputDateVerification.style.borderColor = '#28a745'
+})
+window.addEventListener('load', function () {
+    selectFieldAndAddPropertie()
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    var inputCep = document.getElementById('inputCep')
+    var errorCep = document.getElementById('cep-invalid-feedback')
+    var inputCnpj = document.getElementById('inputCnpj')
+    var errorCnpj = document.getElementById('cnpj-invalid-feedback')
+    var inputPassword = document.getElementById('inputPassword')
+    var errorPassword = document.getElementById('password-invalid-feedback')
+    var inputUserName = document.getElementById('inputUserName')
+    var errorUserName = document.getElementById('user-name-invalid-feedback')
+    var inputEmail = document.getElementById('inputEmailFirst')
+    var errorEmail = document.getElementById('email-invalid-feedback')
+
+    var validate = [...forms]
+    // Loop over them and prevent submission
+
+    validate.filter(item => {
+        if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'first-step') {
+            formCounter = 1
+            item.addEventListener('submit', event => {
+                if (item.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                } else {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    formCounter = 0
+                    showSecondForm()
+                }
+                formCounter = 1
+                console.log(formCounter)
+                item.classList.add('was-validated');
+            }, false)
         }
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        var inputCep = document.getElementById('inputCep')
-        var errorCep = document.getElementById('cep-invalid-feedback')
-        var inputCnpj = document.getElementById('inputCnpj')
-        var errorCnpj = document.getElementById('cnpj-invalid-feedback')
-        var inputPassword = document.getElementById('inputPassword')
-        var errorPassword = document.getElementById('password-invalid-feedback')
-        var inputUserName = document.getElementById('inputUserName')
-        var errorUserName = document.getElementById('user-name-invalid-feedback')
-        var inputEmail = document.getElementById('inputEmailFirst')
-        var errorEmail = document.getElementById('email-invalid-feedback')
 
-        var validate = [...forms]
-        // Loop over them and prevent submission
+        if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'second-step') {
+            formCounter = 1
+            item.addEventListener('submit', event => {
+                if (item.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                } else {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    formCounter = 0
+                    const buttonNext = document.querySelector('#second-step-button-next')
+                    if (voltar == false)
+                        buttonNext.click()
+                }
+                console.log(formCounter)
+                item.classList.add('was-validated');
+            }, false)
+        }
+        if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'third-step') {
+            formCounter = 1
+            item.addEventListener('submit', event => {
+                if (item.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                } else {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    formCounter = 0
+                }
+                console.log(formCounter)
+                item.classList.add('was-validated');
+            }, false)
+        }
+    });
 
-        validate.filter(item => {
-            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'first-step') {
-                formCounter = 1
-                item.addEventListener('submit', event => {
-                    if (item.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    } else {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        formCounter = 0
-                        showSecondForm()
-                    }
-                    formCounter = 1
-                    console.log(formCounter)
-                    item.classList.add('was-validated');
-                }, false)
+    if (inputCep)
+        inputCep.addEventListener('change', event => {
+            if (inputCep.checkValidity() === false || inputCep.value.toString().length < 8) {
+                // event.preventDefault();
+                // event.stopPropagation();
+                errorCep.style.display = 'block'
+                inputCep.style.borderColor = '#dc3545'
+                emptyAddressFields()
             }
-
-            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'second-step') {
-                formCounter = 1
-                item.addEventListener('submit', event => {
-                    if (item.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    } else {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        formCounter = 0
-                        const buttonNext = document.querySelector('#second-step-button-next')
-                        if (voltar == false)
-                            buttonNext.click()
-                    }
-                    console.log(formCounter)
-                    item.classList.add('was-validated');
-                }, false)
+            else {
+                errorCep.style.display = 'none'
+                inputCep.style.borderColor = '#28a745'
+                consultCep()
             }
-            if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'third-step') {
-                formCounter = 1
-                item.addEventListener('submit', event => {
-                    if (item.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    } else {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        formCounter = 0
-                    }
-                    console.log(formCounter)
-                    item.classList.add('was-validated');
-                }, false)
+            inputCep.classList.add('was-validated');
+        }, false)
+
+    if (inputCnpj)
+        inputCnpj.addEventListener('change', event => {
+            if (inputCnpj.checkValidity() === false || inputCnpj.value.toString().length < 14) {
+                // event.preventDefault();
+                // event.stopPropagation();
+                errorCnpj.style.display = 'block'
+                inputCnpj.style.borderColor = '#dc3545'
+                emptyCnpjFields()
             }
-        });
+            else {
+                errorCnpj.style.display = 'none'
+                inputCnpj.style.borderColor = '#28a745'
+                consultCnpj()
+            }
+            inputCnpj.classList.add('was-validated');
+        }, false)
 
-        if (inputCep)
-            inputCep.addEventListener('change', event => {
-                if (inputCep.checkValidity() === false || inputCep.value.toString().length < 8) {
-                    // event.preventDefault();
-                    // event.stopPropagation();
-                    errorCep.style.display = 'block'
-                    inputCep.style.borderColor = '#dc3545'
-                    emptyAddressFields()
-                }
-                else {
-                    errorCep.style.display = 'none'
-                    inputCep.style.borderColor = '#28a745'
-                    consultCep()
-                }
-                inputCep.classList.add('was-validated');
-            }, false)
+    if (inputPassword)
+        inputPassword.addEventListener('change', event => {
+            if (inputPassword.checkValidity() === false || inputPassword.value.toString().length < 6) {
+                // event.preventDefault();
+                // event.stopPropagation();
+                document.querySelector('#first-step-button-next').disabled = true
+                errorPassword.style.display = 'block'
+                inputPassword.style.borderColor = '#dc3545'
+            }
+            else {
+                document.querySelector('#first-step-button-next').disabled = false
+                errorPassword.style.display = 'none'
+                inputPassword.style.borderColor = '#28a745'
+            }
+            inputPassword.classList.add('was-validated');
+        }, false)
 
-        if (inputCnpj)
-            inputCnpj.addEventListener('change', event => {
-                if (inputCnpj.checkValidity() === false || inputCnpj.value.toString().length < 14) {
-                    // event.preventDefault();
-                    // event.stopPropagation();
-                    errorCnpj.style.display = 'block'
-                    inputCnpj.style.borderColor = '#dc3545'
-                    emptyCnpjFields()
-                }
-                else {
-                    errorCnpj.style.display = 'none'
-                    inputCnpj.style.borderColor = '#28a745'
-                    consultCnpj()
-                }
-                inputCnpj.classList.add('was-validated');
-            }, false)
+    if (inputUserName)
+        inputUserName.addEventListener('change', event => {
+            if (inputUserName.checkValidity() === false) {
+                // event.preventDefault();
+                // event.stopPropagation();
+                errorUserName.style.display = 'block'
+                inputUserName.style.borderColor = '#dc3545'
+            }
+            else {
+                errorUserName.style.display = 'none'
+                inputUserName.style.borderColor = '#28a745'
+            }
+            inputUserName.classList.add('was-validated');
+        }, false)
 
-        if (inputPassword)
-            inputPassword.addEventListener('change', event => {
-                if (inputPassword.checkValidity() === false || inputPassword.value.toString().length < 6) {
-                    // event.preventDefault();
-                    // event.stopPropagation();
-                    document.querySelector('#first-step-button-next').disabled = true
-                    errorPassword.style.display = 'block'
-                    inputPassword.style.borderColor = '#dc3545'
-                }
-                else {
-                    document.querySelector('#first-step-button-next').disabled = false
-                    errorPassword.style.display = 'none'
-                    inputPassword.style.borderColor = '#28a745'
-                }
-                inputPassword.classList.add('was-validated');
-            }, false)
-
-        if (inputUserName)
-            inputUserName.addEventListener('change', event => {
-                if (inputUserName.checkValidity() === false) {
-                    // event.preventDefault();
-                    // event.stopPropagation();
-                    errorUserName.style.display = 'block'
-                    inputUserName.style.borderColor = '#dc3545'
-                }
-                else {
-                    errorUserName.style.display = 'none'
-                    inputUserName.style.borderColor = '#28a745'
-                }
-                inputUserName.classList.add('was-validated');
-            }, false)
-
-        if (inputEmail)
-            inputEmail.addEventListener('change', event => {
-                if (inputEmail.checkValidity() === false || !validateEmail(inputEmail.value.toString())) {
-                    // event.preventDefault();
-                    // event.stopPropagation();
-                    document.querySelector('#first-step-button-next').disabled = true
-                    errorEmail.style.display = 'block'
-                    inputEmail.style.borderColor = '#dc3545'
-                }
-                else {
-                    errorEmail.style.display = 'none'
-                    inputEmail.style.borderColor = '#28a745'
-                    document.querySelector('#first-step-button-next').disabled = false
-                }
-                inputEmail.classList.add('was-validated');
-            }, false)
-    }, false)
-})();
+    if (inputEmail)
+        inputEmail.addEventListener('change', event => {
+            if (inputEmail.checkValidity() === false || !validateEmail(inputEmail.value.toString())) {
+                // event.preventDefault();
+                // event.stopPropagation();
+                document.querySelector('#first-step-button-next').disabled = true
+                errorEmail.style.display = 'block'
+                inputEmail.style.borderColor = '#dc3545'
+            }
+            else {
+                errorEmail.style.display = 'none'
+                inputEmail.style.borderColor = '#28a745'
+                document.querySelector('#first-step-button-next').disabled = false
+            }
+            inputEmail.classList.add('was-validated');
+        }, false)
+}, false)
