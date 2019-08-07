@@ -455,6 +455,7 @@
 
     <script>
         var el = document.querySelector("#cadastrar-button")
+        document.querySelector("body > div.container.form-container").style.marginBottom = '35em'
 
         function showElements() {
             document.querySelector(".form-buttons").hidden = true
@@ -464,6 +465,7 @@
                 document.querySelector("#form-title").innerHTML = "Preencha o seu cadastro e comece os cursos gratuitamente!"
                 document.querySelector("#container-forms").hidden = false
                 document.querySelector(".check-terms").hidden = true
+                document.querySelector("body > div.container.form-container").style.marginBottom = '5em'
             } else if (noCheckBox.checked) {
                 window.location.href = 'https://cursos.abrasel.com.br/'
             }
