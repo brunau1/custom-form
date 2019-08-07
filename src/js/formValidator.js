@@ -374,6 +374,7 @@ window.addEventListener('load', function () {
             else {
                 errorUserName.style.display = 'none'
                 inputUserName.style.borderColor = '#28a745'
+                inputUserName.value = inputUserName.value.toString.replace(' ','').toLowerCase()
             }
             inputUserName.classList.add('was-validated');
         }, false)
