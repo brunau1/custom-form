@@ -239,6 +239,23 @@ inputDateVerification.addEventListener('change', event => {
     }
     else inputDateVerification.style.borderColor = '#28a745'
 })
+
+var inputCpfVerification = document.querySelector('#inputCpf')
+inputCpfVerification.addEventListener('change', event => {
+    var cpf = inputCpfVerification.value.toString()
+    var isValid = cpf.length < 15 ? false : true
+
+    if (!isValid) {
+        inputCpfVerification.value = ''
+        inputCpfVerification.style.borderColor = '#dc3545'
+        console.log('não valido')
+        document.querySelector('#second-step-button-next').disabled = true
+    }
+    else {
+        inputCpfVerification.style.borderColor = '#28a745'
+        document.querySelector('#second-step-button-next').disabled = false
+    }
+})
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 window.addEventListener('load', function () {
     selectFieldAndAddPropertie()
