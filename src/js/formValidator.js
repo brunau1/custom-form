@@ -243,7 +243,7 @@ inputDateVerification.addEventListener('change', event => {
 var inputCpfVerification = document.querySelector('#inputCpf')
 inputCpfVerification.addEventListener('change', event => {
     var cpf = inputCpfVerification.value.toString()
-    var isValid = cpf.length < 15 ? false : true
+    var isValid = cpf.length < 14 ? false : true
 
     if (!isValid) {
         inputCpfVerification.value = ''
