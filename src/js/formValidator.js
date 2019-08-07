@@ -229,10 +229,17 @@ var preventPasteEvent = (field) => {
 
 var inputDateVerification = document.querySelector('#inputDate')
 inputDateVerification.addEventListener('change', event => {
-    var date = inputDateVerification.value.toString().split('/')
-    var isValid = new Date(date[2], date[1], date[0]).getTime() > new Date().getTime() ? false : true
-
-    if (!isValid) {
+    var arrayDate = inputDateVerification.value.toString().split('/')
+    var date = {
+        'dia': arrayDate[0],
+        'mes': arrayDate[1],
+        'ano': arrayDate[2]
+    }
+    var isValid = new Date(date.ano, date.mes, date.dia).getTime() > new Date().getTime() ? false : true
+    isValid = date.dia > 31 || date.dia < 1 ? false : true
+    isValid = date.mes > 12 || date.mes < 1 ? false : true
+    isValid = date.mes == 2 && date.dia > 29 ? false : true
+        if (!isValid) {
         inputDateVerification.value = ''
         inputDateVerification.style.borderColor = '#dc3545'
         console.log('não valido')
