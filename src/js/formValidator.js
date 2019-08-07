@@ -236,9 +236,9 @@ inputDateVerification.addEventListener('change', event => {
         'ano': arrayDate[2]
     }
     var isValid = new Date(date.ano, date.mes, date.dia).getTime() > new Date().getTime() ? false : true
-    isValid = date.dia > 31 || date.dia < 1 ? false : true
-    isValid = date.mes > 12 || date.mes < 1 ? false : true
-    isValid = date.mes == 2 && date.dia > 29 ? false : true
+    if(isValid) isValid = date.dia > 31 || date.dia < 1 ? false : true
+    if(isValid) isValid = date.mes > 12 || date.mes < 1 ? false : true
+    if(isValid) isValid = date.mes == 2 && date.dia > 29 ? false : true
         if (!isValid) {
         inputDateVerification.value = ''
         inputDateVerification.style.borderColor = '#dc3545'
