@@ -2,7 +2,7 @@ var validateFormData = () => {
     const select = document.querySelector('#inputBusiness')
     error = false
 
-    if (select.value.toString() == 'pessoa juridica')
+    if (select.value.toString() == 'Dono de bar(es) e/ou restaurante(s)')
         fieldIdsJuridic.map(item => {
             error = fieldValidator(item)
             if (!error)
@@ -52,6 +52,7 @@ var fieldValidator = (fieldId) => {
     }
     return false
 }
+
 //valida o email
 
 function validateEmail(email) {
@@ -210,7 +211,7 @@ function formataCampo(campo, Mascara, evento) {
 var selectFieldAndAddPropertie = () => {
     fieldIdsJuridic.forEach(item => {
         const field = document.querySelector(item)
-        if(item != '#inputCnpj') preventPasteEvent(field)
+        if (item != '#inputCnpj') preventPasteEvent(field)
     });
     fieldIdsPerson.forEach(item => {
         const field = document.querySelector(item)
@@ -218,26 +219,27 @@ var selectFieldAndAddPropertie = () => {
     });
     fieldIdsAddress.forEach(item => {
         const field = document.querySelector(item)
-        if(item != '#inputCep') preventPasteEvent(field)
+        if (item != '#inputCep') preventPasteEvent(field)
     });
 }
 
 var preventPasteEvent = (field) => {
-    field.addEventListener('paste', event => event.preventDefault())
+    field.addEventListener('paste', event => { event.preventDefault() })
 }
 
 var inputDateVerification = document.querySelector('#inputDate')
-inputDateVerification.addEventListener('change',event=>{
-    const date = inputDateVerification.value.toString().split('/')
-    const isValid = new Date(date[2], date[1], date[0]).getTime() > new Date().getTime() ? false : true
+inputDateVerification.addEventListener('change', event => {
+    var date = inputDateVerification.value.toString().split('/')
+    var isValid = new Date(date[2], date[1], date[0]).getTime() > new Date().getTime() ? false : true
 
-    if(!isValid){
+    if (!isValid) {
         inputDateVerification.value = ''
         inputDateVerification.style.borderColor = '#dc3545'
         console.log('não valido')
     }
     else inputDateVerification.style.borderColor = '#28a745'
 })
+// Example starter JavaScript for disabling form submissions if there are invalid fields
 window.addEventListener('load', function () {
     selectFieldAndAddPropertie()
     // Fetch all the forms we want to apply custom Bootstrap validation styles to

@@ -41,7 +41,7 @@ var createUser = () => {
                 'atividadePrincipal': atividadePrincipal,
                 'pessoasOcupadas': pessoasOcupadas,
                 'complemento': complemento,
-                'tipoPessoa': tipoPessoa 
+                'tipoPessoa': tipoPessoa
             }
         },
         beforeSend: () => {
@@ -85,16 +85,11 @@ var createUser = () => {
 
 var setPostData = () => {
     /* add dataNascimento, usuarioPerfilCondicional, sexo, fantasia, pessoaCelular, estabelecimentoRazao */
+    const querryElement = (id, defaultValue) => document.querySelector(id).value.toString() || defaultValue;
+
     let cpf = document.querySelector("#inputCpf").value.toString() || '99999999999'
     let cnpj = document.querySelector("#inputCnpj").value.toString() || '99999999999999'
     let cep = document.querySelector("#inputCep").value.toString() || '99999999'
-
-    /**
-     * Novos campos
-     * @ Raphael
-     */
-
-    const querryElement = (id, defaultValue) => document.querySelector(id).value.toString() || defaultValue;
 
     let dataNascimento = querryElement("#inputDate", "01/01/1900");
     let usuarioPerfilCondicional = querryElement("#inputBusiness", 'empty')
@@ -118,7 +113,7 @@ var setPostData = () => {
     let atividadePrincipal = querryElement("#inputMainActivity", "empty");
 
     let pessoasOcupadas = querryElement("#inputOccupiedPeople", "empty");
-    let tipoPessoa = querryElement("#inputTypePerson", "empty");
+    let tipoPessoa = usuarioPerfilCondicional == 'Dono de bar(es) e/ou restaurante(s)' ? 'pessoa juridica' : 'pessoa fisica'
 
     //provavelmente serão necessárias mais informações
     if (!validateFormData()) {
@@ -167,46 +162,89 @@ var setPostData = () => {
     }
 }
 
-var catchError = (data) => {
+var catchError = async (data) => {
     var inputUserName = document.getElementById('inputUserName')
     var errorUserName = document.getElementById('user-name-invalid-feedback')
     var inputEmail = document.getElementById('inputEmailFirst')
     var errorEmail = document.getElementById('email-invalid-feedback')
+    var tryOtherErrors = false
 
-    try {
-        if (data.message.username || data.message.includes('username')) {
-            // alert("Nome de usuário inválido!")
-            message.innerHTML = 'Nome de usuário inválido!'
-            message.hidden = false
-
-            errorUserName.style.display = 'block'
-            inputUserName.style.borderColor = '#dc3545'
-            inputUserName.value = ''
-            inputUserName.disabled = false
-
-            setTimeout(() => {
-                backToFirst()
-                message.hidden = true
-            }, 2500)
-        }
-    } catch (e) {
-        console.log(e)
+    const setUsernameError = () => {
+        errorUserName.style.display = 'block'
+        inputUserName.style.borderColor = '#dc3545'
+        inputUserName.value = ''
+        inputUserName.disabled = false
     }
-    if (data.message.email || data.message.includes('email')) {
-        // alert("O email informado já existe!")
-        message.innerHTML = 'O email informado já existe!'
-        message.hidden = false
 
+    const setEmailError = () => {
         errorEmail.style.display = 'block'
         inputEmail.style.borderColor = '#dc3545'
         inputEmail.value = ''
         inputEmail.disabled = false
-
-        setTimeout(() => {
-            backToFirst()
-            message.hidden = true
-        }, 2500)
     }
+
+    const setMessageText = (text) => {
+        message.innerHTML = text
+        message.hidden = false
+    }
+
+    const testErrors = () => {
+        return new Promise((resolve, reject) => {
+            if (data) {
+                try {
+                    if (!!data.message.username && !!data.message.email) {
+                        // alert("Nome de usuário inválido!")
+                        console.log('nome de usuario e email invalidos')
+                        setMessageText('Nome de usuário e email inválidos!')
+                        setUsernameError()
+                        setEmailError()
+                        tryOtherErrors = false
+                        setTimeout(() => {
+                            message.hidden = true
+                            resolve('promise - email and username - resolved')
+                        }, 2500)
+                    } else tryOtherErrors = true
+                } catch (e) {
+                    console.log(e)
+                    reject(e)
+                }
+                if (tryOtherErrors) {
+                    try {
+                        if (!!data.message.username) {
+                            // alert("Nome de usuário inválido!")
+                            console.log('nome de usuario invalido')
+                            setMessageText('Nome de usuário inválido!')
+                            setUsernameError()
+                            setTimeout(() => {
+                                message.hidden = true
+                                resolve('promise - username - resolved')
+                            }, 2500)
+                        }
+                    } catch (e) {
+                        reject(e)
+                    }
+                    try {
+                        if (!!data.message.email) {
+                            // alert("Nome de usuário inválido!")
+                            console.log('email invalido')
+                            setMessageText('O email informado já existe!')
+                            setEmailError()
+                            setTimeout(() => {
+                                message.hidden = true
+                                resolve('promise - email - resolved')
+                            }, 2500)
+                        }
+                    } catch (e) {
+                        reject(e)
+                    }
+                }
+            }
+        })
+    }
+
+    const log = await testErrors()
+    console.log(log)
+    backToFirst()
 }
 
 var crateFormAndRedirect = () => {
