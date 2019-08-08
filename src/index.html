@@ -53,7 +53,7 @@
 
                     <div class="form-buttons">
                         <button class="btn" id="login-button" style="margin: auto; margin-bottom: 1em;">
-                            <a id="login-link" href="https://abrasel.dj.emp.br/login/index.php">Já sou cadastrado!</a>
+                            <a id="login-link" href="">Já sou cadastrado!</a>
                         </button>
                         <button class="btn" id="cadastrar-button" onclick="showElements()" style="margin: auto">
                             Desejo me cadastrar!
@@ -266,7 +266,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputNumber">Número</label>
-                                    <input type="text" class="form-control field" id="inputNumber" required>
+                                    <input type="number" class="form-control field" id="inputNumber" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputComplement">Complemento</label>
@@ -446,11 +446,11 @@
         if (url)
             link.setAttribute('href', url)
         if (url == null) {
-            link.setAttribute('href', 'http://cursos.abrasel.com.br/pagina-de-cursos/')
-            localStorage.setItem("urlDestino", 'http://cursos.abrasel.com.br/pagina-de-cursos/')
+            link.setAttribute('href', 'https://cursos.abrasel.com.br/pagina-de-cursos/')
+            localStorage.setItem("urlDestino", 'https://cursos.abrasel.com.br/pagina-de-cursos/')
         }
-        console.log(link.getAttribute('href'))
         console.log(`Url destino: ${localStorage.urlDestino}`)
+        console.log(`Redirecionamento: ${link.getAttribute('href')}`)
     </script>
 
     <script>

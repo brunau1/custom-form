@@ -63,7 +63,10 @@ var createUser = () => {
             // else
             //     window.location.href = 'https://abrasel.dj.emp.br/login/index.php'
             setTimeout(() => {
-                crateFormAndRedirect()
+                if (url == ('https://cursos.abrasel.com.br/pagina-de-cursos/'))
+                    window.location.href = url
+                else
+                    crateFormAndRedirect()
                 message.hidden = true
             }, 2500)
         })

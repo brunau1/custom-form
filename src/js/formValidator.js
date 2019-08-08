@@ -394,11 +394,15 @@ window.addEventListener('load', function () {
                 // event.stopPropagation();
                 errorUserName.style.display = 'block'
                 inputUserName.style.borderColor = '#dc3545'
+                document.querySelector('#first-step-button-next').disabled = true
+            } else if(!inputUserName.value.toString()){
+                document.querySelector('#first-step-button-next').disabled = true
             }
             else {
                 errorUserName.style.display = 'none'
                 inputUserName.style.borderColor = '#28a745'
                 inputUserName.value = inputUserName.value.toString().replace(' ','').toLowerCase()
+                document.querySelector('#first-step-button-next').disabled = false
             }
             inputUserName.classList.add('was-validated');
         }, false)
@@ -411,6 +415,8 @@ window.addEventListener('load', function () {
                 document.querySelector('#first-step-button-next').disabled = true
                 errorEmail.style.display = 'block'
                 inputEmail.style.borderColor = '#dc3545'
+            }else if(!inputEmail.value.toString()){
+                document.querySelector('#first-step-button-next').disabled = true
             }
             else {
                 errorEmail.style.display = 'none'
