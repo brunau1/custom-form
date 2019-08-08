@@ -499,14 +499,8 @@ window.addEventListener('load', function () {
                 document.querySelector('#first-step-button-next').disabled = true
                 document.querySelector('#user-name-invalid-feedback').innerHTML = 'O nome deve ter letras minúsculas e sem espaçamento!'
             }
-            if (!inputUserName.value.toString()) {
+            else if (!inputUserName.value.toString()) {
                 document.querySelector('#first-step-button-next').disabled = true
-            }
-            if (validateAsyncUsername()) {
-                errorUserName.style.display = 'block'
-                inputUserName.style.borderColor = '#dc3545'
-                document.querySelector('#first-step-button-next').disabled = true
-                document.querySelector('#user-name-invalid-feedback').innerHTML = 'Este nome de usuário já existe!'
             }
             else {
                 errorUserName.style.display = 'none'
@@ -518,6 +512,7 @@ window.addEventListener('load', function () {
                     document.querySelector('#first-step-button-next').disabled = false
             }
             inputUserName.classList.add('was-validated');
+            validateAsyncUsername()
         }, false)
 
     if (inputEmail)
@@ -530,15 +525,10 @@ window.addEventListener('load', function () {
                 inputEmail.style.borderColor = '#dc3545'
                 document.querySelector('#email-invalid-feedback').innerHTML = 'Insira um endereço de email válido!'
             }
-            if (!inputEmail.value.toString()) {
+            else if (!inputEmail.value.toString()) {
                 document.querySelector('#first-step-button-next').disabled = true
             }
-            if (validateAsyncEmail()) {
-                errorUserName.style.display = 'block'
-                inputUserName.style.borderColor = '#28a745'
-                document.querySelector('#first-step-button-next').disabled = true
-                document.querySelector('#email-invalid-feedback').innerHTML = 'Este endereço email já existe!'
-            } else {
+            else {
                 errorEmail.style.display = 'none'
                 inputEmail.style.borderColor = '#28a745'
                 if (!checkBox.checked)
@@ -547,5 +537,6 @@ window.addEventListener('load', function () {
                     document.querySelector('#first-step-button-next').disabled = false
             }
             inputEmail.classList.add('was-validated');
+            validateAsyncEmail()
         }, false)
 }, false)
