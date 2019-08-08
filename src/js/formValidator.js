@@ -380,7 +380,6 @@ window.addEventListener('load', function () {
                 inputPassword.style.borderColor = '#dc3545'
             }
             else {
-                document.querySelector('#first-step-button-next').disabled = false
                 errorPassword.style.display = 'none'
                 inputPassword.style.borderColor = '#28a745'
             }
@@ -402,7 +401,6 @@ window.addEventListener('load', function () {
                 errorUserName.style.display = 'none'
                 inputUserName.style.borderColor = '#28a745'
                 inputUserName.value = inputUserName.value.toString().replace(' ','').toLowerCase()
-                document.querySelector('#first-step-button-next').disabled = false
             }
             inputUserName.classList.add('was-validated');
         }, false)
@@ -421,7 +419,6 @@ window.addEventListener('load', function () {
             else {
                 errorEmail.style.display = 'none'
                 inputEmail.style.borderColor = '#28a745'
-                document.querySelector('#first-step-button-next').disabled = false
             }
             inputEmail.classList.add('was-validated');
         }, false)

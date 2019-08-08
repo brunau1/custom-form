@@ -60,18 +60,6 @@
                         </button>
 
                     </div>
-                    <div class="check-terms" hidden>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="check-terms">
-                            <label class="form-check-label" for="exampleCheck1">Concordo com os <a
-                                    href="https://cursos.abrasel.com.br/termos-de-uso-abrasel.pdf"
-                                    target="_blank">termos de serviço</a> da Abrasel</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="no-check-terms">
-                            <label class="form-check-label" for="exampleCheck1">Não concordo com os termos</label>
-                        </div>
-                    </div>
 
                     <!-- formulario primeira etapa -->
                     <div id="container-forms" hidden>
@@ -142,6 +130,14 @@
                                     <div class="invalid-feedback">
                                         Informe um número de telefone válido!
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check-terms">
+                                    <label class="form-check-label" for="exampleCheck1">Concordo com os <a
+                                            href="https://cursos.abrasel.com.br/termos-de-uso-abrasel.pdf"
+                                            target="_blank">termos de serviço</a> da Abrasel</label>
                                 </div>
                             </div>
                             <div class="form-row" style="justify-content: flex-end;">
@@ -456,24 +452,24 @@
     <script>
         var el = document.querySelector("#cadastrar-button")
         document.querySelector("body > div.container.form-container").style.marginBottom = '35em'
+        document.querySelector('#first-step-button-next').disabled = true
 
         function showElements() {
             document.querySelector(".form-buttons").hidden = true
-            document.querySelector(".check-terms").hidden = false
-            if (checkBox.checked) {
-                document.querySelector("#step").hidden = false
-                document.querySelector("#form-title").innerHTML = "Preencha o seu cadastro e comece os cursos gratuitamente!"
-                document.querySelector("#container-forms").hidden = false
-                document.querySelector(".check-terms").hidden = true
-                document.querySelector("body > div.container.form-container").style.marginBottom = '5em'
-            } else if (noCheckBox.checked) {
-                window.location.href = 'https://cursos.abrasel.com.br/'
-            }
+            document.querySelector("#step").hidden = false
+            document.querySelector("#form-title").innerHTML = "Preencha o seu cadastro e comece os cursos gratuitamente!"
+            document.querySelector("#container-forms").hidden = false
+            document.querySelector("body > div.container.form-container").style.marginBottom = '5em'
+
         }
         var checkBox = document.querySelector("#check-terms")
         checkBox.addEventListener('click', showElements)
-        var noCheckBox = document.querySelector("#no-check-terms")
-        noCheckBox.addEventListener('click', showElements)
+        checkBox.addEventListener('click', event => {
+            if (!checkBox.checked)
+                document.querySelector('#first-step-button-next').disabled = true
+            else
+                document.querySelector('#first-step-button-next').disabled = false
+        })
     </script>
 </body>
 
