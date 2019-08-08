@@ -271,7 +271,7 @@ inputCpfVerification.addEventListener('change', event => {
 var inputPhoneVerification = document.querySelector('#inputPhone')
 inputPhoneVerification.addEventListener('change', event => {
     const phone = inputPhoneVerification.value.toString()
-    const isValid = phone.length < 10 ? false : true
+    const isValid = phone.length < 14 ? false : true
     const checkBox = document.querySelector("#check-terms")
 
     if (!isValid) {
@@ -312,7 +312,7 @@ var validateAsyncEmail = async () => {
         } catch (error) { console.log(error) }
     }
     const exists = await asyncEmailVerification()
-    if (exists) {
+    if (exists || !validateEmail(inputEmail.value.toString())) {
         errorEmail.style.display = 'block'
         inputEmail.style.borderColor = '#dc3545'
         document.querySelector('#first-step-button-next').disabled = true
@@ -442,6 +442,7 @@ window.addEventListener('load', function () {
 
     if (inputCep)
         inputCep.addEventListener('change', event => {
+            console.log(inputCep.value.toString())
             if (inputCep.checkValidity() === false || inputCep.value.toString().length < 8) {
                 // event.preventDefault();
                 // event.stopPropagation();
