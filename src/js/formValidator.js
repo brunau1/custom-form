@@ -471,7 +471,7 @@ window.addEventListener('load', function () {
                 errorUserName.style.display = 'block'
                 inputUserName.style.borderColor = '#dc3545'
                 document.querySelector('#first-step-button-next').disabled = true
-                document.querySelector('user-name-invalid-feedback').innerHTML = 'O nome deve ter letras minúsculas e sem espaçamento!'
+                document.querySelector('#user-name-invalid-feedback').innerHTML = 'O nome deve ter letras minúsculas e sem espaçamento!'
             } 
             if (!inputUserName.value.toString()) {
                 document.querySelector('#first-step-button-next').disabled = true
@@ -480,7 +480,7 @@ window.addEventListener('load', function () {
                 errorUserName.style.display = 'block'
                 inputUserName.style.borderColor = '#dc3545'
                 document.querySelector('#first-step-button-next').disabled = true
-                document.querySelector('user-name-invalid-feedback').innerHTML = 'Este nome de usuário já existe!'
+                document.querySelector('#user-name-invalid-feedback').innerHTML = 'Este nome de usuário já existe!'
             }
             else {
                 errorUserName.style.display = 'none'
@@ -502,7 +502,7 @@ window.addEventListener('load', function () {
                 document.querySelector('#first-step-button-next').disabled = true
                 errorEmail.style.display = 'block'
                 inputEmail.style.borderColor = '#dc3545'
-                document.querySelector('email-invalid-feedback').innerHTML = 'Insira um endereço de email válido!'
+                document.querySelector('#email-invalid-feedback').innerHTML = 'Insira um endereço de email válido!'
             } 
             if (!inputEmail.value.toString()) {
                 document.querySelector('#first-step-button-next').disabled = true
@@ -511,7 +511,7 @@ window.addEventListener('load', function () {
                 errorUserName.style.display = 'block'
                 inputUserName.style.borderColor = '#dc3545'
                 document.querySelector('#first-step-button-next').disabled = true
-                document.querySelector('email-invalid-feedback').innerHTML = 'Este endereço email já existe!'
+                document.querySelector('#email-invalid-feedback').innerHTML = 'Este endereço email já existe!'
             } else {
                 errorEmail.style.display = 'none'
                 inputEmail.style.borderColor = '#28a745'
