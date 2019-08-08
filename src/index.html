@@ -38,7 +38,7 @@
                         <!--  Preencha o seu cadastro e comece os cursos gratuitamente! -->
                     </h2>
                     <b id="step" hidden>
-                        Etapa <span id="step-counter">1</span> de 3
+                        Etapa <span id="step-counter">1</span> de <span id="total-steps">3</span>
                     </b>
                 </div>
                 <div class="card-body" style="background: #fff;">
@@ -60,7 +60,7 @@
                                 <div class="form-group col-md-12">
                                     <label for="business">Você é: </label>
                                     <select class="form-control field" id="inputBusiness" placeholder="Selecione"
-                                        onclick="" required>
+                                        onclick="showBusinessForm()" required>
                                         <option value="">Selecione uma opção</option>
                                         <option value="Dono de bar(es) e/ou restaurante(s)">Dono de bar(es) e/ou
                                             restaurante(s)</option>
@@ -265,6 +265,8 @@
                                     class="btn btn-primary">Voltar</button>
                                 <button type="submit" onclick="showThirdForm()" id="second-step-button-next"
                                     class="btn btn-primary">Próximo</button>
+                                <button hidden type="submit" onclick="setPostData()" id="second-step-button-post"
+                                    class="btn btn-primary">Finalizar cadastro</button>
                             </div>
                         </form>
 

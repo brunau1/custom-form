@@ -3,27 +3,32 @@ setFieldsPrefix('#input')
 var showBusinessForm = () => {
     const select = document.querySelector('#inputBusiness')
     const businessForm = document.querySelector('#businessForm')
+    const totalSteps = document.querySelector('#total-steps')
+    const buttonSubmit = document.querySelector('#second-step-button-post')
+    const buttonNext = document.querySelector('#second-step-button-next')
     // const office = document.querySelector('#inputOffice')
 
-    if (select.value == 'pessoa juridica')
+    if (select.value == 'Dono de bar(es) e/ou restaurante(s)'){
         businessForm.hidden = false
-    else
-        businessForm.hidden = true
-
-    if (businessForm.hidden)
-        fieldIdsJuridic.map(item => {
-            field = document.querySelector(item)
-            field.disabled = true
-        })
-    else
+        totalSteps.innerHTML = '3'
         fieldIdsJuridic.map(item => {
             field = document.querySelector(item)
             field.disabled = false
         })
-    // if (select.value == '2')
-    //     office.disabled = false
-    // else
-    //     office.disabled = true
+        buttonNext.hidden = false
+        buttonSubmit.hidden = true
+    }
+    else{
+        businessForm.hidden = true
+        totalSteps.innerHTML = '2'
+        
+        fieldIdsJuridic.map(item => {
+            field = document.querySelector(item)
+            field.disabled = true
+        })
+        buttonNext.hidden = true
+        buttonSubmit.hidden = false
+    }
 }
 
 var fillCnpjFields = () => {
