@@ -283,48 +283,74 @@ inputPhoneVerification.addEventListener('change', event => {
     }
 })
 
-var validateAsyncEmail = async() => {
+var validateAsyncEmail = async () => {
+    var inputEmail = document.getElementById('inputEmailFirst')
+    var errorEmail = document.getElementById('email-invalid-feedback')
     var asyncEmailVerification = () => {
         const email = document.querySelector('#inputEmailFirst').value.toString()
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: `https://abrasel.dj.emp.br/api/users/exists/email/${email}/`,
-                type: 'get',
-            })
-                .done(data => {
-                    const exists = data.exists == false ? false : true
-                    resolve(exists)
+        try {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: `https://abrasel.dj.emp.br/api/users/exists/email/${email}/`,
+                    type: 'get',
                 })
-                .fail(err => {
-                    reject(err)
-                });
-        })
+                    .done(data => {
+                        const exists = data.exists == false ? false : true
+                        resolve(exists)
+                    })
+                    .fail(err => {
+                        reject(err)
+                    });
+            })
+        } catch (error) { console.log(error) }
     }
     const exists = await asyncEmailVerification()
+    if (exists) {
+        errorEmail.style.display = 'block'
+        inputEmail.style.borderColor = '#dc3545'
+        document.querySelector('#first-step-button-next').disabled = true
+        document.querySelector('#email-invalid-feedback').innerHTML = 'Este nome de usuário já existe!'
+    } else {
+        errorEmail.style.display = 'none'
+        inputEmail.style.borderColor = '#28a745'
+        document.querySelector('#first-step-button-next').disabled = false
+    }
     console.log(`Response result email: ${exists}`)
-    return exists
 }
 
-var validateAsyncUsername = async() => {
+var validateAsyncUsername = async () => {
+    var inputUserName = document.getElementById('inputUserName')
+    var errorUserName = document.getElementById('user-name-invalid-feedback')
     var asyncUsernameVerification = () => {
         const username = document.querySelector('#inputUserName').value.toString()
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: `https://abrasel.dj.emp.br/api/users/exists/username/${username}/`,
-                type: 'get',
-            })
-                .done(data => {
-                    const exists = data.exists == false ? false : true
-                    resolve(exists)
+        try {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: `https://abrasel.dj.emp.br/api/users/exists/username/${username}/`,
+                    type: 'get',
                 })
-                .fail(err => {
-                    reject(err)
-                });
-        })
-    }    
+                    .done(data => {
+                        const exists = data.exists == false ? false : true
+                        resolve(exists)
+                    })
+                    .fail(err => {
+                        reject(err)
+                    });
+            })
+        } catch (error) { console.log(error) }
+    }
     const exists = await asyncUsernameVerification()
+    if (exists) {
+        errorUserName.style.display = 'block'
+        inputUserName.style.borderColor = '#dc3545'
+        document.querySelector('#first-step-button-next').disabled = true
+        document.querySelector('#user-name-invalid-feedback').innerHTML = 'Este nome de usuário já existe!'
+    } else {
+        errorUserName.style.display = 'none'
+        inputUserName.style.borderColor = '#28a745'
+        document.querySelector('#first-step-button-next').disabled = false
+    }
     console.log(`Response result username: ${exists}`)
-    return exists
 }
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -472,11 +498,11 @@ window.addEventListener('load', function () {
                 inputUserName.style.borderColor = '#dc3545'
                 document.querySelector('#first-step-button-next').disabled = true
                 document.querySelector('#user-name-invalid-feedback').innerHTML = 'O nome deve ter letras minúsculas e sem espaçamento!'
-            } 
+            }
             if (!inputUserName.value.toString()) {
                 document.querySelector('#first-step-button-next').disabled = true
-            } 
-            if(validateAsyncUsername()){
+            }
+            if (validateAsyncUsername()) {
                 errorUserName.style.display = 'block'
                 inputUserName.style.borderColor = '#dc3545'
                 document.querySelector('#first-step-button-next').disabled = true
@@ -503,13 +529,13 @@ window.addEventListener('load', function () {
                 errorEmail.style.display = 'block'
                 inputEmail.style.borderColor = '#dc3545'
                 document.querySelector('#email-invalid-feedback').innerHTML = 'Insira um endereço de email válido!'
-            } 
+            }
             if (!inputEmail.value.toString()) {
                 document.querySelector('#first-step-button-next').disabled = true
-            } 
-            if(validateAsyncEmail()){
+            }
+            if (validateAsyncEmail()) {
                 errorUserName.style.display = 'block'
-                inputUserName.style.borderColor = '#dc3545'
+                inputUserName.style.borderColor = '#28a745'
                 document.querySelector('#first-step-button-next').disabled = true
                 document.querySelector('#email-invalid-feedback').innerHTML = 'Este endereço email já existe!'
             } else {
