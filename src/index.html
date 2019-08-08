@@ -427,7 +427,7 @@
     <script src='<?php echo $config->urls->templates ?>styles/js/formController.js'></script>
     <script src='<?php echo $config->urls->templates ?>styles/js/requestsController.js'></script>
     <script src='<?php echo $config->urls->templates ?>styles/js/userController.js'></script>
-    <script src="<?php echo $config->urls->templates ?>styles/js/formValidator.js"></script>
+    <script src="<?php echo $config->urls->templates ?>styles/js/formValidator.js?v=1"></script>
     <script>
         var url = localStorage.getItem("urlDestino")
         console.log(url);
@@ -453,7 +453,6 @@
             document.querySelector("#form-title").innerHTML = "É a sua primeira vez aqui? Preencha o seu cadastro e comece os cursos gratuitamente!"
             document.querySelector("#container-forms").hidden = false
             document.querySelector("body > div.container.form-container").style.marginBottom = '5em'
-
         }
     </script>
 </body>
