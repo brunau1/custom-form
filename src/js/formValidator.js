@@ -263,6 +263,25 @@ inputCpfVerification.addEventListener('change', event => {
         document.querySelector('#second-step-button-next').disabled = false
     }
 })
+var inputPhoneVerification = document.querySelector('#inputPhone')
+inputPhoneVerification.addEventListener('change', event => {
+    var phone = inputPhoneVerification.value.toString()
+    var isValid = phone.length < 9 ? false : true
+
+    if (!isValid) {
+        inputPhoneVerification.style.borderColor = '#dc3545'
+        console.log('não valido')
+        document.querySelector('#first-step-button-next').disabled = true
+    }
+    else {
+        inputPhoneVerification.style.borderColor = '#28a745'
+        if (!checkBox.checked)
+            document.querySelector('#first-step-button-next').disabled = true
+        else
+            document.querySelector('#first-step-button-next').disabled = false
+    }
+})
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 window.addEventListener('load', function () {
     selectFieldAndAddPropertie()

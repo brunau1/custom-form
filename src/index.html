@@ -19,24 +19,16 @@
     <div class="header">
         <div class="container">
             <div class="logos">
-
-                <a href="https://cursos.abrasel.com.br" class="smooth"><img
-                        style="width: 150px; margin-top: 9px;"
-                        src="<?php echo $config->urls->assets ?>images/logo-sebrae.png"></a>
-
-
                 <a href="https://cursos.abrasel.com.br" class="smooth"><img style="width: 150px;"
                         src="/site/templates/styles/images/logo-abrasel.png" alt=""></a>
-
+                <a href="https://cursos.abrasel.com.br" class="smooth"><img style="width: 150px; margin-top: 9px;"
+                        src="<?php echo $config->urls->assets ?>images/logo-sebrae.png"></a>
             </div>
         </div>
     </div>
-
     <div class="message" hidden>
         Enviando... aguarde um momento.
     </div>
-
-
     <div class="container form-container">
         <div class="col-md-6">
             <div class="card bg-warning">
@@ -53,10 +45,10 @@
 
                     <div class="form-buttons">
                         <button class="btn" id="login-button" style="margin: auto; margin-bottom: 1em;">
-                            <a id="login-link" href="">Já sou cadastrado!</a>
+                            <a id="login-link" href="">Já sou cadastrado</a>
                         </button>
                         <button class="btn" id="cadastrar-button" onclick="showElements()" style="margin: auto">
-                            Desejo me cadastrar!
+                            Desejo me cadastrar
                         </button>
 
                     </div>
@@ -457,7 +449,7 @@
         function showElements() {
             document.querySelector(".form-buttons").hidden = true
             document.querySelector("#step").hidden = false
-            document.querySelector("#form-title").innerHTML = "Preencha o seu cadastro e comece os cursos gratuitamente!"
+            document.querySelector("#form-title").innerHTML = "É a sua primeira vez aqui? Preencha o seu cadastro e comece os cursos gratuitamente!"
             document.querySelector("#container-forms").hidden = false
             document.querySelector("body > div.container.form-container").style.marginBottom = '5em'
 
