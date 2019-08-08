@@ -265,8 +265,9 @@ inputCpfVerification.addEventListener('change', event => {
 })
 var inputPhoneVerification = document.querySelector('#inputPhone')
 inputPhoneVerification.addEventListener('change', event => {
-    var phone = inputPhoneVerification.value.toString()
-    var isValid = phone.length < 9 ? false : true
+    const phone = inputPhoneVerification.value.toString()
+    const isValid = phone.length < 9 ? false : true
+    const checkBox = document.querySelector("#check-terms")
 
     if (!isValid) {
         inputPhoneVerification.style.borderColor = '#dc3545'
@@ -301,7 +302,6 @@ window.addEventListener('load', function () {
     var validate = [...forms]
     // Loop over them and prevent submission
     var checkBox = document.querySelector("#check-terms")
-    checkBox.addEventListener('click', showElements)
     checkBox.addEventListener('click', event => {
         if (!checkBox.checked)
             document.querySelector('#first-step-button-next').disabled = true
