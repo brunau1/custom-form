@@ -242,9 +242,14 @@ inputDateVerification.addEventListener('change', event => {
     if (!isValid) {
         inputDateVerification.value = ''
         inputDateVerification.style.borderColor = '#dc3545'
+        document.querySelector('#date-invalid-feedback').style.display = 'block'
         console.log('não valido')
     }
-    else inputDateVerification.style.borderColor = '#28a745'
+    else {
+        inputDateVerification.style.borderColor = '#28a745'
+        document.querySelector('#date-invalid-feedback').style.display = 'none'
+        document.querySelector('#phone-invalid-feedback').hidden = true
+    }
 })
 
 var inputCpfVerification = document.querySelector('#inputCpf')
@@ -266,16 +271,18 @@ inputCpfVerification.addEventListener('change', event => {
 var inputPhoneVerification = document.querySelector('#inputPhone')
 inputPhoneVerification.addEventListener('change', event => {
     const phone = inputPhoneVerification.value.toString()
-    const isValid = phone.length < 9 ? false : true
+    const isValid = phone.length < 10 ? false : true
     const checkBox = document.querySelector("#check-terms")
 
     if (!isValid) {
         inputPhoneVerification.style.borderColor = '#dc3545'
+        document.querySelector('#phone-invalid-feedback').style.display = 'block'
         console.log('não valido')
         document.querySelector('#first-step-button-next').disabled = true
     }
     else {
         inputPhoneVerification.style.borderColor = '#28a745'
+        document.querySelector('#phone-invalid-feedback').style.display = 'none'
         if (!checkBox.checked)
             document.querySelector('#first-step-button-next').disabled = true
         else
