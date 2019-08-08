@@ -31,6 +31,8 @@
     </div>
     <div class="container form-container">
         <div class="col-md-6">
+            <a id="login-link" class="btn btn-success" style="display: block; width: 100%; background: #28a745;
+    border-color: #28a745; margin-bottom: 1em; color: white;" href="">Fazer login</a>
             <div class="card bg-warning">
                 <div class="card-header">
                     <h2 style="font-size: 1.3em" id="form-title">
@@ -42,16 +44,6 @@
                     </b>
                 </div>
                 <div class="card-body" style="background: #fff;">
-
-                    <div class="form-buttons">
-                        <button class="btn" id="login-button" style="margin: auto; margin-bottom: 1em;">
-                            <a id="login-link" href="">Já sou cadastrado</a>
-                        </button>
-                        <button class="btn" id="cadastrar-button" onclick="showElements()" style="margin: auto">
-                            Desejo me cadastrar
-                        </button>
-
-                    </div>
 
                     <!-- formulario primeira etapa -->
                     <div id="container-forms" hidden>
@@ -443,17 +435,16 @@
     </script>
 
     <script>
-        var el = document.querySelector("#cadastrar-button")
         document.querySelector("body > div.container.form-container").style.marginBottom = '35em'
         document.querySelector('#first-step-button-next').disabled = true
 
         function showElements() {
-            document.querySelector(".form-buttons").hidden = true
             document.querySelector("#step").hidden = false
             document.querySelector("#form-title").innerHTML = "É a sua primeira vez aqui? Preencha o seu cadastro e comece os cursos gratuitamente!"
             document.querySelector("#container-forms").hidden = false
             document.querySelector("body > div.container.form-container").style.marginBottom = '5em'
         }
+        showElements()
     </script>
 </body>
 
