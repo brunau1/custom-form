@@ -236,10 +236,10 @@ inputDateVerification.addEventListener('change', event => {
         'ano': arrayDate[2]
     }
     var isValid = new Date(date.ano, date.mes, date.dia).getTime() > new Date().getTime() ? false : true
-    if(isValid) isValid = date.dia > 31 || date.dia < 1 ? false : true
-    if(isValid) isValid = date.mes > 12 || date.mes < 1 ? false : true
-    if(isValid) isValid = date.mes == 2 && date.dia > 29 ? false : true
-        if (!isValid) {
+    if (isValid) isValid = date.dia > 31 || date.dia < 1 ? false : true
+    if (isValid) isValid = date.mes > 12 || date.mes < 1 ? false : true
+    if (isValid) isValid = date.mes == 2 && date.dia > 29 ? false : true
+    if (!isValid) {
         inputDateVerification.value = ''
         inputDateVerification.style.borderColor = '#dc3545'
         console.log('não valido')
@@ -281,6 +281,14 @@ window.addEventListener('load', function () {
 
     var validate = [...forms]
     // Loop over them and prevent submission
+    var checkBox = document.querySelector("#check-terms")
+    checkBox.addEventListener('click', showElements)
+    checkBox.addEventListener('click', event => {
+        if (!checkBox.checked)
+            document.querySelector('#first-step-button-next').disabled = true
+        else
+            document.querySelector('#first-step-button-next').disabled = false
+    })
 
     validate.filter(item => {
         if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'first-step') {
@@ -382,6 +390,12 @@ window.addEventListener('load', function () {
             else {
                 errorPassword.style.display = 'none'
                 inputPassword.style.borderColor = '#28a745'
+
+                if (!checkBox.checked)
+                    document.querySelector('#first-step-button-next').disabled = true
+                else
+                    document.querySelector('#first-step-button-next').disabled = false
+
             }
             inputPassword.classList.add('was-validated');
         }, false)
@@ -394,13 +408,17 @@ window.addEventListener('load', function () {
                 errorUserName.style.display = 'block'
                 inputUserName.style.borderColor = '#dc3545'
                 document.querySelector('#first-step-button-next').disabled = true
-            } else if(!inputUserName.value.toString()){
+            } else if (!inputUserName.value.toString()) {
                 document.querySelector('#first-step-button-next').disabled = true
             }
             else {
                 errorUserName.style.display = 'none'
                 inputUserName.style.borderColor = '#28a745'
-                inputUserName.value = inputUserName.value.toString().replace(' ','').toLowerCase()
+                inputUserName.value = inputUserName.value.toString().replace(' ', '').toLowerCase()
+                if (!checkBox.checked)
+                    document.querySelector('#first-step-button-next').disabled = true
+                else
+                    document.querySelector('#first-step-button-next').disabled = false
             }
             inputUserName.classList.add('was-validated');
         }, false)
@@ -413,12 +431,16 @@ window.addEventListener('load', function () {
                 document.querySelector('#first-step-button-next').disabled = true
                 errorEmail.style.display = 'block'
                 inputEmail.style.borderColor = '#dc3545'
-            }else if(!inputEmail.value.toString()){
+            } else if (!inputEmail.value.toString()) {
                 document.querySelector('#first-step-button-next').disabled = true
             }
             else {
                 errorEmail.style.display = 'none'
                 inputEmail.style.borderColor = '#28a745'
+                if (!checkBox.checked)
+                    document.querySelector('#first-step-button-next').disabled = true
+                else
+                    document.querySelector('#first-step-button-next').disabled = false
             }
             inputEmail.classList.add('was-validated');
         }, false)

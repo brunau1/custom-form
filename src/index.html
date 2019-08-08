@@ -20,12 +20,12 @@
         <div class="container">
             <div class="logos">
 
-                <a href="http://www.sebrae.com.br" target="_blank" class="smooth"><img
+                <a href="https://cursos.abrasel.com.br" class="smooth"><img
                         style="width: 150px; margin-top: 9px;"
                         src="<?php echo $config->urls->assets ?>images/logo-sebrae.png"></a>
 
 
-                <a href="http://abrasel.com.br" target="_blank" class="smooth"><img style="width: 150px;"
+                <a href="https://cursos.abrasel.com.br" class="smooth"><img style="width: 150px;"
                         src="/site/templates/styles/images/logo-abrasel.png" alt=""></a>
 
             </div>
@@ -462,14 +462,6 @@
             document.querySelector("body > div.container.form-container").style.marginBottom = '5em'
 
         }
-        var checkBox = document.querySelector("#check-terms")
-        checkBox.addEventListener('click', showElements)
-        checkBox.addEventListener('click', event => {
-            if (!checkBox.checked)
-                document.querySelector('#first-step-button-next').disabled = true
-            else
-                document.querySelector('#first-step-button-next').disabled = false
-        })
     </script>
 </body>
 
