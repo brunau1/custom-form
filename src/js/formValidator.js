@@ -209,6 +209,13 @@ function formataCampo(campo, Mascara, evento) {
         return true;
     }
 }
+var selectFieldJuridicAndAddPropertie = () => {
+    fieldIdsJuridic.forEach(item => {
+        const field = document.querySelector(item)
+        if (item != '#inputCnpj') preventSubmitEvent(field)
+    });
+}
+
 var selectFieldAndAddPropertie = () => {
     fieldIdsJuridic.forEach(item => {
         const field = document.querySelector(item)
@@ -226,6 +233,14 @@ var selectFieldAndAddPropertie = () => {
 
 var preventPasteEvent = (field) => {
     field.addEventListener('paste', event => { event.preventDefault() })
+}
+
+var preventSubmitEvent = (field) => {
+    field.addEventListener('change', event => {
+        const canSubmit = field.value.toString() ? true : false
+        if(canSubmit) document.querySelector('#third-step-button').disabled = false
+        else document.querySelector('#third-step-button').disabled = true
+    })
 }
 
 var inputDateVerification = document.querySelector('#inputDate')
@@ -271,6 +286,7 @@ inputCpfVerification.addEventListener('change', event => {
     inputCpf.classList.add('was-validated');
     validateAsyncCPF()
 }, false)
+
 var inputPhoneVerification = document.querySelector('#inputPhone')
 inputPhoneVerification.addEventListener('change', event => {
     const phone = inputPhoneVerification.value.toString()
@@ -290,6 +306,25 @@ inputPhoneVerification.addEventListener('change', event => {
             document.querySelector('#first-step-button-next').disabled = true
         else
             document.querySelector('#first-step-button-next').disabled = false
+    }
+})
+
+document.querySelector('#third-step-button').disabled = true
+var inputPorteVerification = document.querySelector('#inputBillingRange')
+inputPorteVerification.addEventListener('click', event => {
+    const porte = inputPorteVerification.value.toString()
+    const isValid = porte == '' ? false : true
+
+    if (!isValid) {
+        inputPorteVerification.style.borderColor = '#dc3545'
+        document.querySelector('#porte-invalid-feedback').style.display = 'block'
+        console.log('não valido')
+        document.querySelector('#third-step-button').disabled = true
+    }
+    else {
+        inputPorteVerification.style.borderColor = '#28a745'
+        document.querySelector('#porte-invalid-feedback').style.display = 'none'
+        document.querySelector('#third-step-button').disabled = false
     }
 })
 
@@ -398,13 +433,14 @@ var validateAsyncCPF = async () => {
         document.querySelector('#second-step-button-next').disabled = false
         document.querySelector('#second-step-button-post').disabled = false
     }
-    console.log(`Response result username: ${exists}`)
+    console.log(`Response result cpf: ${exists}`)
 }
 
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 window.addEventListener('load', function () {
     selectFieldAndAddPropertie()
+    selectFieldJuridicAndAddPropertie()
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName('needs-validation');
     var inputCep = document.getElementById('inputCep')
