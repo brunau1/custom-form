@@ -1,8 +1,8 @@
 var consultCep = () => {
     const cep = document.querySelector("#inputCep").value.replace('.', '').replace('-', '')
     const fieldCep = document.querySelector("#inputCep")
-    const errorCep = document.getElementById('cep-invalid-feedback')
-
+    const errorCep = document.querySelector('#cep-invalid-feedback')
+ 
     fieldCep.disabled = true
     $.ajax({
         url: `https://viacep.com.br/ws/${cep}/json/`,
@@ -122,6 +122,8 @@ var cnpjRequest = (cnpj, field) => {
 
                 field.disabled = false
 
+                document.querySelector('#third-step-button').disabled = true
+
                 emptyCnpjFields()
             }
             else {
@@ -155,12 +157,12 @@ var cnpjRequest = (cnpj, field) => {
                 })
 
                 field.disabled = false
+                document.querySelector('#third-step-button').disabled = false
             }
         })
-        .fail((err, statusCode, code) => {
+        .fail((err, statusCode) => {
             console.log(err)
             console.log(statusCode)
-            console.log(code)
 
             message.innerHTML = 'CNPJ inválido!'
             message.hidden = false
