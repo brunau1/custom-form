@@ -90,8 +90,8 @@ var setPostData = () => {
     /* add dataNascimento, usuarioPerfilCondicional, sexo, fantasia, pessoaCelular, estabelecimentoRazao */
     const querryElement = (id, defaultValue) => document.querySelector(id).value.toString() || defaultValue;
 
-    let cpf = querryElement("#inputCpf",'99999999999')
-    let cnpj = querryElement("#inputCnpj",'99999999999999')
+    let cpf = querryElement("#inputCpf", '99999999999')
+    let cnpj = querryElement("#inputCnpj", '99999999999999')
     let cep = querryElement("#inputCep", '99999999')
 
     let dataNascimento = querryElement("#inputDate", "01/01/1900");
@@ -123,7 +123,7 @@ var setPostData = () => {
         length = document.querySelector("#inputNameFirst").value.toString().split(' ').length,
             postData = {
                 username: document.querySelector("#inputUserName").value.toString().replace(' ', ''),
-                firstname: document.querySelector("#inputNameFirst").value.toString().split(' ').slice(0,1),
+                firstname: document.querySelector("#inputNameFirst").value.toString().split(' ').slice(0, 1),
                 password: document.querySelector("#inputPassword").value.toString(),
                 lastname: document.querySelector("#inputNameFirst").value.toString().split(' ').slice(1, length),
                 email: document.querySelector("#inputEmailFirst").value.toString(),
