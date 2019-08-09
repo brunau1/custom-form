@@ -239,10 +239,12 @@ var preventSubmitEvent = (field) => {
     field.addEventListener('change', event => {
         var countFields = 0
         fieldIdsJuridic.forEach(item=>{
+            console.log('campo: '+item)
             const testField = document.querySelector(item)
-            countFields = testField.value.toString() ? countFields++ : countFields+=0
+            if(testField.value.toString()) countFields++
         })
-        const canSubmit = field.value.toString() && countFields >= 7 ? true : false
+        const canSubmit = field.value.toString() && countFields >= 8 ? true : false
+        console.log(`Count fields: ${countFields}`)
         if(canSubmit) document.querySelector('#third-step-button').disabled = false
         else document.querySelector('#third-step-button').disabled = true
     })

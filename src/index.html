@@ -7,8 +7,10 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Formulário de cadastrado</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel='stylesheet' type='text/css' media='screen' href='<?php echo $config->urls->templates ?>styles/css/custom-form.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' media='screen'
+        href='<?php echo $config->urls->templates ?>styles/css/custom-form.css'>
     <link rel="icon" type="image/png" href="<?php echo $config->urls->templates ?>styles/images/favicon.png">
 </head>
 
@@ -17,8 +19,10 @@
     <div class="header">
         <div class="container">
             <div class="logos">
-                <a href="https://cursos.abrasel.com.br" class="smooth"><img style="width: 150px;" src="/site/templates/styles/images/logo-abrasel.png" alt=""></a>
-                <a href="https://cursos.abrasel.com.br" class="smooth"><img style="width: 150px; margin-top: 9px;" src="<?php echo $config->urls->assets ?>images/logo-sebrae.png"></a>
+                <a href="https://cursos.abrasel.com.br" class="smooth"><img style="width: 150px;"
+                        src="/site/templates/styles/images/logo-abrasel.png" alt=""></a>
+                <a href="https://cursos.abrasel.com.br" class="smooth"><img style="width: 150px; margin-top: 9px;"
+                        src="<?php echo $config->urls->assets ?>images/logo-sebrae.png"></a>
             </div>
         </div>
     </div>
@@ -47,7 +51,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="business">Você é: </label>
-                                    <select class="form-control field" id="inputBusiness" placeholder="Selecione" onclick="showBusinessForm()" required>
+                                    <select class="form-control field" id="inputBusiness" placeholder="Selecione"
+                                        onclick="showBusinessForm()" required>
                                         <option value="">Selecione uma opção</option>
                                         <option value="Dono de bar(es) e/ou restaurante(s)">Dono de bar(es) e/ou
                                             restaurante(s)</option>
@@ -65,7 +70,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="inputName">Nome completo</label>
-                                    <input type="text" class="form-control field" id="inputNameFirst" placeholder="Nome completo" required>
+                                    <input type="text" class="form-control field" id="inputNameFirst"
+                                        placeholder="Nome completo" required>
                                     <div class="invalid-feedback">
                                         Informe seu nome completo!
                                     </div>
@@ -74,7 +80,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="inputUserName">Nome de usuário (apenas letras minúsculas)</label>
-                                    <input type="text" class="form-control field" id="inputUserName" placeholder="Nome para acesso" required>
+                                    <input type="text" class="form-control field" id="inputUserName"
+                                        placeholder="Nome para acesso" required>
                                     <div id="user-name-invalid-feedback">
                                         O nome deve ter letras minúsculas e sem espaçamento!
                                     </div>
@@ -83,14 +90,16 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail">Email</label>
-                                    <input type="text" class="form-control field" id="inputEmailFirst" placeholder="email@example.com" required>
+                                    <input type="text" class="form-control field" id="inputEmailFirst"
+                                        placeholder="email@example.com" required>
                                     <div id="email-invalid-feedback">
                                         Insira um endereço de email válido!
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword">Senha: (minimo de 6 caracteres)</label>
-                                    <input type="password" class="form-control field" id="inputPassword" placeholder="" required>
+                                    <input type="password" class="form-control field" id="inputPassword" placeholder=""
+                                        required>
                                     <div id="password-invalid-feedback">
                                         Informe uma senha válida!
                                     </div>
@@ -99,7 +108,9 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputPhone">Telefone</label>
-                                    <input type="text" class="form-control field" id="inputPhone" placeholder="(  ) _____-____" name="tel" onKeyPress="MascaraTelefone(custom_form_first.tel);" maxlength="15" required>
+                                    <input type="text" class="form-control field" id="inputPhone"
+                                        placeholder="(  ) _____-____" name="tel"
+                                        onKeyPress="MascaraTelefone(custom_form_first.tel);" maxlength="15" required>
                                     <div class="invalid-feedback">
                                         Informe um número de telefone válido!
                                     </div>
@@ -111,11 +122,14 @@
                             <div class="form-row">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="check-terms">
-                                    <label class="form-check-label" for="exampleCheck1">Concordo com os <a href="https://cursos.abrasel.com.br/termos-de-uso-abrasel.pdf" target="_blank">termos de serviço</a> da Abrasel</label>
+                                    <label class="form-check-label" for="exampleCheck1">Concordo com os <a
+                                            href="https://cursos.abrasel.com.br/termos-de-uso-abrasel.pdf"
+                                            target="_blank">termos de serviço</a> da Abrasel</label>
                                 </div>
                             </div>
                             <div class="form-row" style="justify-content: flex-end;">
-                                <button type="submit" id="first-step-button-next" onclick="showSecondForm()" class="btn btn-primary">Próximo</button>
+                                <button type="submit" id="first-step-button-next" onclick="showSecondForm()"
+                                    class="btn btn-primary">Próximo</button>
                             </div>
                         </form>
                         <!-- formulario primeira etapa -->
@@ -126,14 +140,17 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputName">Nome completo</label>
-                                    <input type="text" class="form-control field" id="inputNameSecond" placeholder="Nome completo" readonly required>
+                                    <input type="text" class="form-control field" id="inputNameSecond"
+                                        placeholder="Nome completo" readonly required>
                                     <div class="invalid-feedback">
                                         Informe seu nome completo!
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputCpf">CPF</label>
-                                    <input type="text" class="form-control field" id="inputCpf" placeholder="___.___.___-__" name="cpf" onKeyPress="MascaraCPF(custom_form_second.cpf);" maxlength="14" required>
+                                    <input type="text" class="form-control field" id="inputCpf"
+                                        placeholder="___.___.___-__" name="cpf"
+                                        onKeyPress="MascaraCPF(custom_form_second.cpf);" maxlength="14" required>
                                     <div class="invalid-feedback">
                                         Informe um CPF válido
                                     </div>
@@ -145,7 +162,9 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputDate">Data de Nascimento</label>
-                                    <input type="text" class="form-control field" id="inputDate" placeholder="__/__/__" name="data" onKeyPress="MascaraData(custom_form_second.data);" maxlength="10" required>
+                                    <input type="text" class="form-control field" id="inputDate" placeholder="__/__/__"
+                                        name="data" onKeyPress="MascaraData(custom_form_second.data);" maxlength="10"
+                                        required>
                                     <div class="invalid-feedback">
                                         Informe uma data válida!
                                     </div>
@@ -168,7 +187,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="inputPersonalSituation">Situação cadastral (receita federal)</label>
-                                    <select type="text" class="form-control field" id="inputPersonalSituation" placeholder="" required>
+                                    <select type="text" class="form-control field" id="inputPersonalSituation"
+                                        placeholder="" required>
                                         <option value="ativa">Ativo</option>
                                         <option value="inativa">Inativo</option>
                                     </select>
@@ -180,11 +200,15 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCountry">País</label>
-                                    <input type="text" class="form-control field" id="inputCountry" value="Brasil" required>
+                                    <input type="text" class="form-control field" id="inputCountry" value="Brasil"
+                                        required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputCep">CEP</label>
-                                    <input type="text" class="form-control field invalid-validation" id="inputCep" placeholder="__.___-___" onchange="//consultCep()" name="cep" onKeyPress="MascaraCep(custom_form_second.cep);" onPaste="MascaraCep(custom_form_second.cep);" maxlength="10" required>
+                                    <input type="text" class="form-control field invalid-validation" id="inputCep"
+                                        placeholder="__.___-___" onchange="//consultCep()" name="cep"
+                                        onKeyPress="MascaraCep(custom_form_second.cep);"
+                                        onPaste="MascaraCep(custom_form_second.cep);" maxlength="10" required>
                                     <div id="cep-invalid-feedback">
                                         Informe um CEP válido!
                                     </div>
@@ -222,9 +246,12 @@
                                 </div>
                             </div>
                             <div class="form-row" style="justify-content: space-between;">
-                                <button id="second-step-button-preview" onclick="backToFirst()" class="btn btn-primary">Voltar</button>
-                                <button type="submit" onclick="showThirdForm()" id="second-step-button-next" class="btn btn-primary">Próximo</button>
-                                <button hidden type="submit" onclick="setPostData()" id="second-step-button-post" class="btn btn-primary">Finalizar cadastro</button>
+                                <button id="second-step-button-preview" onclick="backToFirst()"
+                                    class="btn btn-primary">Voltar</button>
+                                <button type="submit" onclick="showThirdForm()" id="second-step-button-next"
+                                    class="btn btn-primary">Próximo</button>
+                                <button hidden type="submit" onclick="setPostData()" id="second-step-button-post"
+                                    class="btn btn-primary">Finalizar cadastro</button>
                             </div>
                         </form>
 
@@ -237,14 +264,18 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputCnpj">CNPJ</label>
-                                        <input type="text" class="form-control field invalid-validation" id="inputCnpj" placeholder="__.___.___/____-__" onchange="" name="cnpj" onKeyPress="MascaraCNPJ(custom_form_third.cnpj);" onPaste="MascaraCNPJ(custom_form_third.cnpj);" maxlength="18" required>
+                                        <input type="text" class="form-control field invalid-validation" id="inputCnpj"
+                                            placeholder="__.___.___/____-__" onchange="" name="cnpj"
+                                            onKeyPress="MascaraCNPJ(custom_form_third.cnpj);"
+                                            onPaste="MascaraCNPJ(custom_form_third.cnpj);" maxlength="18" required>
                                     </div>
                                     <div id="cnpj-invalid-feedback">
                                         Digite um CNPJ válido!
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputBillingRange">Porte</label>
-                                        <select type="text" class="form-control field" id="inputBillingRange" placeholder="" required>
+                                        <select type="text" class="form-control field" id="inputBillingRange"
+                                            placeholder="" required>
                                             <option value=''>Selecione uma opção</option>
                                             <option value="Microempreendendor Individual">Microempreendendor Individual
                                             </option>
@@ -264,20 +295,25 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputSocialReason">Razão social</label>
-                                        <input readonly type="text" class="form-control field" id="inputSocialReason" placeholder="" required>
+                                        <input readonly type="text" class="form-control field" id="inputSocialReason"
+                                            placeholder="" required>
                                         <div class="invalid-feedback">
                                             Informe o nome comercial do seu negócio!
                                         </div>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputFantasyName">Nome fantasia</label>
-                                        <input type="text" class="form-control field" id="inputFantasyName" placeholder="" required>
+                                        <input type="text" class="form-control field" id="inputFantasyName"
+                                            placeholder="" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputOpeningDate">Data de abertura</label>
-                                        <input readonly type="text" class="form-control field" id="inputOpeningDate" placeholder="__/__/__" name="dataAbertura" onKeyPress="MascaraData(custom_form_third.dataAbertura);" maxlength="10" required>
+                                        <input readonly type="text" class="form-control field" id="inputOpeningDate"
+                                            placeholder="__/__/__" name="dataAbertura"
+                                            onKeyPress="MascaraData(custom_form_third.dataAbertura);" maxlength="10"
+                                            required>
                                         <div class="invalid-feedback">
                                             Informe uma data válida!
                                         </div>
@@ -286,7 +322,8 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputJuridicSituation">Situação atual</label>
-                                        <select type="text" class="form-control field" id="inputJuridicSituation" placeholder="" required>
+                                        <select type="text" class="form-control field" id="inputJuridicSituation"
+                                            placeholder="" required>
                                             <option value="">Selecione um opção</option>
                                             <option value="ativa">Ativo</option>
                                             <option value="inativa">Inativo</option>
@@ -297,7 +334,8 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputOccupiedPeople">Pessoas ocupadas</label>
-                                        <input type="text" class="form-control field" id="inputOccupiedPeople" placeholder="" value="" required>
+                                        <input type="text" class="form-control field" id="inputOccupiedPeople"
+                                            placeholder="" value="" required>
                                     </div>
                                     <div class="invalid-feedback">
                                         Informe as pessoas ocupadas!
@@ -306,7 +344,8 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="inputMainActivity">Atividade principal:</label>
-                                        <input readonly type="text" class="form-control field" id="inputMainActivity" placeholder="" required>
+                                        <input readonly type="text" class="form-control field" id="inputMainActivity"
+                                            placeholder="" required>
                                         <div class="invalid-feedback">
                                             Informe a atividade econômica principal!
                                         </div>
@@ -314,8 +353,10 @@
                                 </div>
                             </div>
                             <div class="form-row" style="justify-content: space-between;">
-                                <button id="third-step-button-preview" onclick="backToSecond()" class="btn btn-primary" style="margin-right: 1em">Voltar</button>
-                                <button type="submit" id="third-step-button" disabled="disabled" class="btn btn-primary" onclick="setPostData()">Finalizar cadastro</button>
+                                <button id="third-step-button-preview" onclick="backToSecond()" class="btn btn-primary"
+                                    style="margin-right: 1em">Voltar</button>
+                                <button type="submit" id="third-step-button" disabled="disabled" class="btn btn-primary"
+                                    onclick="setPostData()">Finalizar cadastro</button>
                             </div>
                         </form>
 
@@ -327,15 +368,22 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="<?php echo $config->urls->templates ?>styles/js/globalVariables.js"></script>
     <script src='<?php echo $config->urls->templates ?>styles/js/formController.js'></script>
     <script src='<?php echo $config->urls->templates ?>styles/js/requestsController.js?v=1'></script>
     <script src='<?php echo $config->urls->templates ?>styles/js/userController.js'></script>
-    <script src="<?php echo $config->urls->templates ?>styles/js/formValidator.js?v=3"></script>
+    <script src="<?php echo $config->urls->templates ?>styles/js/formValidator.js?v=651685"></script>
     <script>
         var url = localStorage.getItem("urlDestino")
         console.log(url);
@@ -360,7 +408,6 @@
             document.querySelector('#third-step-button').disabled = true
         }
 
-
         function showElements() {
             document.querySelector("#step").hidden = false
             document.querySelector("#form-title").innerHTML = "É a sua primeira vez aqui? Preencha o seu cadastro e comece os cursos gratuitamente!"
@@ -368,6 +415,28 @@
             document.querySelector("body > div.container.form-container").style.marginBottom = '5em'
         }
         showElements()
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#second-step-button-post").click(function () {
+                $(".card").hide();
+            });
+        });
+        $("#inputBusiness").change(function () {
+
+            var usertype = $("select#inputBusiness option").filter(":selected").val();
+
+            if (usertype == "Dono de bar(es) e/ou restaurante(s)") {
+
+            } else {
+                $('#inputCnpj').val('');
+                $('#inputSocialReason').val('');
+                $('#inputFantasyName').val('');
+                $('#inputOpeningDate').val('');
+                $('#inputMainActivity').val('');
+            }
+        });
     </script>
 </body>
 

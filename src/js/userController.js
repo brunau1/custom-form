@@ -123,9 +123,9 @@ var setPostData = () => {
         length = document.querySelector("#inputNameFirst").value.toString().split(' ').length,
             postData = {
                 username: document.querySelector("#inputUserName").value.toString().replace(' ', ''),
-                firstname: document.querySelector("#inputNameFirst").value.toString().split(' ').slice(0, 1),
+                firstname: document.querySelector("#inputNameFirst").value.toString().split(' ').slice(0, 1).join(''),
                 password: document.querySelector("#inputPassword").value.toString(),
-                lastname: document.querySelector("#inputNameFirst").value.toString().split(' ').slice(1, length),
+                lastname: document.querySelector("#inputNameFirst").value.toString().split(' ').slice(1).join(' '),
                 email: document.querySelector("#inputEmailFirst").value.toString(),
                 cf: {
                     cpf,
