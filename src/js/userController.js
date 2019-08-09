@@ -75,9 +75,9 @@ var createUser = () => {
             message.hidden = true
             message.innerHTML = 'Falha no cadastro do usuário!'
             message.hidden = false
-            console.log("Dados:" + data)
+            console.log("Dados:" + JSON.stringify(data, null, 2))
             console.log(data)
-            console.log("Resposta JSON:" + data.responseJSON)
+            console.log("Resposta JSON:" + JSON.stringify(data.responseJSON, null, 2))
             console.log(data.responseJSON)
 
             setTimeout(() => {
