@@ -152,11 +152,7 @@ var setPostData = () => {
                     tipoPessoa
                 }
             }
-        console.log(postData.firstname)
-        console.log(postData.lastname)
-        console.log(postData.username)
-        console.log(postData.password)
-        console.log(postData.email)
+        console.log(JSON.stringify(postData, null, 2))
         createUser()
     }
     else {
