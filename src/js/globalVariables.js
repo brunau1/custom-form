@@ -20,7 +20,7 @@ var setFieldsPrefix = (prefix) => {
         prefix + 'SocialReason', //ok
         prefix + 'OpeningDate', //ok
         prefix + 'JuridicSituation', //ok
-        //prefix + 'OccupiedPeople', //ok
+        prefix + 'OccupiedPeople', //ok
         prefix + 'BillingRange', //ok
         //prefix + 'Sector', //removed
         //prefix + 'EconomicActivity', //removed
@@ -37,7 +37,7 @@ var setFieldsPrefix = (prefix) => {
         prefix + 'EmailFirst', //ok
         prefix + 'Password', //ok
         prefix + 'Phone', //ok
-        prefix + 'TypePerson' //ok
+        //prefix + 'TypePerson' //ok
     ]
 
     fieldIdsAddress = [
@@ -47,7 +47,7 @@ var setFieldsPrefix = (prefix) => {
         prefix + 'Neighborhood', //ok
         prefix + 'Address', //ok
         prefix + 'Number', //ok
-        //prefix + 'Complement',
+        //prefix + 'Complement', //ok
         prefix + 'Country' //ok
     ]
 
