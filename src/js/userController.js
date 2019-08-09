@@ -90,9 +90,9 @@ var setPostData = () => {
     /* add dataNascimento, usuarioPerfilCondicional, sexo, fantasia, pessoaCelular, estabelecimentoRazao */
     const querryElement = (id, defaultValue) => document.querySelector(id).value.toString() || defaultValue;
 
-    let cpf = document.querySelector("#inputCpf").value.toString() || '99999999999'
-    let cnpj = document.querySelector("#inputCnpj").value.toString() || '99999999999999'
-    let cep = document.querySelector("#inputCep").value.toString() || '99999999'
+    let cpf = querryElement("#inputCpf",'99999999999')
+    let cnpj = querryElement("#inputCnpj",'99999999999999')
+    let cep = querryElement("#inputCep", '99999999')
 
     let dataNascimento = querryElement("#inputDate", "01/01/1900");
     let usuarioPerfilCondicional = querryElement("#inputBusiness", 'empty')
@@ -123,9 +123,9 @@ var setPostData = () => {
         length = document.querySelector("#inputNameFirst").value.toString().split(' ').length,
             postData = {
                 username: document.querySelector("#inputUserName").value.toString().replace(' ', ''),
-                firstname: document.querySelector("#inputNameFirst").value.toString().split(' ')[0],
+                firstname: document.querySelector("#inputNameFirst").value.toString().split(' ').slice(0,1),
                 password: document.querySelector("#inputPassword").value.toString(),
-                lastname: document.querySelector("#inputNameFirst").value.toString().split(' ')[length - 1],
+                lastname: document.querySelector("#inputNameFirst").value.toString().split(' ').slice(1, length),
                 email: document.querySelector("#inputEmailFirst").value.toString(),
                 cf: {
                     cpf,
@@ -275,35 +275,3 @@ var crateFormAndRedirect = () => {
 
     form.submit();
 }
-
-// var testUsername = () => {
-//     var inputUserName = document.getElementById('inputUserName')
-//     var errorUserName = document.getElementById('user-name-invalid-feedback')
-//     var username = inputUserName.value.toString().replace(' ', '')
-
-//     inputUserName.disabled = true
-//     $.ajax({
-//         url: `https://abrasel.dj.emp.br/api/exists/username/jonny/`,
-//         type: "get"
-//     })
-//         .done(data => {
-//             if (data.exists) {
-//                 errorUserName.style.display = 'block'
-//                 inputUserName.style.borderColor = '#dc3545'
-//                 inputUserName.value = ''
-//                 inputUserName.disabled = false
-//                 return true
-//             }
-//             else {
-//                 inputUserName.value = username
-//                 inputUserName.disabled = false
-//                 return false
-//             }
-//         })
-//         .fail(err => {
-//             console.log(err)
-//             inputUserName.value = ''
-//             inputUserName.disabled = false
-//             return true
-//         })
-// }
