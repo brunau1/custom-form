@@ -157,7 +157,6 @@ var cnpjRequest = (cnpj, field) => {
                 })
 
                 field.disabled = false
-                document.querySelector('#third-step-button').disabled = false
             }
         })
         .fail((err, statusCode) => {

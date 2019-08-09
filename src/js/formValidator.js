@@ -237,7 +237,12 @@ var preventPasteEvent = (field) => {
 
 var preventSubmitEvent = (field) => {
     field.addEventListener('change', event => {
-        const canSubmit = field.value.toString() ? true : false
+        var countFields = 0
+        fieldIdsJuridic.forEach(item=>{
+            const testField = document.querySelector(item)
+            countFields = testField.value.toString() ? countFields++ : countFields+=0
+        })
+        const canSubmit = field.value.toString() && countFields >= 7 ? true : false
         if(canSubmit) document.querySelector('#third-step-button').disabled = false
         else document.querySelector('#third-step-button').disabled = true
     })
@@ -324,7 +329,6 @@ inputPorteVerification.addEventListener('click', event => {
     else {
         inputPorteVerification.style.borderColor = '#28a745'
         document.querySelector('#porte-invalid-feedback').style.display = 'none'
-        document.querySelector('#third-step-button').disabled = false
     }
 })
 
@@ -544,13 +548,11 @@ window.addEventListener('load', function () {
                 // event.stopPropagation();
                 errorCnpj.style.display = 'block'
                 inputCnpj.style.borderColor = '#dc3545'
-                document.querySelector('#third-step-button').disabled = true
                 emptyCnpjFields()
             }
             else {
                 errorCnpj.style.display = 'none'
                 inputCnpj.style.borderColor = '#28a745'
-                document.querySelector('#third-step-button').disabled = false
                 consultCnpj()
             }
             inputCnpj.classList.add('was-validated');
