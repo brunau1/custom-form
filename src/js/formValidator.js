@@ -238,14 +238,14 @@ var preventPasteEvent = (field) => {
 var preventSubmitEvent = (field) => {
     field.addEventListener('change', event => {
         var countFields = 0
-        fieldIdsJuridic.forEach(item=>{
-            console.log('campo: '+item)
+        fieldIdsJuridic.forEach(item => {
+            console.log('campo: ' + item)
             const testField = document.querySelector(item)
-            if(testField.value.toString()) countFields++
+            if (testField.value.toString()) countFields++
         })
         const canSubmit = field.value.toString() && countFields >= 8 ? true : false
         console.log(`Count fields: ${countFields}`)
-        if(canSubmit) document.querySelector('#third-step-button').disabled = false
+        if (canSubmit) document.querySelector('#third-step-button').disabled = false
         else document.querySelector('#third-step-button').disabled = true
     })
 }
@@ -275,10 +275,44 @@ inputDateVerification.addEventListener('change', event => {
     }
 })
 
+var validateCPFdigits = (cpfField) => {
+    var cpf = cpfField.value.toString().replace('.', '').replace('.', '').replace('-', '')
+    var numeros, digitos, soma, i, resultado, digitos_iguais;
+    digitos_iguais = 1;
+    if (cpf.length < 11)
+        return false;
+    for (i = 0; i < cpf.length - 1; i++)
+        if (cpf.charAt(i) != cpf.charAt(i + 1)) {
+            digitos_iguais = 0;
+            break;
+        }
+    if (!digitos_iguais) {
+        numeros = cpf.substring(0, 9);
+        digitos = cpf.substring(9);
+        soma = 0;
+        for (i = 10; i > 1; i--)
+            soma += numeros.charAt(10 - i) * i;
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(0))
+            return false;
+        numeros = cpf.substring(0, 10);
+        soma = 0;
+        for (i = 11; i > 1; i--)
+            soma += numeros.charAt(11 - i) * i;
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(1))
+            return false;
+        return true;
+    }
+    else
+        return false;
+}
+
 var inputCpfVerification = document.querySelector('#inputCpf')
 inputCpfVerification.addEventListener('change', event => {
     var cpf = inputCpfVerification.value.toString()
     var isValid = cpf.length < 14 ? false : true
+    if(!!isValid) isValid = validateCPFdigits(inputCpfVerification)
 
     if (!isValid) {
         inputCpfVerification.value = ''
@@ -289,9 +323,9 @@ inputCpfVerification.addEventListener('change', event => {
     else {
         inputCpfVerification.style.borderColor = '#28a745'
         document.querySelector('#second-step-button-next').disabled = false
+        validateAsyncCPF()
     }
     inputCpf.classList.add('was-validated');
-    validateAsyncCPF()
 }, false)
 
 var inputPhoneVerification = document.querySelector('#inputPhone')
