@@ -209,10 +209,26 @@ function formataCampo(campo, Mascara, evento) {
         return true;
     }
 }
+
 var selectFieldJuridicAndAddPropertie = () => {
     fieldIdsJuridic.forEach(item => {
         const field = document.querySelector(item)
-        if (item != '#inputCnpj') preventSubmitEvent(field)
+        if (item != '#inputCnpj') preventSubmitEvent(field, fieldIdsJuridic, '#third-step-button')
+    });
+}
+
+var selectFieldsOfFirstFormAndAddPropertie = () => {
+    const firstFormFields = [
+        '#inputBusiness',
+        '#inputNameFirst',
+        '#inputUserName',
+        '#inputEmailFirst',
+        '#inputPassword',
+        '#inputPhone'
+    ]
+    firstFormFields.forEach(item => {
+        const field = document.querySelector(item)
+        if (item != '#inputCnpj') preventSubmitEvent(field, firstFormFields, '#first-step-button-next', '#check-terms')
     });
 }
 
@@ -235,19 +251,40 @@ var preventPasteEvent = (field) => {
     field.addEventListener('paste', event => { event.preventDefault() })
 }
 
-var preventSubmitEvent = (field) => {
+var preventSubmitEvent = (field, fieldGroup, buttonId, checkFieldId) => {
     field.addEventListener('change', event => {
         var countFields = 0
-        fieldIdsJuridic.forEach(item => {
+        const totalFields = fieldGroup.length
+        fieldGroup.forEach(item => {
             console.log('campo: ' + item)
             const testField = document.querySelector(item)
             if (testField.value.toString()) countFields++
         })
-        const canSubmit = field.value.toString() && countFields >= 8 ? true : false
+        let canSubmit = field.value.toString() && countFields == totalFields ? true : false
         console.log(`Count fields: ${countFields}`)
-        if (canSubmit) document.querySelector('#third-step-button').disabled = false
-        else document.querySelector('#third-step-button').disabled = true
+        console.log(`Total fields: ${totalFields}`)
+        if (!!checkFieldId && (field.value.toString() && countFields == totalFields)) {
+            const checkField = document.querySelector(checkFieldId)
+            canSubmit = checkField.checked ? true : false
+        }
+        if (canSubmit) document.querySelector(buttonId).disabled = false
+        else document.querySelector(buttonId).disabled = true
     })
+    if (!!checkFieldId) {
+        const checkField = document.querySelector(checkFieldId)
+        checkField.addEventListener('click', event => {
+            var countFields = 0
+            const totalFields = fieldGroup.length
+            fieldGroup.forEach(item => {
+                console.log('campo: ' + item)
+                const testField = document.querySelector(item)
+                if (testField.value.toString()) countFields++
+            })
+            const isChecked = checkField.checked && countFields == totalFields ? true : false
+            if (isChecked) document.querySelector(buttonId).disabled = false
+            else document.querySelector(buttonId).disabled = true
+        })
+    }
 }
 
 var inputDateVerification = document.querySelector('#inputDate')
@@ -312,7 +349,7 @@ var inputCpfVerification = document.querySelector('#inputCpf')
 inputCpfVerification.addEventListener('change', event => {
     var cpf = inputCpfVerification.value.toString()
     var isValid = cpf.length < 14 ? false : true
-    if(!!isValid) isValid = validateCPFdigits(inputCpfVerification)
+    if (!!isValid) isValid = validateCPFdigits(inputCpfVerification)
 
     if (!isValid) {
         inputCpfVerification.value = ''
@@ -393,12 +430,10 @@ var validateAsyncEmail = async () => {
     if (exists || !validateEmail(inputEmail.value.toString())) {
         errorEmail.style.display = 'block'
         inputEmail.style.borderColor = '#dc3545'
-        document.querySelector('#first-step-button-next').disabled = true
         document.querySelector('#email-invalid-feedback').innerHTML = 'Este nome de usuário já existe!'
     } else {
         errorEmail.style.display = 'none'
         inputEmail.style.borderColor = '#28a745'
-        document.querySelector('#first-step-button-next').disabled = false
     }
     console.log(`Response result email: ${exists}`)
 }
@@ -428,12 +463,10 @@ var validateAsyncUsername = async () => {
     if (exists) {
         errorUserName.style.display = 'block'
         inputUserName.style.borderColor = '#dc3545'
-        document.querySelector('#first-step-button-next').disabled = true
         document.querySelector('#user-name-invalid-feedback').innerHTML = 'Este nome de usuário já existe!'
     } else {
         errorUserName.style.display = 'none'
         inputUserName.style.borderColor = '#28a745'
-        document.querySelector('#first-step-button-next').disabled = false
     }
     console.log(`Response result username: ${exists}`)
 }
@@ -481,6 +514,7 @@ var validateAsyncCPF = async () => {
 window.addEventListener('load', function () {
     selectFieldAndAddPropertie()
     selectFieldJuridicAndAddPropertie()
+    selectFieldsOfFirstFormAndAddPropertie()
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName('needs-validation');
     var inputCep = document.getElementById('inputCep')
@@ -496,15 +530,6 @@ window.addEventListener('load', function () {
     var errorEmail = document.getElementById('email-invalid-feedback')
 
     var validate = [...forms]
-    // Loop over them and prevent submission
-    var checkBox = document.querySelector("#check-terms")
-    checkBox.addEventListener('click', event => {
-        if (!checkBox.checked)
-            document.querySelector('#first-step-button-next').disabled = true
-        else
-            document.querySelector('#first-step-button-next').disabled = false
-    })
-
     validate.filter(item => {
         if (item.getAttribute('class') == 'needs-validation' && item.getAttribute('id') == 'first-step') {
             formCounter = 1
@@ -606,12 +631,6 @@ window.addEventListener('load', function () {
             else {
                 errorPassword.style.display = 'none'
                 inputPassword.style.borderColor = '#28a745'
-
-                if (!checkBox.checked)
-                    document.querySelector('#first-step-button-next').disabled = true
-                else
-                    document.querySelector('#first-step-button-next').disabled = false
-
             }
             inputPassword.classList.add('was-validated');
         }, false)
@@ -623,20 +642,12 @@ window.addEventListener('load', function () {
                 // event.stopPropagation();
                 errorUserName.style.display = 'block'
                 inputUserName.style.borderColor = '#dc3545'
-                document.querySelector('#first-step-button-next').disabled = true
                 document.querySelector('#user-name-invalid-feedback').innerHTML = 'O nome deve ter letras minúsculas e sem espaçamento!'
-            }
-            else if (!inputUserName.value.toString()) {
-                document.querySelector('#first-step-button-next').disabled = true
             }
             else {
                 errorUserName.style.display = 'none'
                 inputUserName.style.borderColor = '#28a745'
                 inputUserName.value = slugify(inputUserName.value.toString().replace(' ', '').toLowerCase())
-                if (!checkBox.checked)
-                    document.querySelector('#first-step-button-next').disabled = true
-                else
-                    document.querySelector('#first-step-button-next').disabled = false
             }
             inputUserName.classList.add('was-validated');
             validateAsyncUsername()
@@ -652,16 +663,9 @@ window.addEventListener('load', function () {
                 inputEmail.style.borderColor = '#dc3545'
                 document.querySelector('#email-invalid-feedback').innerHTML = 'Insira um endereço de email válido!'
             }
-            else if (!inputEmail.value.toString()) {
-                document.querySelector('#first-step-button-next').disabled = true
-            }
             else {
                 errorEmail.style.display = 'none'
                 inputEmail.style.borderColor = '#28a745'
-                if (!checkBox.checked)
-                    document.querySelector('#first-step-button-next').disabled = true
-                else
-                    document.querySelector('#first-step-button-next').disabled = false
             }
             inputEmail.classList.add('was-validated');
             validateAsyncEmail()
