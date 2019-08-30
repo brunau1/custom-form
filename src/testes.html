@@ -339,7 +339,19 @@
                     </form>
 
                     <!-- formulario terceira etapa -->
-
+                    <input type="text" name="username" placeholder="username" pattern="[a-z]{1,}" required>
+                    <input type="text" name="cpf" placeholder="___.___.___-__" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"
+                        required>
+                    <input type="text" name="cep" placeholder="__.____-___" pattern="\d{2}\.?\d{3}-?\d{3}" maxlength="8"
+                        required>
+                    <input type="text" name="cnpj" placeholder="__.___.___/____-__"
+                        pattern="(^[0-9]{2,3}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}-?[0-9]{2}$)" maxlength="14" required>
+                    <input type="text" name="phone" placeholder="(__)_____-____"
+                        pattern="(\(?[0-9]{2})\)?[0-9]{5}-?[0-9]{4}" required>
+                    <input type="text" name="email" placeholder="email@example.com"
+                        pattern="[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$" required>
+                    <input type="text" name="password" placeholder="Senha" pattern="[a-zA-Z0-9]{5,}" required>
+                    <button type="submit">Enviar</button>
                 </div>
             </div>
         </div>

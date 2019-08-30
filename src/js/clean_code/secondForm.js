@@ -118,7 +118,7 @@ var consultCep = () => {
         const isValid = inputCep.validity.valid
         if (!!isValid) {
             const cep = inputCep.value.toString().replace(/\D/g, '');
-            const response = searchCep(cep)
+            const response = cepRequest(cep)
             console.log(JSON.stringify(response, null, 2))
         } else if (!isValid) {
             clearCepFields()
@@ -158,11 +158,11 @@ var clearCepFields = () => {
     $("#state").val("");
 }
 
-var searchCep = async (cep) => {
+var cepRequest = async (cep) => {
     const inputCep = document.querySelector('#zip_code')
     const errorCep = document.querySelector('#cep-invalid-feedback')
     //Verifica se campo cep possui valor informado.
-    var search = () => {
+    var request = () => {
         try {
             return new Promise((resolve, reject) => {
                 $.ajax({
@@ -194,7 +194,7 @@ var searchCep = async (cep) => {
         } catch (error) { console.log(error) }
     }
 
-    const response = await search()
+    const response = await request()
     if (!!response.error) {
         inputCep.value = ''
         inputCep.style.borderColor = '#dc3545'

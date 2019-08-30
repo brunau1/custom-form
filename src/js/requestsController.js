@@ -92,12 +92,6 @@ var cnpjRequest = (cnpj, field) => {
         type: "get",
         dataType: 'jsonp',
         timeout: 6000,
-        beforeSend: () => {
-            // fieldIdsJuridic.map(item => {
-            //     var fields = document.querySelector(item)
-            //     fields.disabled = true
-            // })
-        }
     })
         .done(data => {
 

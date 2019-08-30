@@ -20,6 +20,7 @@ var preventPasteEvent = (fieldGroup) => {
 }
 
 var preventSubmitEvent = (fieldGroup, buttonId, checkFieldId) => {
+    document.querySelector(buttonId).disabled = true
     fieldGroup.forEach(item => {
         const field = document.querySelector(item)
         if (item != '#cnpj')
@@ -57,4 +58,23 @@ var preventSubmitEvent = (fieldGroup, buttonId, checkFieldId) => {
             })
         }
     })
+}
+
+var crateFormAndRedirect = () => {
+    const courseUrl = localStorage.getItem("urlDestino").replace('https://abrasel.dj.emp.br', '');
+    const form = document.createElement('form');
+    const createInput = (attributes) => {
+        element = document.createElement('input');
+        for (const attribute in attributes) {
+            element.setAttribute(attribute, attributes[attribute]);
+        }
+        return element;
+    }
+    form.appendChild(createInput({ name: 'username', value: postData.username, type: 'hidden' }));
+    form.appendChild(createInput({ name: 'password', value: postData.password, type: 'hidden' }));
+    form.appendChild(createInput({ name: 'redirect', value: courseUrl, type: 'hidden' }));
+    form.setAttribute('method', 'POST');
+    form.setAttribute('action', 'https://abrasel.dj.emp.br/login/index.php');
+    document.querySelector('body').appendChild(form);
+    form.submit();
 }
