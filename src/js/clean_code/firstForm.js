@@ -125,4 +125,8 @@ window.onload = () => {
     checkPhoneValidity()
     preventPasteEvent(fieldsFirstForm)
     preventSubmitEvent(fieldsFirstForm, '#first_step_button_next', '#check_terms')
+
+    const hasRedirect = localStorage.getItem("urlDestino") ? true : false
+    if(!hasRedirect) localStorage.setItem("urlDestino", 'https://cursos.abrasel.com.br/pagina-de-cursos/')
+    document.querySelector("#login-link").setAttribute('href', localStorage.getItem("urlDestino"))
 }
