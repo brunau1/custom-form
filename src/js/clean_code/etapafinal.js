@@ -1,4 +1,5 @@
 window.onload = () => {
+    setText()
     const url = localStorage.getItem("urlDestino")
 
     setTimeout(() => {
@@ -22,4 +23,8 @@ window.onload = () => {
         form.submit();
     }
 
+}
+
+var setText = () => {
+    document.querySelector("#form-title").innerHTML = 'Agora você já pode começar os cursos gratuitamente.'
 }
