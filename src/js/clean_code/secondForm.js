@@ -134,15 +134,18 @@ window.onload = () => {
     checkCpfValidity()
     consultCep()
 
+    document.querySelector('#step-counter').innerHTML = '2'
     preventPasteEvent(fieldsSecondForm)
     const canShowThirdForm = localStorage.getItem('showThirdForm')
     if (canShowThirdForm == "false") {
         preventSubmitEvent(fieldsSecondForm, '#second_step_button_post', '')
+        document.querySelector('#total-steps').innerHTML = '2'
         document.querySelector("#second_step_button_next").hidden = true
         document.querySelector("#second_step_button_post").hidden = false
         document.querySelector('#step2').setAttribute('action', '/etapa-final')
     } else {
         preventSubmitEvent(fieldsSecondForm, '#second_step_button_next', '')
+        document.querySelector('#total-steps').innerHTML = '3'
         document.querySelector('#second_step_button_next').hidden = false
         document.querySelector('#second_step_button_post').hidden = true
         document.querySelector('#step2').setAttribute('action', '/terceira-etapa')

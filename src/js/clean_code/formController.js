@@ -32,10 +32,10 @@ var preventSubmitEvent = (fieldGroup, buttonId, checkFieldId) => {
                     const testField = document.querySelector(item)
                     if (!!testField.validity.valid) countFields++
                 })
-                let canSubmit = field.value.toString() && countFields == totalFields ? true : false
+                let canSubmit = field.validity.valid && countFields == totalFields ? true : false
                 console.log(`Count fields: ${countFields}`)
                 console.log(`Total fields: ${totalFields}`)
-                if (!!checkFieldId && (field.value.toString() && countFields == totalFields)) {
+                if (!!checkFieldId && (field.validity.valid && countFields == totalFields)) {
                     const checkField = document.querySelector(checkFieldId)
                     canSubmit = checkField.checked ? true : false
                 }

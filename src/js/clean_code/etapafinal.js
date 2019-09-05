@@ -27,4 +27,5 @@ window.onload = () => {
 
 var setText = () => {
     document.querySelector("#form-title").innerHTML = 'Agora você já pode começar os cursos gratuitamente.'
+    document.querySelector('#step-counter').innerHTML = '3'
 }

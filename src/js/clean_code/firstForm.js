@@ -89,7 +89,6 @@ var checkEmailValidity = () => {
 
 var checkUsernameValidity = () => {
     const inputUsername = document.querySelector('#username')
-    inputUsername.value = ''
     document.querySelector('#username').addEventListener('change', event => {
         const username = slugify(inputUsername.value.toString())
         document.querySelector('#username').value = username

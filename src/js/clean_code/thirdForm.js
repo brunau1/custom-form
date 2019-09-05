@@ -20,6 +20,7 @@ window.onload = () => {
     consultCnpj()
     preventPasteEvent(fieldsThirdForm)
     preventSubmitEvent(fieldsThirdForm, '#third_step_button', '')
+    document.querySelector('#step-counter').innerHTML = '3'
 }
 
 var clearCnpjFields = () => {
