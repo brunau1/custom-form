@@ -2,11 +2,14 @@ window.onload = () => {
     setText()
     const url = localStorage.getItem("urlDestino")
 
-    setTimeout(() => {
+    setTimeout(async () => {
         if (url == 'https://cursos.abrasel.com.br/pagina-de-cursos/')
             window.location.href = url
-        else
+        else {
+            const result = await courseRegister(data.id)
+            console.log(result)
             crateFormAndRedirect()
+        }
         message.hidden = true
     }, 3000)
 

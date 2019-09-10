@@ -62,11 +62,14 @@ var createUser = () => {
             //     window.location.href = localStorage.getItem("urlDestino")
             // else
             //     window.location.href = 'https://abrasel.dj.emp.br/login/index.php'
-            setTimeout(() => {
+            setTimeout(async () => {
                 if (url == ('https://cursos.abrasel.com.br/pagina-de-cursos/'))
                     window.location.href = url
-                else
-                    crateFormAndRedirect(data.id)
+                else {
+                    const result = await courseRegister(data.id)
+                    console.log(result)
+                    crateFormAndRedirect()
+                }
                 message.hidden = true
             }, 2500)
         })
@@ -249,8 +252,7 @@ var catchError = async (data) => {
     backToFirst()
 }
 
-var crateFormAndRedirect = async (userid) => {
-    // await courseRegister(userid)
+var crateFormAndRedirect = async () => {
     const courseUrl = localStorage.getItem("urlDestino").replace('https://abrasel.dj.emp.br', '');
     const form = document.createElement('form');
 
