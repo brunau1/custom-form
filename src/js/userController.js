@@ -14,34 +14,34 @@ var createUser = () => {
         url: usersRoutePost,
         type: "post",
         data: {
-            'username': username,
-            'firstname': firstname,
-            'lastname': lastname,
-            'email': email,
-            'password': password,
-            'cf': {
-                'CPF': cpf,
-                'CNPJ': cnpj,
-                'CEP': cep,
-                'dataNascimento': dataNascimento,
-                'usuarioPerfilCondicional': usuarioPerfilCondicional,
-                'sexo': sexo,
-                'fantasia': fantasia,
-                'pessoaCelular': pessoaCelular,
-                'estabelecimentoRazao': estabelecimentoRazao,
-                'cidade': cidade,
-                'estado': estado,
-                'bairro': bairro,
-                'numero': numero,
-                'pais': pais,
-                'endereco': endereco,
-                'dataAbertura': dataAbertura,
-                'situacaoJuridica': situacaoJuridica,
-                'porte': porte,
-                'atividadePrincipal': atividadePrincipal,
-                'pessoasOcupadas': pessoasOcupadas,
-                'complemento': complemento,
-                'tipoPessoa': tipoPessoa
+            username,
+            firstname,
+            lastname,
+            email,
+            password,
+            cf: {
+                'CPF':cpf,
+                'CNPJ':cnpj,
+                'CEP':cep,
+                dataNascimento,
+                usuarioPerfilCondicional,
+                sexo,
+                fantasia,
+                pessoaCelular,
+                estabelecimentoRazao,
+                cidade,
+                estado,
+                bairro,
+                numero,
+                pais,
+                endereco,
+                dataAbertura,
+                situacaoJuridica,
+                porte,
+                atividadePrincipal,
+                pessoasOcupadas,
+                complemento,
+                tipoPessoa
             }
         },
         beforeSend: () => {
@@ -54,24 +54,18 @@ var createUser = () => {
             console.log(data)
             console.log(localStorage.getItem("urlDestino"))
             var url = localStorage.getItem("urlDestino")
-            // alert("Usuário Cadastrado!")
             message.hidden = true
             message.innerHTML = 'Usuário Cadastrado!'
             message.hidden = false
-            // if (url)
-            //     window.location.href = localStorage.getItem("urlDestino")
-            // else
-            //     window.location.href = 'https://abrasel.dj.emp.br/login/index.php'
-            setTimeout(async () => {
-                if (url == ('https://cursos.abrasel.com.br/pagina-de-cursos/'))
-                    window.location.href = url
-                else {
+            if (url == 'https://cursos.abrasel.com.br/pagina-de-cursos/')
+                window.location.href = url
+            else
+                (async () => {
                     const result = await courseRegister(data.id)
                     console.log(result)
                     crateFormAndRedirect()
-                }
-                message.hidden = true
-            }, 2500)
+                    message.hidden = true
+                })()
         })
         .fail(data => {
             // alert("Falha no cadastro do usuário!")
@@ -252,7 +246,7 @@ var catchError = async (data) => {
     backToFirst()
 }
 
-var crateFormAndRedirect = async () => {
+var crateFormAndRedirect = () => {
     const courseUrl = localStorage.getItem("urlDestino").replace('https://abrasel.dj.emp.br', '');
     const form = document.createElement('form');
 
@@ -279,7 +273,9 @@ var crateFormAndRedirect = async () => {
 }
 
 var courseRegister = async (userid) => {
+    console.log('entrou course register')
     const courseid = await getCourseId()
+    console.log('voltou para a função course')
     return new Promise((resolve, reject) => {
         $.ajax({
             url: `https://abrasel.dj.emp.br/api/courses/enrol`,
@@ -287,10 +283,9 @@ var courseRegister = async (userid) => {
                 'Authorization': `Bearer ${token}`
             },
             type: 'post',
-            json: true,
             data: {
-                'userid': userid,
-                'courseid': courseid
+                userid,
+                courseid
             }
         })
             .done(data => {
@@ -303,6 +298,8 @@ var courseRegister = async (userid) => {
 }
 
 var getCourseId = async () => {
+    console.log('entrou get courses')
+
     return new Promise(async (resolve, reject) => {
         const courseName = localStorage.getItem("nomeCurso")
         var asyncGetCourse = async () => {
@@ -313,8 +310,13 @@ var getCourseId = async () => {
                 })
                     .done(data => {
                         data.data.forEach(item => {
-                            if (item.fullname.toLowerCase() == courseName.toLowerCase())
+                            console.log("nome curso: " + item.fullname)
+
+                            if (item.fullname.includes(courseName) ||
+                            item.shortname.includes(courseName)) {
+                                console.log("id no loop: "+item.id)
                                 resolve(item.id)
+                            }
                         })
                     })
                     .fail(err => {
@@ -324,9 +326,10 @@ var getCourseId = async () => {
         }
         try {
             const courseid = await asyncGetCourse()
+            console.log('id do curso:'+courseid)
             resolve(courseid)
         } catch (error) { reject(error) }
     })
 }
 
-var token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FicmFzZWwuZGouZW1wLmJyL2FjY2Vzc190b2tlbiIsImlhdCI6MTU2ODEzNDk3OSwiZXhwIjoxNTY4MTM4NTc5LCJuYmYiOjE1NjgxMzQ5NzksImp0aSI6ImhmNmI3b2dLektnRUlDY3QiLCJzdWIiOjcwOTEsInVzZXIiOnsiaWQiOjcwOTEsImlkbnVtYmVyIjoiIiwidXNlcm5hbWUiOiJrdWthYyIsImZpcnN0bmFtZSI6Ikt1a2FjIiwibGFzdG5hbWUiOiJBZG0iLCJmdWxsbmFtZSI6Ikt1a2FjIEFkbSIsImVtYWlsIjoia3VrYWNAYWRtLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDE5LTA5LTEwIDEyOjEwOjE3IiwiZmlyc3RhY2Nlc3MiOiJOdW5jYSBhY2Vzc291IiwibGFzdGFjY2VzcyI6Ik51bmNhIGFjZXNzb3UifX0.xba7ROOBSKPAJh8FFly2ZYOY_hqIVmlTDHMbudOl6X8`
+var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FicmFzZWwuZGouZW1wLmJyL2FjY2Vzc190b2tlbiIsImlhdCI6MTU2ODE0MDM2MSwiZXhwIjoxNTY4MTQzOTYxLCJuYmYiOjE1NjgxNDAzNjEsImp0aSI6IkVlWDNiTGRSZVp0WlJFSUMiLCJzdWIiOjcwOTEsInVzZXIiOnsiaWQiOjcwOTEsImlkbnVtYmVyIjoiIiwidXNlcm5hbWUiOiJrdWthYyIsImZpcnN0bmFtZSI6Ikt1a2FjIiwibGFzdG5hbWUiOiJBZG0iLCJmdWxsbmFtZSI6Ikt1a2FjIEFkbSIsImVtYWlsIjoia3VrYWNAYWRtLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDE5LTA5LTEwIDEyOjEwOjE3IiwiZmlyc3RhY2Nlc3MiOiJOdW5jYSBhY2Vzc291IiwibGFzdGFjY2VzcyI6Ik51bmNhIGFjZXNzb3UifX0.ZhaHcg2-oPoh5-v1AYRa3aTmcItfKdaOLeikG_nP8Is"
