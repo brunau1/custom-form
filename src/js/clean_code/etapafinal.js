@@ -2,15 +2,15 @@ window.onload = () => {
     setText()
     const url = localStorage.getItem("urlDestino")
 
-    setTimeout(async () => {
+    setTimeout(() => {
         if (url == 'https://cursos.abrasel.com.br/pagina-de-cursos/')
             window.location.href = url
-        else {
-            const result = await courseRegister(data.id)
-            console.log(result)
-            crateFormAndRedirect()
-        }
-        message.hidden = true
+        else
+            (async () => {
+                const result = await courseRegister(data.id)
+                console.log(result)
+                crateFormAndRedirect()
+            })()
     }, 3000)
 
     var crateFormAndRedirect = () => {
@@ -33,8 +33,26 @@ var setText = () => {
     document.querySelector('#step-counter').innerHTML = '3'
 }
 
-var courseRegister = async (userid) => {
+var varifyCourseRegister = async (userid) => {
+    console.log('entrou course register')
     const courseid = await getCourseId()
+    console.log('voltou para a função verifycourse')
+    const result = await awaitRegistration(userid, courseid)
+    console.log(`resultado do cadastro: ${result}`)
+    return result
+}
+
+var awaitRegistration = async (userid, courseid) => {
+    console.log('tenta executar o registro')
+    try {
+        const token = await getToken()
+        result = await courseRegister(token, userid, courseid)
+        return 'success'
+    } catch (error) { await awaitRegistration(userid, courseid) }
+}
+
+var courseRegister = (token, userid, courseid) => {
+    console.log('entrou course register')
     return new Promise((resolve, reject) => {
         $.ajax({
             url: `https://abrasel.dj.emp.br/api/courses/enrol`,
@@ -42,22 +60,65 @@ var courseRegister = async (userid) => {
                 'Authorization': `Bearer ${token}`
             },
             type: 'post',
-            json: true,
             data: {
-                'userid': userid,
-                'courseid': courseid
+                userid,
+                courseid
             }
         })
             .done(data => {
-                resolve('success')
+                console.log(`status code: ${data.status}`)
+                console.log('registrou com sucesso')
+                resolve({
+                    error: false,
+                    message: 'success'
+                })
             })
             .fail(err => {
-                reject(err)
+                console.log(`erro do ajax: ${JSON.stringify(err, null, 2)}`)
+                console.log(`status code: ${err.status}`)
+                console.log('nao conseguiu registrar')
+                reject({
+                    error: true,
+                    message: 'fail',
+                    status: err.status
+                })
             });
     })
 }
 
+var getToken = async () => {
+    var get = () => {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: `https://abrasel.dj.emp.br/api/access_token`,
+                type: 'get',
+                json: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    "password": 'kuk@C1$3',
+                    "username": 'kukac',
+                },
+                data: {
+                    "username": "kukac",
+                    "password": "kuk@C1$3"
+                }
+            })
+                .done(data => {
+                    resolve(data.token)
+                })
+                .fail(err => {
+                    console.log(`erro do ajax: ${JSON.stringify(err, null, 2)}`)
+                    reject(err)
+                });
+        })
+    }
+    const token = await get()
+    return token
+}
+
 var getCourseId = async () => {
+    console.log('entrou get courses')
+
     return new Promise(async (resolve, reject) => {
         const courseName = localStorage.getItem("nomeCurso")
         var asyncGetCourse = async () => {
@@ -68,8 +129,13 @@ var getCourseId = async () => {
                 })
                     .done(data => {
                         data.data.forEach(item => {
-                            if (item.fullname.toLowerCase() == courseName.toLowerCase())
+                            console.log("nome curso: " + item.fullname)
+
+                            if (item.fullname.includes(courseName) ||
+                                item.shortname.includes(courseName)) {
+                                console.log("id no loop: " + item.id)
                                 resolve(item.id)
+                            }
                         })
                     })
                     .fail(err => {
@@ -79,9 +145,8 @@ var getCourseId = async () => {
         }
         try {
             const courseid = await asyncGetCourse()
+            console.log('id do curso:' + courseid)
             resolve(courseid)
         } catch (error) { reject(error) }
     })
 }
-
-var token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FicmFzZWwuZGouZW1wLmJyL2FjY2Vzc190b2tlbiIsImlhdCI6MTU2ODEzNDk3OSwiZXhwIjoxNTY4MTM4NTc5LCJuYmYiOjE1NjgxMzQ5NzksImp0aSI6ImhmNmI3b2dLektnRUlDY3QiLCJzdWIiOjcwOTEsInVzZXIiOnsiaWQiOjcwOTEsImlkbnVtYmVyIjoiIiwidXNlcm5hbWUiOiJrdWthYyIsImZpcnN0bmFtZSI6Ikt1a2FjIiwibGFzdG5hbWUiOiJBZG0iLCJmdWxsbmFtZSI6Ikt1a2FjIEFkbSIsImVtYWlsIjoia3VrYWNAYWRtLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDE5LTA5LTEwIDEyOjEwOjE3IiwiZmlyc3RhY2Nlc3MiOiJOdW5jYSBhY2Vzc291IiwibGFzdGFjY2VzcyI6Ik51bmNhIGFjZXNzb3UifX0.xba7ROOBSKPAJh8FFly2ZYOY_hqIVmlTDHMbudOl6X8`
