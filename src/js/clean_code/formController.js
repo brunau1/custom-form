@@ -28,19 +28,36 @@ var preventSubmitEvent = (fieldGroup, buttonId, checkFieldId) => {
                 var countFields = 0
                 const totalFields = fieldGroup.length
                 fieldGroup.forEach(item => {
-                    console.log('campo: ' + item)
+                    // console.log('campo: ' + item)
                     const testField = document.querySelector(item)
                     if (!!testField.validity.valid) countFields++
                 })
                 let canSubmit = field.validity.valid && countFields == totalFields ? true : false
                 console.log(`Count fields: ${countFields}`)
                 console.log(`Total fields: ${totalFields}`)
+
                 if (!!checkFieldId && (field.validity.valid && countFields == totalFields)) {
                     const checkField = document.querySelector(checkFieldId)
-                    canSubmit = checkField.checked ? true : false
+                    console.log(`can submit: ${canSubmit}`)
+                    if (!!canSubmit) canSubmit = checkField.checked ? true : false
+                    console.log(`checkbox checked: ${checkField.checked ? true : false}`)
+                    console.log(`can submit: ${canSubmit}`)
+                    if (!!document.querySelector('#email') && !!document.querySelector('#username')) {
+                        (async () => {
+                            if (!!canSubmit) canSubmit = await canPassEmailAndUsername()
+                            console.log(`can pass email and username: ${await canPassEmailAndUsername()}`)
+                            console.log(`can submit: ${canSubmit}`)
+
+                            console.log(`pode submeter fields: ${canSubmit}`)
+                            if (!!canSubmit) document.querySelector(buttonId).disabled = false
+                            else document.querySelector(buttonId).disabled = true
+                        })()
+                    }
+                } else {
+                    console.log(`pode submeter fields: ${canSubmit}`)
+                    if (!!canSubmit) document.querySelector(buttonId).disabled = false
+                    else document.querySelector(buttonId).disabled = true
                 }
-                if (canSubmit) document.querySelector(buttonId).disabled = false
-                else document.querySelector(buttonId).disabled = true
             })
         if (!!checkFieldId) {
             const checkField = document.querySelector(checkFieldId)
@@ -48,16 +65,38 @@ var preventSubmitEvent = (fieldGroup, buttonId, checkFieldId) => {
                 var countFields = 0
                 const totalFields = fieldGroup.length
                 fieldGroup.forEach(item => {
-                    console.log('campo: ' + item)
+                    // console.log('campo: ' + item)
                     const testField = document.querySelector(item)
                     if (!!testField.validity.valid) countFields++
                 })
-                const isChecked = checkField.checked && countFields == totalFields ? true : false
-                if (isChecked) document.querySelector(buttonId).disabled = false
-                else document.querySelector(buttonId).disabled = true
+                let isChecked = checkField.checked && countFields == totalFields ? true : false
+                if (!!document.querySelector('#email') && !!document.querySelector('#username'))
+                    (async () => {
+                        if (!!isChecked) isChecked = await canPassEmailAndUsername()
+                        console.log(`can pass email and username: ${await canPassEmailAndUsername()}`)
+                        console.log(`pode submeter checkbox: ${isChecked}`)
+                        if (!!isChecked) document.querySelector(buttonId).disabled = false
+                        else document.querySelector(buttonId).disabled = true
+                    })()
+                else {
+                    console.log(`pode submeter checkbox: ${isChecked}`)
+                    if (!!isChecked) document.querySelector(buttonId).disabled = false
+                    else document.querySelector(buttonId).disabled = true
+                }
             })
         }
     })
+}
+
+var canPassEmailAndUsername = async () => {
+    const email = document.querySelector("#email").value.toString()
+    const username = slugify(document.querySelector("#username").value.toString())
+
+    const existsEmail = await asyncEmailVerification(email)
+    const existsUsername = await asyncUsernameVerification(username)
+
+    if (!existsEmail && !existsUsername) return true
+    else return false
 }
 
 var crateFormAndRedirect = () => {

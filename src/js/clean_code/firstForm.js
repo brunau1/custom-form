@@ -1,67 +1,72 @@
-var validateAsyncEmail = async () => {
+var asyncEmailVerification = (email) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `https://abrasel.dj.emp.br/api/users/exists/email/${email}/`,
+            type: 'get',
+        })
+            .done(data => {
+                const exists = data.exists == false ? false : true
+                resolve(exists)
+            })
+            .fail(err => {
+                reject(err)
+            });
+    })
+}
+
+var validateAsyncEmail = async (email) => {
     const inputEmail = document.querySelector('#email')
     const errorEmail = document.querySelector('#email-invalid-feedback')
-    var asyncEmailVerification = () => {
-        const email = document.querySelector('#email').value.toString()
-        try {
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: `https://abrasel.dj.emp.br/api/users/exists/email/${email}/`,
-                    type: 'get',
-                })
-                    .done(data => {
-                        const exists = data.exists == false ? false : true
-                        resolve(exists)
-                    })
-                    .fail(err => {
-                        reject(err)
-                    });
-            })
-        } catch (error) { console.log(error) }
-    }
-    const exists = await asyncEmailVerification()
+    const exists = await asyncEmailVerification(email)
 
     if (exists) {
         errorEmail.style.display = 'block'
         inputEmail.style.borderColor = '#dc3545'
         errorEmail.innerHTML = 'Este email já existe!'
+        console.log(`Email já existe: ${exists}`)
+        return false
     } else {
         errorEmail.style.display = 'none'
         inputEmail.style.borderColor = '#28a745'
+        console.log(`Email já existe: ${exists}`)
+        return true
     }
-    console.log(`Email já existe: ${exists}`)
+}
+
+var asyncUsernameVerification = (username) => {
+    try {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: `https://abrasel.dj.emp.br/api/users/exists/username/${username}/`,
+                type: 'get',
+            })
+                .done(data => {
+                    const exists = data.exists == false ? false : true
+                    resolve(exists)
+                })
+                .fail(err => {
+                    reject(err)
+                });
+        })
+    } catch (error) { console.log(error) }
 }
 
 var validateAsyncUsername = async (username) => {
     const inputUserName = document.querySelector('#username')
     const errorUserName = document.querySelector('#user-name-invalid-feedback')
-    var asyncUsernameVerification = () => {
-        try {
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: `https://abrasel.dj.emp.br/api/users/exists/username/${username}/`,
-                    type: 'get',
-                })
-                    .done(data => {
-                        const exists = data.exists == false ? false : true
-                        resolve(exists)
-                    })
-                    .fail(err => {
-                        reject(err)
-                    });
-            })
-        } catch (error) { console.log(error) }
-    }
-    const exists = await asyncUsernameVerification()
+    const exists = await asyncUsernameVerification(username)
     if (exists) {
         errorUserName.style.display = 'block'
         inputUserName.style.borderColor = '#dc3545'
         errorUserName.innerHTML = 'Este nome de usuário já existe!'
+        console.log(`Username já existe: ${exists}`)
+        return false
     } else {
         errorUserName.style.display = 'none'
         inputUserName.style.borderColor = '#28a745'
+        console.log(`Username já existe: ${exists}`)
+        return true
     }
-    console.log(`Username já existe: ${exists}`)
 }
 
 var checkEmailValidity = () => {
@@ -74,7 +79,7 @@ var checkEmailValidity = () => {
             errorEmail.style.display = 'none'
             inputEmail.style.borderColor = '#dc3545'
         }
-        else if (!!isValid) validateAsyncEmail()
+        else if (!!isValid) validateAsyncEmail(inputEmail.value.toString())
         else if (!isValid) {
             errorEmail.style.display = 'block'
             inputEmail.style.borderColor = '#dc3545'
@@ -114,10 +119,11 @@ var checkPasswordValidity = () => {
         const isValid = inputPassword.validity.valid && inputPassword.value.toString().length > 5
         if (!isValid) inputPassword.style.borderColor = '#dc3545'
         else if (!!isValid) inputPassword.style.borderColor = '#28a745'
-    }) 
+    })
 }
 
 window.onload = () => {
+    setRedirectUrl()
     checkEmailValidity()
     checkUsernameValidity()
     checkPasswordValidity()
@@ -126,6 +132,7 @@ window.onload = () => {
     preventSubmitEvent(fieldsFirstForm, '#first_step_button_next', '#check_terms')
 
     const hasRedirect = localStorage.getItem("urlDestino") ? true : false
-    if(!hasRedirect) localStorage.setItem("urlDestino", 'https://cursos.abrasel.com.br/pagina-de-cursos/')
+    if (!hasRedirect) localStorage.setItem("urlDestino", 'https://cursos.abrasel.com.br/pagina-de-cursos/')
     document.querySelector("#login-link").setAttribute('href', localStorage.getItem("urlDestino"))
+    console.log('Urul de destino: ' + localStorage.getItem("urlDestino"))
 }
