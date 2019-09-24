@@ -122,7 +122,7 @@ var setRedirectUrl = () => {
     try {
         const redirectUrl = window.location.href.split('?redirect=')[1]
         localStorage.setItem('urlDestino', redirectUrl)
-        var courseName = localStorage.urlDestino.split('&').slice(-1).pop().split('=')[1]
+        const courseName = localStorage.urlDestino.split('&').slice(-1).pop().split('=')[1]
         localStorage.setItem("nomeCurso", courseName)
         console.log(`Nome do curso: ${courseName}`)
 

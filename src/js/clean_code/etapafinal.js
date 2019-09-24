@@ -1,31 +1,33 @@
-window.onload = () => {
+window.onload = async () => {
     setText()
     const url = localStorage.getItem("urlDestino")
+    const postData = JSON.parse(document.querySelector("#postData").innerHTML)
+    console.log(postData)
 
+    const userid = await createUser(postData)
     setTimeout(() => {
         if (url == 'https://cursos.abrasel.com.br/pagina-de-cursos/')
             window.location.href = url
         else
             (async () => {
-                const result = await courseRegister(data.id)
+                const result = await verifyCourseRegister(userid)
                 console.log(result)
                 crateFormAndRedirect()
             })()
     }, 3000)
+}
 
-    var crateFormAndRedirect = () => {
-        const courseUrl = localStorage.getItem("urlDestino").replace('https://abrasel.dj.emp.br', '');
-        const form = document.createElement('#userform');
-        const createInput = (attributes) => {
-            element = document.createElement('input');
-            for (const attribute in attributes)
-                element.setAttribute(attribute, attributes[attribute]);
-            return element;
-        }
-        form.appendChild(createInput({ name: 'redirect', value: courseUrl, type: 'hidden' }));
-        form.submit();
+var crateFormAndRedirect = () => {
+    const courseUrl = localStorage.getItem("urlDestino").replace('https://abrasel.dj.emp.br', '');
+    const form = document.createElement('#userform');
+    const createInput = (attributes) => {
+        element = document.createElement('input');
+        for (const attribute in attributes)
+            element.setAttribute(attribute, attributes[attribute]);
+        return element;
     }
-
+    form.appendChild(createInput({ name: 'redirect', value: courseUrl, type: 'hidden' }));
+    form.submit();
 }
 
 var setText = () => {
@@ -33,7 +35,7 @@ var setText = () => {
     document.querySelector('#step-counter').innerHTML = '3'
 }
 
-var varifyCourseRegister = async (userid) => {
+var verifyCourseRegister = async (userid) => {
     console.log('entrou course register')
     const courseid = await getCourseId()
     console.log('voltou para a função verifycourse')
@@ -121,32 +123,51 @@ var getCourseId = async () => {
 
     return new Promise(async (resolve, reject) => {
         const courseName = localStorage.getItem("nomeCurso")
-        var asyncGetCourse = async () => {
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: `https://abrasel.dj.emp.br/api/courses`,
-                    type: 'get',
-                })
-                    .done(data => {
-                        data.data.forEach(item => {
-                            console.log("nome curso: " + item.fullname)
-
-                            if (item.fullname.includes(courseName) ||
-                                item.shortname.includes(courseName)) {
-                                console.log("id no loop: " + item.id)
-                                resolve(item.id)
-                            }
-                        })
-                    })
-                    .fail(err => {
-                        reject(err)
-                    });
-            })
-        }
         try {
-            const courseid = await asyncGetCourse()
+            const courseid = await asyncGetCourses(courseName)
             console.log('id do curso:' + courseid)
             resolve(courseid)
         } catch (error) { reject(error) }
+    })
+}
+
+var asyncGetCourses = async (courseName) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `https://abrasel.dj.emp.br/api/courses`,
+            type: 'get',
+        })
+            .done(data => {
+                data.data.forEach(item => {
+                    console.log("nome curso: " + item.fullname)
+
+                    if (item.fullname.includes(courseName) ||
+                        item.shortname.includes(courseName)) {
+                        console.log("id no loop: " + item.id)
+                        resolve(item.id)
+                    }
+                })
+            })
+            .fail(err => {
+                reject(err)
+            });
+    })
+}
+
+var createUser = (postData) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `https://abrasel.dj.emp.br/api/users`,
+            type: 'post',
+            data: postData,
+        })
+            .done(data => {
+                console.log(`id do usuario: ${data.id}`)
+                resolve(data.id)
+            })
+            .fail(err => {
+                console.log("Resposta JSON:" + JSON.stringify(err.responseJSON, null, 2))
+                reject('falha no cadastro')
+            });
     })
 }

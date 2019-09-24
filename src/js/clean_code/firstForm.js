@@ -34,21 +34,19 @@ var validateAsyncEmail = async (email) => {
 }
 
 var asyncUsernameVerification = (username) => {
-    try {
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: `https://abrasel.dj.emp.br/api/users/exists/username/${username}/`,
-                type: 'get',
-            })
-                .done(data => {
-                    const exists = data.exists == false ? false : true
-                    resolve(exists)
-                })
-                .fail(err => {
-                    reject(err)
-                });
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `https://abrasel.dj.emp.br/api/users/exists/username/${username}/`,
+            type: 'get',
         })
-    } catch (error) { console.log(error) }
+            .done(data => {
+                const exists = data.exists == false ? false : true
+                resolve(exists)
+            })
+            .fail(err => {
+                reject(err)
+            });
+    })
 }
 
 var validateAsyncUsername = async (username) => {
@@ -131,8 +129,9 @@ window.onload = () => {
     preventPasteEvent(fieldsFirstForm)
     preventSubmitEvent(fieldsFirstForm, '#first_step_button_next', '#check_terms')
 
-    const hasRedirect = localStorage.getItem("urlDestino") ? true : false
+    const hasRedirect = localStorage.getItem("urlDestino") == "undefined" ? false : true
+    console.log(`has redirect: ${hasRedirect} | redirect: ${localStorage.getItem("urlDestino")}`)
     if (!hasRedirect) localStorage.setItem("urlDestino", 'https://cursos.abrasel.com.br/pagina-de-cursos/')
     document.querySelector("#login-link").setAttribute('href', localStorage.getItem("urlDestino"))
-    console.log('Urul de destino: ' + localStorage.getItem("urlDestino"))
+    console.log('Url de destino: ' + localStorage.getItem("urlDestino"))
 }
