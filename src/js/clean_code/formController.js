@@ -25,39 +25,39 @@ var preventSubmitEvent = (fieldGroup, buttonId, checkFieldId) => {
         const field = document.querySelector(item)
         if (item != '#cnpj')
             field.addEventListener('change', event => {
-                var countFields = 0
-                const totalFields = fieldGroup.length
-                fieldGroup.forEach(item => {
-                    // console.log('campo: ' + item)
-                    const testField = document.querySelector(item)
-                    if (!!testField.validity.valid) countFields++
-                })
-                let canSubmit = field.validity.valid && countFields == totalFields ? true : false
-                console.log(`Count fields: ${countFields}`)
-                console.log(`Total fields: ${totalFields}`)
+                (async () => {
+                    var countFields = 0
+                    const totalFields = fieldGroup.length
+                    fieldGroup.forEach(item => {
+                        // console.log('campo: ' + item)
+                        const testField = document.querySelector(item)
+                        if (!!testField.validity.valid) countFields++
+                    })
+                    let canSubmit = field.validity.valid && countFields == totalFields ? true : false
+                    console.log(`Count fields: ${countFields}`)
+                    console.log(`Total fields: ${totalFields}`)
 
-                if (!!checkFieldId && (field.validity.valid && countFields == totalFields)) {
-                    const checkField = document.querySelector(checkFieldId)
-                    console.log(`can submit: ${canSubmit}`)
-                    if (!!canSubmit) canSubmit = checkField.checked ? true : false
-                    console.log(`checkbox checked: ${checkField.checked ? true : false}`)
-                    console.log(`can submit: ${canSubmit}`)
-                    if (!!document.querySelector('#email') && !!document.querySelector('#username')) {
-                        (async () => {
-                            if (!!canSubmit) canSubmit = await canPassEmailAndUsername()
-                            console.log(`can pass email and username: ${await canPassEmailAndUsername()}`)
-                            console.log(`can submit: ${canSubmit}`)
-
-                            console.log(`pode submeter fields: ${canSubmit}`)
-                            if (!!canSubmit) document.querySelector(buttonId).disabled = false
-                            else document.querySelector(buttonId).disabled = true
-                        })()
+                    if (!!checkFieldId && canSubmit) {
+                        const checkField = document.querySelector(checkFieldId)
+                        console.log(`can submit: ${canSubmit}`)
+                        if (!!canSubmit) canSubmit = checkField.checked ? true : false
+                        console.log(`checkbox checked: ${checkField.checked ? true : false}`)
+                        console.log(`can submit: ${canSubmit}`)
                     }
-                } else {
+                    if (!!document.querySelector('#email') && !!document.querySelector('#username')) {
+                        if (!!canSubmit) canSubmit = await canPassEmailAndUsername()
+                        console.log(`can pass email and username: ${await canPassEmailAndUsername()}`)
+                        console.log(`can submit: ${canSubmit}`)
+                    }
+                    if (!!document.querySelector('#cpf')) {
+                        if (!!canSubmit) canSubmit = await canPassCpf()
+                        console.log(`can pass cpf: ${await canPassCpf()}`)
+                        console.log(`can submit: ${canSubmit}`)
+                    }
                     console.log(`pode submeter fields: ${canSubmit}`)
                     if (!!canSubmit) document.querySelector(buttonId).disabled = false
                     else document.querySelector(buttonId).disabled = true
-                }
+                })()
             })
         if (!!checkFieldId) {
             const checkField = document.querySelector(checkFieldId)
@@ -92,11 +92,24 @@ var canPassEmailAndUsername = async () => {
     const email = document.querySelector("#email").value.toString()
     const username = slugify(document.querySelector("#username").value.toString())
 
-    const existsEmail = await asyncEmailVerification(email)
-    const existsUsername = await asyncUsernameVerification(username)
+    if (!!email && !!username) {
+        const existsEmail = await asyncEmailVerification(email)
+        const existsUsername = await asyncUsernameVerification(username)
+        const validEmail = validateEmail(email)
 
-    if (!existsEmail && !existsUsername) return true
-    else return false
+        if (!existsEmail && !existsUsername && !!validEmail) return true
+        else return false
+    } else return false
+}
+
+var canPassCpf = async () => {
+    const cpf = document.querySelector("#cpf")
+    if (!!cpf.value.toString()) {
+        const validCpf = validateCPFdigits(cpf)
+        const existsCpf = await asyncCpfVerification(cpf.value.toString())
+        if (!!validCpf && !existsCpf) return true
+        else return false
+    } else return false
 }
 
 var crateFormAndRedirect = () => {
